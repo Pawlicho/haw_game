@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 
 namespace HazardAndWhispers.App.Game.Common
 {
-    internal interface IConsumableItem : IItem
+    enum Element
     {
-        public uint NumberOfUsageLeft { get; }
-        public uint MaxNumberOfUsage { get; }
-
-        public bool Consume();
+        Water,
+        Fire,
+        Earth,
+        Wind,
+        Light,
+        Shadow
     }
 }

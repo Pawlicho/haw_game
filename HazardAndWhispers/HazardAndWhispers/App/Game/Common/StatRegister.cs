@@ -12,7 +12,7 @@ namespace HazardAndWhispers.App.Game.Common
     {
         private uint healthPoints;
         private uint maxHealthPoints;
-        private uint abilityPoints;
+        private int abilityPoints;
         private uint speedPoints;
         private uint manaPoints;
         private uint maxManaPoints;
@@ -22,11 +22,12 @@ namespace HazardAndWhispers.App.Game.Common
         private uint missChance;
         private int attackDamage;
         private uint criticalStrikeChance;
-        private uint waterResistance;
-        private uint fireResistance;
-        private uint windResistance;
-        private uint lightResistance;
-        private uint shadowResistance;
+        bool waterResistance;
+        bool earthResistance;
+        bool fireResistance;
+        bool windResistance;
+        bool lightResistance;
+        bool shadowResistance;
 
         public uint HealthPoints
         {
@@ -45,7 +46,7 @@ namespace HazardAndWhispers.App.Game.Common
             get => maxHealthPoints;
             set => maxHealthPoints = value;
         }
-        public uint AbilityPoints
+        public int AbilityPoints
         {
             get => abilityPoints;
             set => abilityPoints = value;
@@ -100,8 +101,12 @@ namespace HazardAndWhispers.App.Game.Common
         }
         public int AttackDamage
         {
-            get => attackDamage;
-            set => attackDamage = value;
+            get { return attackDamage; }
+            set 
+            {
+                if (value >= 0)
+                    attackDamage = value;
+            }
         }
         public uint CriticalStrikeChance
         {
@@ -112,55 +117,58 @@ namespace HazardAndWhispers.App.Game.Common
                     criticalStrikeChance = value;
             }
         }
-        public uint WaterResistance
+        public bool WaterResistance
         {
             get { return waterResistance; }
             set
             {
-                if (value < 0 && value > 100)
-                    waterResistance = value;
+                waterResistance = value;
             }
         }
-        public uint WindResistance
+        public bool WindResistance
         {
             get { return windResistance; }
             set
             {
-                if (value < 0 && value > 100)
-                    windResistance = value;
+                windResistance = value;
             }
         }
-        public uint FireResistance
+        public bool EarthResistance
+        {
+            get { return earthResistance; }
+            set
+            {
+                earthResistance = value;
+            }
+        }
+        public bool FireResistance
         {
             get { return fireResistance; }
             set
             {
-                if (value < 0 && value > 100)
-                    fireResistance = value;
+                fireResistance = value;
             }
         }
-        public uint LightResistance
+        public bool LightResistance
         {
             get { return lightResistance; }
             set
             {
-                if (value < 0 && value > 100)
-                    lightResistance = value;
+                lightResistance = value;
             }
         }
-        public uint ShadowResistance
+        public bool ShadowResistance
         {
             get { return shadowResistance; }
             set
             {
-                if (value < 0 && value > 100)
-                    shadowResistance = value;
+                shadowResistance = value;
             }
         }
 
         public StatRegister(uint healthPoints_ = 0,
                             uint maxHealthPoints_ = 0,
-                            uint abilityPoints_ = 0,
+                            int abilityPoints_ = 0,
                             uint speedPoints_ = 0,
                             uint manaPoints_ = 0,
                             uint maxManaPoints_ = 0,
@@ -170,11 +178,12 @@ namespace HazardAndWhispers.App.Game.Common
                             uint missChance_ = 0,
                             int attackDamage_ = 0,
                             uint criticalStrikeChance_ = 0,
-                            uint waterResistance_ = 0,
-                            uint fireResistance_ = 0,
-                            uint windResistance_ = 0,
-                            uint lightResistance_ = 0,
-                            uint shadowResistance_ = 0)
+                            bool waterResistance_ = false,
+                            bool earthResistance_ = false,
+                            bool fireResistance_ = false,
+                            bool windResistance_ = false,
+                            bool lightResistance_ = false,
+                            bool shadowResistance_ = false)
         {
             HealthPoints = healthPoints_;
             MaxHealthPoints = maxHealthPoints_;
@@ -188,7 +197,8 @@ namespace HazardAndWhispers.App.Game.Common
             MissChance = missChance_;
             AttackDamage = attackDamage_;
             CriticalStrikeChance = criticalStrikeChance_;
-            WaterResistance = waterResistance_; ;
+            WaterResistance = waterResistance_;
+            EarthResistance = earthResistance_;
             FireResistance = fireResistance_;
             WindResistance = windResistance_;
             LightResistance = lightResistance_;
@@ -209,11 +219,12 @@ namespace HazardAndWhispers.App.Game.Common
             MissChance += reg.MissChance;
             AttackDamage += reg.AttackDamage;
             CriticalStrikeChance += reg.CriticalStrikeChance;
-            WaterResistance += reg.WaterResistance;
-            FireResistance += reg.FireResistance;
-            WindResistance += reg.WindResistance;
-            LightResistance += reg.LightResistance;
-            ShadowResistance += reg.ShadowResistance;   
+            WaterResistance |= reg.WaterResistance;
+            EarthResistance |= reg.EarthResistance;
+            FireResistance |= reg.FireResistance;
+            WindResistance |= reg.WindResistance;
+            LightResistance |= reg.LightResistance;
+            ShadowResistance |= reg.ShadowResistance;   
         }
     }
 }

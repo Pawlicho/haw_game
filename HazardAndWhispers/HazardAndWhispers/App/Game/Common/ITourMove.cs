@@ -8,7 +8,7 @@ namespace HazardAndWhispers.App.Game.Common
 {
     internal interface ITourMove
     {
-        public IAlive Executer { get; }
+        public IAlive Executor { get; }
         public IAlive Receiver { get; } /* TODO: think if it is not misleading name */
 
         public int MakeMove();

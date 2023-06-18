@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace HazardAndWhispers.App.Game.Common
 {
-    internal class SkipTourMove : ITourMove
+    internal class UseConsumableMove : ITourMove
     {
         private IAlive executor;
         private IAlive receiver;
+        private ConsumableItem itemToUse;
 
         public IAlive Executor
         {
@@ -22,16 +23,25 @@ namespace HazardAndWhispers.App.Game.Common
             get => receiver;
             set => receiver = value;
         }
+        public ConsumableItem ItemToUse
+        {
+            get => itemToUse;
+            set => itemToUse = value;
+        }
 
-        public SkipTourMove(IAlive executer_, IAlive receiver_)
+
+        public UseConsumableMove(IAlive executer_, IAlive receiver_, ConsumableItem itemToUse_)
         {
             Executor = executer_;
             Receiver = receiver_;
+            ItemToUse = itemToUse_;
         }
 
         /* Simply do nothing */
         public int MakeMove()
         {
+            if (ItemToUse.Consume())
+                Receiver.Statisctics.Update(ItemToUse.StatBonuses);
             return 0;
         }
     }

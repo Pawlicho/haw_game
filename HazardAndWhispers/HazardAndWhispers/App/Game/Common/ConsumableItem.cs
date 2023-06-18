@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HazardAndWhispers.App.Game.Common
 {
-    internal class StatPotion : IConsumableItem
+    internal class ConsumableItem : IItem
     {
         private const uint maxNumberOfUsage = 3;
 
@@ -18,13 +18,13 @@ namespace HazardAndWhispers.App.Game.Common
         public StatRegister StatBonuses { get; private set; }
         public uint MaxNumberOfUsage { get; }
 
-        /* TODO add some mechanism to autogenerate proper register based on the Potion Type */
+        /* TODO add some mechanism to autogenerate proper register based on the Potion Type or food */
         public StatRegister CreatePotionStatRegister()
         {
             /* Do some random operations here */
             return new StatRegister();
         }
-        public StatPotion(string name_, uint goldValue_, StatRegister statBonuses_)
+        public ConsumableItem(string name_, uint goldValue_, StatRegister statBonuses_)
         {
             NumberOfUsageLeft = MaxNumberOfUsage;
             IsConsumable = true;
