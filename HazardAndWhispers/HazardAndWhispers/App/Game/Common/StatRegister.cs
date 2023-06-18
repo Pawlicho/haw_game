@@ -20,7 +20,7 @@ namespace HazardAndWhispers.App.Game.Common
         private uint magicResistancePoints;
         private uint dodgeChance;
         private uint missChance;
-        private uint attackDamage;
+        private int attackDamage;
         private uint criticalStrikeChance;
         private uint waterResistance;
         private uint fireResistance;
@@ -98,7 +98,7 @@ namespace HazardAndWhispers.App.Game.Common
                     missChance = value;
             }
         }
-        public uint AttackDamage
+        public int AttackDamage
         {
             get => attackDamage;
             set => attackDamage = value;
@@ -168,7 +168,7 @@ namespace HazardAndWhispers.App.Game.Common
                             uint magicResistancePoints_ = 0,
                             uint dodgeChance_ = 0,
                             uint missChance_ = 0,
-                            uint attackDamage_ = 0,
+                            int attackDamage_ = 0,
                             uint criticalStrikeChance_ = 0,
                             uint waterResistance_ = 0,
                             uint fireResistance_ = 0,
