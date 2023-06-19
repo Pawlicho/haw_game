@@ -32,16 +32,16 @@ namespace HazardAndWhispers.App.Game.Common
 
         public UseConsumableMove(IAlive executer_, IAlive receiver_, ConsumableItem itemToUse_)
         {
-            Executor = executer_;
-            Receiver = receiver_;
-            ItemToUse = itemToUse_;
+            executor = executer_;
+            receiver = receiver_;
+            itemToUse = itemToUse_;
         }
 
         /* Simply do nothing */
         public int MakeMove()
         {
             if (ItemToUse.Consume())
-                Receiver.Statisctics.Update(ItemToUse.StatBonuses);
+                Receiver.Statistics.Update(ItemToUse.StatBonuses);
             return 0;
         }
     }

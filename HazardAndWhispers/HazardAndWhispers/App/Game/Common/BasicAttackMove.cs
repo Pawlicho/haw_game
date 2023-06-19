@@ -37,16 +37,16 @@ namespace HazardAndWhispers.App.Game.Common
 
         public BasicAttackMove(IAlive executor_, IAlive receiver_, int baseDamage_)
         {
-            Executor = executor_;
-            Receiver = receiver_;
-            BaseDamage = baseDamage_;
+            executor = executor_;
+            receiver = receiver_;
+            baseDamage = baseDamage_;
         }
 
         /* Here some algo to */
         public int MakeMove()
         {
             /* Count Base damage */
-            int damage = BaseDamage + Executor.Statisctics.AttackDamage;
+            int damage = BaseDamage + Executor.Statistics.AttackDamage;
 
             /* Randomize the damage value from range (0.7 base; 1.3 base) */
             Random random = new Random();
@@ -60,22 +60,22 @@ namespace HazardAndWhispers.App.Game.Common
             damage = (int) Math.Round(randomValue);
 
             /* Decreas damage by the opponent's defense factor */
-            damage -= (int) Receiver.Statisctics.DefensePoints * defenseReductionFactor;
+            damage -= (int) Receiver.Statistics.DefensePoints * defenseReductionFactor;
 
             /* Draw for critical strike */
-            if (random.Next(0, 101) <= Executor.Statisctics.CriticalStrikeChance)
+            if (random.Next(0, 101) <= Executor.Statistics.CriticalStrikeChance)
             {
                 damage *= criticalStrikeFactor;
             }
 
             /* Draw for hitChance */
-            if (random.Next(0, 101) >= Executor.Statisctics.MissChance)
+            if (random.Next(0, 101) >= Executor.Statistics.MissChance)
             {
                 damage = 0;
             }
 
             /* Draw for opponent's dodge */
-            if (random.Next(0, 101) >= Receiver.Statisctics.MissChance)
+            if (random.Next(0, 101) >= Receiver.Statistics.MissChance)
             {
                 damage = 0;
                 /* Just now the idea of logging events hit me*/

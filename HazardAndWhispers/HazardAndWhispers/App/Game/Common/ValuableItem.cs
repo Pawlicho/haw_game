@@ -10,17 +10,33 @@ namespace HazardAndWhispers.App.Game.Common
 {
     internal class ValuableItem : IItem
     {
-        public string? Name { get; set; }
-        public bool IsConsumable { get; private set; }
-        public bool IsEquipable { get; private set; }
-        public uint GoldValue { get; private set; }
+        private string name;
+        private bool isConsumable;
+        private bool isEquipable;
+        private uint goldValue;
+        public string Name
+        { 
+            get { return name; }
+        }
+        public bool IsConsumable
+        {
+            get { return isConsumable; }
+        }
+        public bool IsEquipable
+        {
+            get { return isEquipable; }
+        }
+        public uint GoldValue
+        { 
+            get { return goldValue; }
+        }
 
         public ValuableItem(string name_, uint goldValue_)
         {
-            Name = name_;
-            GoldValue = goldValue_;
-            IsConsumable = false;
-            IsEquipable = false;
+            name = name_;
+            goldValue = goldValue_;
+            isConsumable = false;
+            isEquipable = false;
         }
     }
 }

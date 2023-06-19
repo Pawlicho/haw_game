@@ -8,12 +8,37 @@ namespace HazardAndWhispers.App.Game.Common
 {
     internal class EquipmentItem : IItem
     {
-        public string? Name { get; private set; }
-        public bool IsConsumable { get; private set; }
-        public bool IsEquipable { get; private set; }
-        public uint GoldValue { get; private set; }
-        public StatRegister? StatBonuses { get; private set; }
-        public EquipmentType? EquipmentType { get; private set;}
+        private string name;
+        private bool isConsumable;
+        private bool isEquipable;
+        private uint goldValue;
+        private StatRegister statBonuses;
+        private EquipmentType equipmentType;
+        public string Name
+        {
+            get { return name; }
+        }
+        public bool IsConsumable
+        {
+            get { return isConsumable; }
+        }
+        public bool IsEquipable
+        {
+            get { return isEquipable; }
+        }
+        public uint GoldValue
+        {
+            get { return goldValue; }
+            
+        }
+        public StatRegister StatBonuses
+        {
+            get { return statBonuses; }
+        }
+        public EquipmentType EquipmentType
+        {
+            get { return equipmentType; }
+        }
 
         /* TODO add some mechanism to autogenerate proper register based on the Potion Type */
         public StatRegister CreateEquipmentRegister(EquipmentType equipmentType_)
@@ -21,25 +46,19 @@ namespace HazardAndWhispers.App.Game.Common
             /* Do some random operations here */
             return new StatRegister();
         }
-        public EquipmentItem(string? name_,
+        public EquipmentItem(string name_,
                              bool isConsumable_,
                              bool isEquipable_,
                              uint goldValue_,
-                             StatRegister? statBonuses_,
-                             EquipmentType? equipmentType_)
+                             StatRegister statBonuses_,
+                             EquipmentType equipmentType_)
         {
-            Name = name_;
-            IsConsumable = isConsumable_;
-            IsEquipable = isEquipable_;
-            GoldValue = goldValue_;
-            StatBonuses = statBonuses_;
-            EquipmentType = equipmentType_;
-            Name = name_;
-            IsConsumable = isConsumable_;
-            IsEquipable = isEquipable_;
-            GoldValue = goldValue_;
-            StatBonuses = statBonuses_;
-            EquipmentType = equipmentType_;
+            name = name_;
+            isConsumable = isConsumable_;
+            isEquipable = isEquipable_;
+            goldValue = goldValue_;
+            statBonuses = statBonuses_;
+            equipmentType = equipmentType_;
         }
     }
 }

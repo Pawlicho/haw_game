@@ -25,8 +25,8 @@ namespace HazardAndWhispers.App.Game.Common
 
         public SkipTourMove(IAlive executer_, IAlive receiver_)
         {
-            Executor = executer_;
-            Receiver = receiver_;
+            executor = executer_;
+            receiver = receiver_;
         }
 
         /* Simply do nothing */

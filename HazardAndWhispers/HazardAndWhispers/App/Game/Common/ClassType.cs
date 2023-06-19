@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace HazardAndWhispers.App.Game.Common
 {
-    internal interface IAlive
+    enum ClassType
     {
-        public StatRegister Statistics { get; }
-        public List<ITourMove> MoveSet { get; }
-        public int RunMove(int moveId);
-
+        Warrior,
+        Mage,
+        Paladin,
+        Assasin
     }
 }

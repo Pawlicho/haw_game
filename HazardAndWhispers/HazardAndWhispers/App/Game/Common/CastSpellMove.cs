@@ -20,38 +20,36 @@ namespace HazardAndWhispers.App.Game.Common
         private Element type;
         public IAlive Executor
         {
-            get => executor;
-            set => executor = value;
+            get { return executor; }
+            set { executor = value; }
         }
 
         public IAlive Receiver
         {
-            get => receiver;
-            set => receiver = value;
+            get { return receiver; }
+            set { receiver = value; }
         }
 
         public int BaseDamage
         {
-            get => baseDamage;
-            private set => baseDamage = value;
+            get {return baseDamage;}
         }
         public Element Type
         {
-            get => type;
-            set => type = value;
+            get {return type;}
         }
 
         public CastSpellMove(IAlive executor_, IAlive receiver_, int baseDamage_)
         {
-            Executor = executor_;
-            Receiver = receiver_;
-            BaseDamage = baseDamage_;
+            executor = executor_;
+            receiver = receiver_;
+            baseDamage = baseDamage_;
         }
 
         /* Here some algo to */
         public int MakeMove()
         {
-            int damage = baseDamage + Executor.Statisctics.AbilityPoints;
+            int damage = baseDamage + Executor.Statistics.AbilityPoints;
             bool isResistant = false;
             double tempDmg;
 
@@ -59,37 +57,37 @@ namespace HazardAndWhispers.App.Game.Common
             {
                 case Element.Fire:
                     {
-                        if (Executor.Statisctics.FireResistance)
+                        if (Executor.Statistics.FireResistance)
                             isResistant = true;
                         break;
                     }
                 case Element.Wind:
                     {
-                        if (Executor.Statisctics.WindResistance)
+                        if (Executor.Statistics.WindResistance)
                             isResistant = true;
                         break;
                     }
                 case Element.Earth:
                     {
-                        if (Executor.Statisctics.EarthResistance)
+                        if (Executor.Statistics.EarthResistance)
                             isResistant = true;
                         break;
                     }
                 case Element.Water:
                     {
-                        if (Executor.Statisctics.WaterResistance)
+                        if (Executor.Statistics.WaterResistance)
                             isResistant = true;
                         break;
                     }
                 case Element.Shadow:
                     {
-                        if (Executor.Statisctics.ShadowResistance)
+                        if (Executor.Statistics.ShadowResistance)
                             isResistant = true;
                         break;
                     }
                 case Element.Light:
                     {
-                        if (Executor.Statisctics.LightResistance)
+                        if (Executor.Statistics.LightResistance)
                             isResistant = true;
                         break;
                     }
@@ -101,7 +99,7 @@ namespace HazardAndWhispers.App.Game.Common
             }
             else
             {
-                tempDmg = damage * Receiver.Statisctics.MagicResistancePoints * magicResistanceReductionFactor;
+                tempDmg = damage * Receiver.Statistics.MagicResistancePoints * magicResistanceReductionFactor;
             }
 
             damage = (int)Math.Round(tempDmg);

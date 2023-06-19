@@ -9,14 +9,41 @@ namespace HazardAndWhispers.App.Game.Common
     internal class ConsumableItem : IItem
     {
         private const uint maxNumberOfUsage = 3;
+        private string name;
+        private bool isConsumable;
+        private bool isEquipable;
+        private uint goldValue;
+        private uint numberOfUsageLeft;
+        private StatRegister statBonuses;
 
-        public string Name { get; private set; }
-        public bool IsConsumable { get; private set; }
-        public bool IsEquipable { get; private set; }
-        public uint GoldValue { get; private set; }
-        public uint NumberOfUsageLeft { get; private set; }
-        public StatRegister StatBonuses { get; private set; }
-        public uint MaxNumberOfUsage { get; }
+        public string Name
+        {
+            get { return name; }
+        }
+        public bool IsConsumable
+        {
+            get { return isConsumable; }
+        }
+        public bool IsEquipable
+        {
+            get { return isEquipable; }
+        }
+        public uint GoldValue
+        {
+            get { return goldValue; }
+        }
+        public uint NumberOfUsageLeft
+        {
+            get { return numberOfUsageLeft; }
+        }
+        public StatRegister StatBonuses
+        {
+            get { return statBonuses; }
+        }
+        public uint MaxNumberOfUsage
+        { 
+            get { return  maxNumberOfUsage; }
+        }
 
         /* TODO add some mechanism to autogenerate proper register based on the Potion Type or food */
         public StatRegister CreatePotionStatRegister()
@@ -26,19 +53,19 @@ namespace HazardAndWhispers.App.Game.Common
         }
         public ConsumableItem(string name_, uint goldValue_, StatRegister statBonuses_)
         {
-            NumberOfUsageLeft = MaxNumberOfUsage;
-            IsConsumable = true;
-            IsEquipable = false;
-            Name = name_;
-            GoldValue = goldValue_;
-            StatBonuses = statBonuses_;
+            numberOfUsageLeft = MaxNumberOfUsage;
+            isConsumable = true;
+            isEquipable = false;
+            name = name_;
+            goldValue = goldValue_;
+            statBonuses = statBonuses_;
         }
 
         public bool Consume()
         {
             if (NumberOfUsageLeft > 0)
             {
-                NumberOfUsageLeft--;
+                numberOfUsageLeft--;
                 return true;
             }
             else
