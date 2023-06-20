@@ -10,7 +10,6 @@ namespace HazardAndWhispers.App.Game.Common
     {
         private StatRegister statistics;
         private List<ITourMove> moveSet;
-        private bool isBoss;
         private ClassType type;
         private Equipment heroEquipment;
         private Inventory heroInventory;
@@ -45,7 +44,6 @@ namespace HazardAndWhispers.App.Game.Common
 
         public Hero(StatRegister statistics_,
                     List<ITourMove> moveSet_,
-                    bool isBoss_,
                     ClassType type_,
                     Equipment heroEquipment_,
                     Inventory heroInventory_,
@@ -53,7 +51,6 @@ namespace HazardAndWhispers.App.Game.Common
         {
             statistics = statistics_;
             moveSet = moveSet_;
-            isBoss = isBoss_;
             type = type_;
             heroEquipment = heroEquipment_;
             heroInventory = heroInventory_;
@@ -63,6 +60,64 @@ namespace HazardAndWhispers.App.Game.Common
         public int RunMove(int moveId)
         {
             return MoveSet[moveId].MakeMove();
+        }
+
+        public bool PickItem(IItem item)
+        {
+            return heroInventory.AddItem(item);
+        }
+
+        public bool DropItem(int idx)
+        {
+            return heroInventory.DropItem(idx);
+        }
+
+        public bool Equip(int idx)
+        {
+            IItem usedItem = heroInventory.ItemSet[idx];
+            if (usedItem == null)
+                return false;
+
+            if (usedItem.IsEquipable)
+            {
+                EquipmentItem? item = usedItem as EquipmentItem;
+
+                if (item == null)
+                    return false;
+
+                switch (item.EquipmentType)
+                {
+                    case EquipmentType.Head:
+                        heroEquipment.Head = item; break;
+                    case EquipmentType.Chest:
+                        heroEquipment.Chest = item; break;
+                    case EquipmentType.Arms:
+                        heroEquipment.Arms = item; break;
+                    case EquipmentType.Hands:
+                        heroEquipment.Hands = item; break;
+                    case EquipmentType.Legs:
+                        heroEquipment.Legs = item; break;
+                    case EquipmentType.Feet:
+                        heroEquipment.Feet = item; break;
+                    case EquipmentType.Weapon: 
+                        heroEquipment.Weapon = item; break;
+                }
+
+                UpdateStatRegister();
+                return true;
+            }
+
+            return false;
+        }
+
+        public void UpdateStatRegister()
+        {
+            heroEquipment.UpdateStatRegister(statistics);
+        }
+
+        public void Enter(IHallwayPiece next)
+        {
+
         }
     }
 }

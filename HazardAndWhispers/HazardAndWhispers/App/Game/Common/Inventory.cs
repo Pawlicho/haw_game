@@ -37,9 +37,13 @@ namespace HazardAndWhispers.App.Game.Common
             return true;
         }
 
-        public bool DropItem(IItem item)
+        public bool DropItem(int idx)
         {
-            
+            if (itemSet.Count() > idx && idx >= 0)
+            {
+                itemSet.RemoveAt(idx);
+            }
+            return false;
         }
     }
 }
