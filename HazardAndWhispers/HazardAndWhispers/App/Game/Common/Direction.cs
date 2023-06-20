@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace HazardAndWhispers.App.Game.Common
 {
-    internal interface IHallwayPiece
+    enum Direction
     {
-        public List<IItem> Reward { get; }
-
-        public void Enter(IAdventureState state);
-
-        public bool HasReward();
+        Left,
+        Right,
+        Up,
+        Down
     }
 }

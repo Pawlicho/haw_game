@@ -8,8 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="App\Game\MenuIF\" />
     <Folder Include="App\Game\ExpeditionIF\" />
+    <Folder Include="App\Game\MenuIF\" />
     <Folder Include="App\Game\PreExpIF\" />
   </ItemGroup>
 

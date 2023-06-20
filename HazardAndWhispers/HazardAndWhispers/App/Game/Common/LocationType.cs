@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace HazardAndWhispers.App.Game.Common
 {
-    internal interface IHallwayPiece
+    enum LocationType
     {
-        public List<IItem> Reward { get; }
-
-        public void Enter(IAdventureState state);
-
-        public bool HasReward();
+        Swamp,
+        Catacombs,
+        Graveyard,
+        HauntedMansion
     }
 }

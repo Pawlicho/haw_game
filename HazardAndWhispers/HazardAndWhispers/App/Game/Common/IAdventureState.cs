@@ -6,12 +6,9 @@ using System.Threading.Tasks;
 
 namespace HazardAndWhispers.App.Game.Common
 {
-    internal interface IHallwayPiece
+    internal interface IAdventureState
     {
-        public List<IItem> Reward { get; }
-
-        public void Enter(IAdventureState state);
-
-        public bool HasReward();
+        public Expedition ExpeditionContext { get; set; }
+        public string Action(ConsoleKey key);
     }
 }

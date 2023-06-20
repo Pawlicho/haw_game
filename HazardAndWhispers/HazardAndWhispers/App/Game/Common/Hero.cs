@@ -115,9 +115,5 @@ namespace HazardAndWhispers.App.Game.Common
             heroEquipment.UpdateStatRegister(statistics);
         }
 
-        public void Enter(IHallwayPiece next)
-        {
-
-        }
     }
 }
