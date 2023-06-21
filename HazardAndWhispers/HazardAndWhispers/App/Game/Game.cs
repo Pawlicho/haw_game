@@ -29,24 +29,16 @@ namespace HazardAndWhispers.App.Game
             state = new MenuGameState(this);
         }
 
-        public void Run()
+        /* Just a wrapper, not to bother user with unnessesery dependencies  */
+        public string GetHelpInstructions()
         {
-            while(isRunning) 
-            {
-                /* Print help for the user */
-                Console.ForegroundColor = ConsoleColor.Blue;
-                Console.WriteLine(state.HelpInstructions);
-                Console.ResetColor();
+            return state.HelpInstructions;
+        }
 
-                /* Wait for the keybord input and clear CLI */
-                ConsoleKeyInfo keyInfo = Console.ReadKey();
-                Console.Clear();
+        public string Action(ConsoleKey key)
+        {
 
-                /* Execute Action and print the output */
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine(state.Action(keyInfo.Key));
-                Console.ResetColor();
-            }
+            return state.Action(key);
         }
 
         /* Could do a little more then just switching variable */
