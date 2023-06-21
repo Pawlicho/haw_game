@@ -7,9 +7,17 @@ using HazardAndWhispers.App.Alive;
 
 namespace HazardAndWhispers.App.Creators
 {
-    internal class HauntedMansionMonsterGenerator
+    internal class HeroCreator
     {
-        public Monster CreateMonster(bool isBoss)
+        private ClassType heroClass;
+
+        public ClassType HeroClass
+        {
+            get { return heroClass; }
+            set { heroClass = value; }
+        }
+
+        public Hero CreateHero(ClassType type)
         {
             /* TODO: IMPLEMENT */
             return null;

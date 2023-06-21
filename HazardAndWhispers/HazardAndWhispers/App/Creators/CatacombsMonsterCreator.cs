@@ -7,12 +7,14 @@ using HazardAndWhispers.App.Alive;
 
 namespace HazardAndWhispers.App.Creators
 {
-    internal class CatacombsMonsterCreator
+    internal class CatacombsMonsterCreator : IMonsterCreator
     {
         public Monster CreateMonster(bool isBoss)
         {
             /* TODO: IMPLEMENT */
             return null;
         }
+
+        public CatacombsMonsterCreator() { }
     }
 }

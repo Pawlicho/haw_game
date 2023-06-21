@@ -7,7 +7,7 @@ using HazardAndWhispers.App.Alive;
 
 namespace HazardAndWhispers.App.Creators
 {
-    internal class SwampMonsterCreator : IMonsterCreator
+    internal class HauntedMansionMonsterCreator : IMonsterCreator
     {
         public Monster CreateMonster(bool isBoss)
         {
@@ -15,6 +15,6 @@ namespace HazardAndWhispers.App.Creators
             return null;
         }
 
-        public SwampMonsterCreator() { }
+        public HauntedMansionMonsterCreator() { }
     }
 }
