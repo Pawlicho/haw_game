@@ -28,7 +28,7 @@ namespace HazardAndWhispers.App.Hamlet
             get { return treatmentSet; }
         }
 
-        public HospitalBuilding(string name,_ PreAdventureGameState state_, List<Treatment> treatmentSet_)
+        public HospitalBuilding(string name_, PreAdventureGameState state_, List<Treatment> treatmentSet_)
         {
             name = name_;
             state = state_;

@@ -18,6 +18,11 @@ namespace HazardAndWhispers.App.Game
             set { state = value; }
         }
 
+        public bool IsRunning
+        {
+            get { return isRunning; }
+        }
+
         public Game()
         {
             isRunning = true;
