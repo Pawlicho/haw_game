@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <Folder Include="App\Common\" />
-    <Folder Include="App\Game\" />
+    <Folder Include="App\Hamlet\" />
   </ItemGroup>
 
 </Project>

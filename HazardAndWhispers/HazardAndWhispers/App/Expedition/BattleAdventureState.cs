@@ -24,6 +24,7 @@ namespace HazardAndWhispers.App.Expedition
         public string Action(ConsoleKey key)
         {
             /* TODO: IMPLEMENT */
+            return String.Empty;
         }
     }
 }
