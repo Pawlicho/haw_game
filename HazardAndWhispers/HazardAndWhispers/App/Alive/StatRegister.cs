@@ -14,30 +14,26 @@ namespace HazardAndWhispers.App.Alive
         private uint maxHealthPoints;
         private int abilityPoints;
         private uint speedPoints;
-        private uint manaPoints;
-        private uint maxManaPoints;
         private uint defensePoints;
         private uint magicResistancePoints;
         private uint dodgeChance;
         private uint missChance;
         private int attackDamage;
         private uint criticalStrikeChance;
-        bool waterResistance;
-        bool earthResistance;
-        bool fireResistance;
-        bool windResistance;
-        bool lightResistance;
-        bool shadowResistance;
+        private bool waterResistance;
+        private bool earthResistance;
+        private bool fireResistance;
+        private bool windResistance;
+        private bool lightResistance;
+        private bool shadowResistance;
 
         public uint HealthPoints
         {
             get { return healthPoints; }
             set
             {
-                if (value < 0 || value > MaxHealthPoints)
-                    throw new ArgumentOutOfRangeException("healthPoints");
-
-                healthPoints = value;
+                if (value < MaxHealthPoints)
+                    healthPoints = value;
             }
         }
 
@@ -55,20 +51,6 @@ namespace HazardAndWhispers.App.Alive
         {
             get => speedPoints;
             set => speedPoints = value;
-        }
-        public uint MaxManaPoints
-        {
-            get => maxManaPoints;
-            set => maxManaPoints = value;
-        }
-        public uint ManaPoints
-        {
-            get { return manaPoints; }
-            set
-            {
-                if (value < 0 || value > MaxManaPoints)
-                    manaPoints = value;
-            }
         }
         public uint DefensePoints
         {
@@ -170,8 +152,6 @@ namespace HazardAndWhispers.App.Alive
                             uint maxHealthPoints_ = 0,
                             int abilityPoints_ = 0,
                             uint speedPoints_ = 0,
-                            uint manaPoints_ = 0,
-                            uint maxManaPoints_ = 0,
                             uint defensePoints_ = 0,
                             uint magicResistancePoints_ = 0,
                             uint dodgeChance_ = 0,
@@ -185,46 +165,42 @@ namespace HazardAndWhispers.App.Alive
                             bool lightResistance_ = false,
                             bool shadowResistance_ = false)
         {
-            HealthPoints = healthPoints_;
-            MaxHealthPoints = maxHealthPoints_;
-            AbilityPoints = abilityPoints_;
-            SpeedPoints = speedPoints_;
-            ManaPoints = manaPoints_;
-            MaxManaPoints = maxManaPoints_;
-            DefensePoints = defensePoints_;
-            MagicResistancePoints = magicResistancePoints_;
-            DodgeChance = dodgeChance_;
-            MissChance = missChance_;
-            AttackDamage = attackDamage_;
-            CriticalStrikeChance = criticalStrikeChance_;
-            WaterResistance = waterResistance_;
-            EarthResistance = earthResistance_;
-            FireResistance = fireResistance_;
-            WindResistance = windResistance_;
-            LightResistance = lightResistance_;
-            ShadowResistance = shadowResistance_;
+            healthPoints = healthPoints_;
+            maxHealthPoints = maxHealthPoints_;
+            abilityPoints = abilityPoints_;
+            speedPoints = speedPoints_;
+            defensePoints = defensePoints_;
+            magicResistancePoints = magicResistancePoints_;
+            dodgeChance = dodgeChance_;
+            missChance = missChance_;
+            attackDamage = attackDamage_;
+            criticalStrikeChance = criticalStrikeChance_;
+            waterResistance = waterResistance_;
+            earthResistance = earthResistance_;
+            fireResistance = fireResistance_;
+            windResistance = windResistance_;
+            lightResistance = lightResistance_;
+            shadowResistance = shadowResistance_;
         }
 
         public void Update(StatRegister reg)
         {
-            HealthPoints += reg.HealthPoints;
-            MaxHealthPoints += reg.MaxHealthPoints;
-            AbilityPoints += reg.AbilityPoints;
-            SpeedPoints += reg.SpeedPoints;
-            ManaPoints += reg.ManaPoints;
-            MaxManaPoints += reg.MaxManaPoints;
-            DefensePoints += reg.DefensePoints;
-            MagicResistancePoints += reg.MagicResistancePoints;
-            DodgeChance += reg.DodgeChance;
-            MissChance += reg.MissChance;
-            AttackDamage += reg.AttackDamage;
-            CriticalStrikeChance += reg.CriticalStrikeChance;
-            WaterResistance |= reg.WaterResistance;
-            EarthResistance |= reg.EarthResistance;
-            FireResistance |= reg.FireResistance;
-            WindResistance |= reg.WindResistance;
-            LightResistance |= reg.LightResistance;
-            ShadowResistance |= reg.ShadowResistance;
+            healthPoints += reg.HealthPoints;
+            maxHealthPoints += reg.MaxHealthPoints;
+            abilityPoints += reg.AbilityPoints;
+            speedPoints += reg.SpeedPoints;
+            defensePoints += reg.DefensePoints;
+            magicResistancePoints += reg.MagicResistancePoints;
+            dodgeChance += reg.DodgeChance;
+            missChance += reg.MissChance;
+            attackDamage += reg.AttackDamage;
+            criticalStrikeChance += reg.CriticalStrikeChance;
+            waterResistance |= reg.WaterResistance;
+            earthResistance |= reg.EarthResistance;
+            fireResistance |= reg.FireResistance;
+            windResistance |= reg.WindResistance;
+            lightResistance |= reg.LightResistance;
+            shadowResistance |= reg.ShadowResistance;
         }
 
         public override string ToString()
@@ -235,8 +211,6 @@ namespace HazardAndWhispers.App.Alive
             temp += "\nMax Health: " + maxHealthPoints;
             temp += "\nAbility: " + abilityPoints;
             temp += "\nSpeed: " + speedPoints;
-            temp += "\nMana: " + manaPoints;
-            temp += "\nMax Mana: " + maxManaPoints;
             temp += "\nDefense: " + defensePoints;
             temp += "\nMagic Resistance: " + magicResistancePoints;
             temp += "\nDodge Chance: " + dodgeChance;
@@ -262,8 +236,6 @@ namespace HazardAndWhispers.App.Alive
             if (maxHealthPoints != 0) { temp += "\nMax Health: " + maxHealthPoints; }
             if (abilityPoints != 0) { temp += "\nAbility: " + abilityPoints; }
             if (speedPoints != 0) { temp += "\nSpeed: " + speedPoints; }
-            if (manaPoints != 0) { temp += "\nMana: " + manaPoints; }
-            if (maxManaPoints != 0) { temp += "\nMax Mana: " + maxManaPoints; }
             if (defensePoints != 0) { temp += "\nDefense: " + defensePoints; }
             if (magicResistancePoints != 0) { temp += "\nMagic Resistance: " + magicResistancePoints; }
             if (dodgeChance != 0) { temp += "\nDodge Chance: " + dodgeChance; }

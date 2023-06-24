@@ -32,10 +32,8 @@ namespace HazardAndWhispers.App.TourMove
         }
 
 
-        public UseConsumableMove(IAlive executer_, IAlive receiver_, ConsumableItem itemToUse_)
+        public UseConsumableMove(ConsumableItem itemToUse_)
         {
-            executor = executer_;
-            receiver = receiver_;
             itemToUse = itemToUse_;
         }
 

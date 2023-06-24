@@ -24,10 +24,8 @@ namespace HazardAndWhispers.App.TourMove
             set => receiver = value;
         }
 
-        public SkipTourMove(IAlive executer_, IAlive receiver_)
+        public SkipTourMove()
         {
-            executor = executer_;
-            receiver = receiver_;
         }
 
         /* Simply do nothing */

@@ -44,7 +44,7 @@ namespace HazardAndWhispers.App.Game
         {
             get 
             {
-                helpInstructions = "\nPress one of the below key for action:";
+                helpInstructions = "\nPress key for: ";
                 helpInstructions += "\nH: Help instructions";
                 helpInstructions += "\nQ: Quit the game";
                 
@@ -58,7 +58,7 @@ namespace HazardAndWhispers.App.Game
                 }
                 else
                 {
-                    helpInstructions += "\nS: To create hero";
+                    helpInstructions += "\nC: Create hero";
                 }
 
                 if (ready)
@@ -84,10 +84,10 @@ namespace HazardAndWhispers.App.Game
                         gameContext.Finish();
                         return "\nGame finished! Closing...";
                     }
-                case ConsoleKey.S:
+                case ConsoleKey.C:
                     {
                         heroSelectionFlag = true;
-                        return "\nHero selecction mode. Press key to create hero!";
+                        return "\nHero selection mode. Press key to create hero!";
                     }
                 case ConsoleKey.N:
                     {

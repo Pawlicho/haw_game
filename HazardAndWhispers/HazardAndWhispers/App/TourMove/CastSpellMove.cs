@@ -40,10 +40,9 @@ namespace HazardAndWhispers.App.TourMove
             get { return type; }
         }
 
-        public CastSpellMove(IAlive executor_, IAlive receiver_, int baseDamage_)
+        public CastSpellMove(int baseDamage_, Element type_)
         {
-            executor = executor_;
-            receiver = receiver_;
+            type = type_;
             baseDamage = baseDamage_;
         }
 

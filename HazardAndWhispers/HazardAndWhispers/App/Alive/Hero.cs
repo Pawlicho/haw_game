@@ -57,6 +57,8 @@ namespace HazardAndWhispers.App.Alive
             heroEquipment = heroEquipment_;
             heroInventory = heroInventory_;
             gold = gold_;
+
+            UpdateStatRegister();
         }
 
         public int RunMove(int moveId)
@@ -123,7 +125,7 @@ namespace HazardAndWhispers.App.Alive
             int tempInt = 0;
             temp += "\nClass: "; temp += Enum.GetName(typeof(ClassType), type);
             temp += statistics.ToString();
-            temp += "\nMove set: \n";
+            temp += "\nMove set: ";
             foreach(var move in moveSet)
             {
                 temp += "\n" + tempInt + ": " + move.ToString();

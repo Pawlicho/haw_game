@@ -10,8 +10,8 @@ namespace HazardAndWhispers.App.TourMove
 {
     internal interface ITourMove
     {
-        public IAlive Executor { get; }
-        public IAlive Receiver { get; } /* TODO: think if it is not misleading name */
+        public IAlive Executor { get; set; }
+        public IAlive Receiver { get; set; } /* TODO: think if it is not misleading name */
 
         public int MakeMove();
 

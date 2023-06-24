@@ -36,10 +36,8 @@ namespace HazardAndWhispers.App.TourMove
             private set => baseDamage = value;
         }
 
-        public BasicAttackMove(IAlive executor_, IAlive receiver_, int baseDamage_)
+        public BasicAttackMove(int baseDamage_)
         {
-            executor = executor_;
-            receiver = receiver_;
             baseDamage = baseDamage_;
         }
 
