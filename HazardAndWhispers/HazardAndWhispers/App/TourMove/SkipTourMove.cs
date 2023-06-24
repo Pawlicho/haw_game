@@ -35,5 +35,10 @@ namespace HazardAndWhispers.App.TourMove
         {
             return 0;
         }
+
+        public override string ToString() 
+        {
+            return "\nSkip tour move.";
+        }
     }
 }

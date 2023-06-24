@@ -20,42 +20,64 @@ namespace HazardAndWhispers.App.Alive
         public EquipmentItem Head
         {
             get { return head; }
-            set { head = value; }
+            set
+            {
+                if (value.EquipmentType == EquipmentType.Head)
+                    head = value;
+            }
         }
         public EquipmentItem Chest
         {
             get { return chest; }
-            set { chest = value; }
+            set 
+            {
+                if (value.EquipmentType == EquipmentType.Chest)
+                    chest = value;
+            }
         }
         public EquipmentItem Legs
         {
             get { return legs; }
-            set { legs = value; }
+            set 
+            {
+                if (value.EquipmentType == EquipmentType.Legs)
+                    legs = value;
+            }
         }
         public EquipmentItem Arms
         {
             get { return arms; }
-            set { arms = value; }
+            set 
+            {
+                if (value.EquipmentType == EquipmentType.Arms)
+                    arms = value;
+            }
         }
         public EquipmentItem Hands
         {
             get { return hands; }
             set
             {
-                hands = value;
+                if (value.EquipmentType == EquipmentType.Hands)
+                    hands = value;
             }
         }
         public EquipmentItem Feet
         {
             get { return feet; }
-            set { feet = value; }
+            set 
+            {
+                if (value.EquipmentType == EquipmentType.Feet)
+                    feet = value;
+            }
         }
         public EquipmentItem Weapon
         {
             get { return weapon; }
             set
             {
-                weapon = value;
+                if (value.EquipmentType == EquipmentType.Weapon)
+                    weapon = value;
             }
         }
 
@@ -85,6 +107,21 @@ namespace HazardAndWhispers.App.Alive
             register.Update(hands.StatBonuses);
             register.Update(feet.StatBonuses);
             register.Update(weapon.StatBonuses);
+        }
+
+        public override string ToString()
+        {
+            string temp = "";
+
+            temp += "\nHead: \n"; temp += head.ToString();
+            temp += "\nChest: \n"; temp += chest.ToString();
+            temp += "\nLegs: \n"; temp += legs.ToString();
+            temp += "\nArms: \n"; temp += arms.ToString();
+            temp += "\nHands: \n"; temp += hands.ToString();
+            temp += "\nFeet: \n"; temp += feet.ToString();
+            temp += "\nWeapon: \n"; temp += weapon.ToString();
+
+            return temp;
         }
     }
 }

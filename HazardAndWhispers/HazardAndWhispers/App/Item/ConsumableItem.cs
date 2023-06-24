@@ -74,5 +74,18 @@ namespace HazardAndWhispers.App.Item
                 return false;
             }
         }
+
+        public override string ToString() 
+        {
+            string temp = "";
+
+            temp += "\nName: " + name;
+            temp += "\nConsumableItem: ";
+            temp += "\nGold Value: " + goldValue;
+            temp += "\nBonuses\n" + statBonuses.ToString();
+            temp += "\nUsage Left: " + numberOfUsageLeft;
+
+            return temp;
+        }
     }
 }

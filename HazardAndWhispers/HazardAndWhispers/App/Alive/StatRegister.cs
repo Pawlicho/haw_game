@@ -226,5 +226,58 @@ namespace HazardAndWhispers.App.Alive
             LightResistance |= reg.LightResistance;
             ShadowResistance |= reg.ShadowResistance;
         }
+
+        public override string ToString()
+        {
+            string temp = "";
+
+            temp += "\nHealth: " + healthPoints;
+            temp += "\nMax Health: " + maxHealthPoints;
+            temp += "\nAbility: " + abilityPoints;
+            temp += "\nSpeed: " + speedPoints;
+            temp += "\nMana: " + manaPoints;
+            temp += "\nMax Mana: " + maxManaPoints;
+            temp += "\nDefense: " + defensePoints;
+            temp += "\nMagic Resistance: " + magicResistancePoints;
+            temp += "\nDodge Chance: " + dodgeChance;
+            temp += "\nMiss Chance: " + missChance;
+            temp += "\nAttack Damage: " + attackDamage;
+            temp += "\nCritical Strike Chance: " + criticalStrikeChance;
+            temp += "\nWater Resistance: "; if (waterResistance) temp += "yes"; else temp += "no";
+            temp += "\nEarth Resistance: "; if (earthResistance) temp += "yes"; else temp += "no";
+            temp += "\nFire Resistance: "; if (fireResistance) temp += "yes"; else temp += "no";
+            temp += "\nWind Resistance: "; if (windResistance) temp += "yes"; else temp += "no";
+            temp += "\nLight Resistance: "; if (lightResistance) temp += "yes"; else temp += "no";
+            temp += "\nShadow Resistance: "; if (shadowResistance) temp += "yes"; else temp += "no";
+
+
+            return temp;
+        }
+
+        public string ToStringItem()
+        {
+            string temp = "";
+
+            if (healthPoints != 0) { temp += "\nHealth: " + healthPoints; }
+            if (maxHealthPoints != 0) { temp += "\nMax Health: " + maxHealthPoints; }
+            if (abilityPoints != 0) { temp += "\nAbility: " + abilityPoints; }
+            if (speedPoints != 0) { temp += "\nSpeed: " + speedPoints; }
+            if (manaPoints != 0) { temp += "\nMana: " + manaPoints; }
+            if (maxManaPoints != 0) { temp += "\nMax Mana: " + maxManaPoints; }
+            if (defensePoints != 0) { temp += "\nDefense: " + defensePoints; }
+            if (magicResistancePoints != 0) { temp += "\nMagic Resistance: " + magicResistancePoints; }
+            if (dodgeChance != 0) { temp += "\nDodge Chance: " + dodgeChance; }
+            if (missChance != 0) { temp += "\nMiss Chance: " + missChance; }
+            if (attackDamage != 0) { temp += "\nAttack Damage: " + attackDamage; }
+            if (criticalStrikeChance != 0) { temp += "\nCritical Strike Chance: " + criticalStrikeChance; }
+            if (waterResistance) { temp += "\nWater Resistance: " + "yes"; }
+            if (earthResistance) { temp += "\nEarth Resistance: " + "yes"; }
+            if (fireResistance) { temp += "\nFire Resistance: " + "yes"; }
+            if (windResistance) { temp += "\nWind Resistance: " + "yes"; }
+            if (lightResistance) { temp += "\nLight Resistance: " + "yes"; }
+            if (shadowResistance) { temp += "\nShadow Resistance: " + "yes"; }
+
+            return temp;
+        }
     }
 }

@@ -38,5 +38,16 @@ namespace HazardAndWhispers.App.Item
             isConsumable = false;
             isEquipable = false;
         }
+
+        public override string ToString() 
+        {
+            string temp = "";
+
+            temp += "\nName: " + name;
+            temp += "\nValuable item";
+            temp += "\nGold Value: " + goldValue;
+
+            return temp;
+        }
     }
 }

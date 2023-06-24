@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using HazardAndWhispers.App.Alive;
+using HazardAndWhispers.App.Creators;
+using HazardAndWhispers.App.Hamlet;
 
 namespace HazardAndWhispers.App.Game
 {
@@ -12,6 +14,30 @@ namespace HazardAndWhispers.App.Game
         private Game gameContext;
         private Hero gameHero;
         private string helpInstructions;
+        private HamletCreator hamletGenerator;
+        private Hamlet.Hamlet gameHamlet;
+        private IBuilding currentBuilding;
+        private bool ready;
+
+        public bool Ready
+        {
+            get { return ready; }
+        }
+
+        public IBuilding CurrentBuilding
+        {
+            get { return currentBuilding; }
+        }
+
+        public HamletCreator HamletGenerator
+        {
+            get { return hamletGenerator; }
+        }
+
+        public Hamlet.Hamlet GetHamlet
+        {
+            get { return gameHamlet; }
+        }
 
         public Game GameContext
         {
@@ -32,6 +58,9 @@ namespace HazardAndWhispers.App.Game
         {
             gameContext = gameContext_;
             gameHero = gameHero_;
+            hamletGenerator = new HamletCreator(this);
+            gameHamlet = hamletGenerator.CreateHamlet();
+            ready = false;
             helpInstructions = "\nPress one of the below key for action:\n";
         }
 
@@ -47,9 +76,9 @@ namespace HazardAndWhispers.App.Game
             return String.Empty;
         }
 
-        public IGameState ChangeState(IGameState prevState)
+        public void ChangeState(IGameState prevState)
         {
-            return null;
+           
         }
     }
 }

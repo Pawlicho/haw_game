@@ -8,7 +8,7 @@ using HazardAndWhispers.App.Game;
 
 namespace HazardAndWhispers.App.Hamlet
 {
-    internal class InnBuilding
+    internal class InnBuilding : IBuilding
     {
         private string name;
         private PreAdventureGameState state;

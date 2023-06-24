@@ -107,5 +107,16 @@ namespace HazardAndWhispers.App.TourMove
 
             return damage;
         }
+
+        public override string ToString()
+        {
+            string temp = "";
+
+            temp += "\nCast Spell";
+            temp += "\nType: " + Enum.GetName(typeof(Element), type);
+            temp += "\nBaseDamage: " + baseDamage;
+
+            return temp;
+        }
     }
 }

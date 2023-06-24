@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using HazardAndWhispers.App.Alive;
+using HazardAndWhispers.App.Creators;
 
 namespace HazardAndWhispers.App.Game
 {
@@ -11,8 +12,20 @@ namespace HazardAndWhispers.App.Game
     {
         private Game gameContext;
         private Hero gameHero;
+        private readonly Expedition.Expedition currentExpedition_;
         private string helpInstructions;
+        private Expedition.Expedition currentExpedition;
+        private bool ready;
 
+        public bool Ready
+        {
+            get { return ready; }
+        }
+
+        public Expedition.Expedition CurrentExpedition
+        {
+            get { return currentExpedition; }
+        }
         public Game GameContext
         {
             get { return gameContext; }
@@ -29,10 +42,14 @@ namespace HazardAndWhispers.App.Game
             get { return helpInstructions;}
         }
 
-        public ExpeditionGameState(Game gameContext_, Hero gameHero_)
+        public ExpeditionGameState(Game gameContext_,
+                                   Hero gameHero_,
+                                   Expedition.Expedition currentExpedition_)
         {
             gameContext = gameContext_;
             gameHero = gameHero_;
+            currentExpedition = currentExpedition_;
+            ready = false;
             helpInstructions = "\nPress one of the below key for action:\n";
         }
 
@@ -48,9 +65,9 @@ namespace HazardAndWhispers.App.Game
             return String.Empty;
         }
 
-        public IGameState ChangeState(IGameState prevState)
+        public void ChangeState(IGameState prevState)
         {
-            return null;
+       
         }
     }
 }

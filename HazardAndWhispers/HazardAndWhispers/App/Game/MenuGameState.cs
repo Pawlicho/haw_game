@@ -14,6 +14,14 @@ namespace HazardAndWhispers.App.Game
         private Hero gameHero;
         private string helpInstructions;
         private HeroCreator heroInitializer;
+        private bool ready;
+        private bool heroSelectionFlag;
+
+        public bool Ready
+        {
+            get { return ready; }
+        }
+
         public Game GameContext
         {
             get { return gameContext; }
@@ -27,18 +35,40 @@ namespace HazardAndWhispers.App.Game
 
         public MenuGameState(Game gameContext_)
         {
-            helpInstructions = "\nPress one of the below key for action:";
-            helpInstructions += "\nH: Help instructions";
-            helpInstructions += "\nQ: Quit the game";
-            helpInstructions += "\nW: To create a Hero of class Warrior";
-            helpInstructions += "\nM: To create a Hero of class Mage";
-            helpInstructions += "\nA: To create a Hero of class Assasin";
-            helpInstructions += "\nP: To create a Hero of class Paladin";
+            heroSelectionFlag = false;
             gameContext = gameContext_;
+            heroInitializer = new HeroCreator();
+            ready = false;
         }
         public string HelpInstructions
         {
-            get { return helpInstructions; }
+            get 
+            {
+                helpInstructions = "\nPress one of the below key for action:";
+                helpInstructions += "\nH: Help instructions";
+                helpInstructions += "\nQ: Quit the game";
+                
+                if (heroSelectionFlag)
+                {
+                    helpInstructions += "\n";
+                    helpInstructions += "\nW: Create a Hero of class Warrior";
+                    helpInstructions += "\nM: Create a Hero of class Mage";
+                    helpInstructions += "\nA: Create a Hero of class Assasin";
+                    helpInstructions += "\nP: Create a Hero of class Paladin";
+                }
+                else
+                {
+                    helpInstructions += "\nS: To create hero";
+                }
+
+                if (ready)
+                {
+                    helpInstructions += "\nSpacebar: Show hero stats";
+                    helpInstructions += "\nN: Start Geame";
+                }
+
+                return helpInstructions; 
+            }
         }
 
         public string Action(ConsoleKey key)
@@ -54,33 +84,75 @@ namespace HazardAndWhispers.App.Game
                         gameContext.Finish();
                         return "\nGame finished! Closing...";
                     }
+                case ConsoleKey.S:
+                    {
+                        heroSelectionFlag = true;
+                        return "\nHero selecction mode. Press key to create hero!";
+                    }
+                case ConsoleKey.N:
+                    {
+                        ChangeState(gameContext.State);
+                        return "\nGame begins.";
+                    }
+                case ConsoleKey.Spacebar:
+                    {
+                        return gameHero.ToString();
+                    }
                 case ConsoleKey.W:
                     {
-                        gameHero = heroInitializer.CreateHero(ClassType.Warrior);
-                        return "\nWarrior created!";
+                        if (heroSelectionFlag)
+                        {
+                            gameHero = heroInitializer.CreateHero(ClassType.Warrior);
+                            heroSelectionFlag = false;
+                            ready = true;
+                            return "\nWarrior created!\n" + gameHero.ToString();
+                        }
+                        break;
                     }
                 case ConsoleKey.M:
                     {
-                        gameHero = heroInitializer.CreateHero(ClassType.Mage);
-                        return "\nMage created!";
+                        if (heroSelectionFlag)
+                        {
+                            gameHero = heroInitializer.CreateHero(ClassType.Mage);
+                            heroSelectionFlag = false;
+                            ready = true;
+                            return "\nMage created!\n" + gameHero.ToString();
+                        }
+                        break; ;
                     }
                 case ConsoleKey.A:
                     {
-                        gameHero = heroInitializer.CreateHero(ClassType.Assasin);
-                        return "\nAssasin created!";
+                        if (heroSelectionFlag)
+                        {
+                            gameHero = heroInitializer.CreateHero(ClassType.Assasin);
+                            heroSelectionFlag = false;
+                            ready = true;
+                            return "\nAssasin created!\n" + gameHero.ToString();
+                        }
+                        break;
                     }
                 case ConsoleKey.P:
                     {
-                        gameHero = heroInitializer.CreateHero(ClassType.Paladin);
-                        return "\nPaladinCreated";
+                        if (heroSelectionFlag)
+                        {
+                            gameHero = heroInitializer.CreateHero(ClassType.Paladin);
+                            heroSelectionFlag = false;
+                            ready = true;
+                            return "\nPaladinCreated\n" + gameHero.ToString();
+                        }
+                        break;
                     }
             }
             return String.Empty;
         }
 
-        public IGameState ChangeState(IGameState prevState)
+        public void ChangeState(IGameState prevState)
         {
-            return null;
+            if (ready)
+            {
+                PreAdventureGameState newState = new PreAdventureGameState(gameContext, gameHero);
+                gameContext.State = newState;
+            }
         }
 
     }

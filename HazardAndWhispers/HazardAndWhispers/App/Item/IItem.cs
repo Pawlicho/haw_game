@@ -12,5 +12,7 @@ namespace HazardAndWhispers.App.Item
         public uint GoldValue { get; }
         public bool IsConsumable { get; }
         public bool IsEquipable { get; }
+
+        public string ToString();
     }
 }

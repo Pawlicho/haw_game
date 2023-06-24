@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using HazardAndWhispers.App.Alive;
 using HazardAndWhispers.App.Game;
+using HazardAndWhispers.App.Item;
 
 namespace HazardAndWhispers.App.Hamlet
 {
@@ -12,7 +13,7 @@ namespace HazardAndWhispers.App.Hamlet
     {
         private string name;
         private PreAdventureGameState state;
-        private List<Equipment> inventory;
+        private List<EquipmentItem> inventory;
 
         public string Name
         {
@@ -23,12 +24,12 @@ namespace HazardAndWhispers.App.Hamlet
             get { return state; } 
             set { state = value; }
         }
-        public List<Equipment> Inventory
+        public List<EquipmentItem> Inventory
         {
             get { return inventory; } 
         }
 
-        public ArmorerBuilding(string name_, PreAdventureGameState state_, List<Equipment> inventory_)
+        public ArmorerBuilding(string name_, PreAdventureGameState state_, List<EquipmentItem> inventory_)
         {
             name = name_;
             state = state_;

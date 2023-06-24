@@ -7,7 +7,7 @@ using HazardAndWhispers.App.Alive;
 
 namespace HazardAndWhispers.App.TourMove
 {
-    internal class BasicAttackMove
+    internal class BasicAttackMove : ITourMove
     {
         /* Twig those in order to balance the fight */
         /* Hardcoded, but there is an option to make it in-game modificable */
@@ -89,6 +89,16 @@ namespace HazardAndWhispers.App.TourMove
             if (damage < 0) { damage = 0; }
 
             return damage;
+        }
+
+        public override string ToString()
+        {
+            string temp = "";
+
+            temp += "\nBasicAttackMove";
+            temp += "BaseDamage: " + baseDamage;
+
+            return temp;
         }
     }
 }

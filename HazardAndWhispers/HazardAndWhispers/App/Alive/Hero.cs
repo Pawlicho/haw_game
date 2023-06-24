@@ -15,13 +15,13 @@ namespace HazardAndWhispers.App.Alive
         private ClassType type;
         private Equipment heroEquipment;
         private Inventory heroInventory;
-        private uint gold;
+        private int gold;
 
         public Inventory Inventory
         {
             get { return heroInventory; }
         }
-        public uint Gold
+        public int Gold
         {
             get { return gold; }
         }
@@ -49,7 +49,7 @@ namespace HazardAndWhispers.App.Alive
                     ClassType type_,
                     Equipment heroEquipment_,
                     Inventory heroInventory_,
-                    uint gold_)
+                    int gold_)
         {
             statistics = statistics_;
             moveSet = moveSet_;
@@ -117,5 +117,19 @@ namespace HazardAndWhispers.App.Alive
             heroEquipment.UpdateStatRegister(statistics);
         }
 
+        public override string ToString()
+        {
+            string temp = "";
+            int tempInt = 0;
+            temp += "\nClass: "; temp += Enum.GetName(typeof(ClassType), type);
+            temp += statistics.ToString();
+            temp += "\nMove set: \n";
+            foreach(var move in moveSet)
+            {
+                temp += "\n" + tempInt + ": " + move.ToString();
+                tempInt++;
+            }
+            return temp;
+        }
     }
 }

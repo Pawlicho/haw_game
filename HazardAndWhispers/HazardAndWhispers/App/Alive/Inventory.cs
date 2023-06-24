@@ -46,5 +46,20 @@ namespace HazardAndWhispers.App.Alive
             }
             return false;
         }
+
+        public override string ToString() 
+        {
+            string temp = "";
+            int tempInt = 0;
+
+            foreach (var item in itemSet) 
+            {
+                temp += "\n" + tempInt + ": ";
+                temp += item.ToString();
+                tempInt++;
+            }
+
+            return temp;
+        }
     }
 }

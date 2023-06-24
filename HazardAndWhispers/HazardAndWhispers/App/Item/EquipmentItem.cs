@@ -48,18 +48,29 @@ namespace HazardAndWhispers.App.Item
             return new StatRegister();
         }
         public EquipmentItem(string name_,
-                             bool isConsumable_,
-                             bool isEquipable_,
                              uint goldValue_,
                              StatRegister statBonuses_,
                              EquipmentType equipmentType_)
         {
             name = name_;
-            isConsumable = isConsumable_;
-            isEquipable = isEquipable_;
+            isConsumable = false;
+            isEquipable = true;
             goldValue = goldValue_;
             statBonuses = statBonuses_;
             equipmentType = equipmentType_;
+        }
+
+        public override string ToString()
+        {
+            string temp = "";
+
+            temp += "\nName: " + name;
+            temp += "\nEquipable item: ";
+            temp += "\nGold Value: " + goldValue;
+            temp += "\nEquipment type: " + Enum.GetName(typeof(EquipmentType), equipmentType);
+            temp += "\nBonuses\n" + statBonuses.ToString();
+
+            return temp;
         }
     }
 }

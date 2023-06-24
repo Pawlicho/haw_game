@@ -46,5 +46,15 @@ namespace HazardAndWhispers.App.TourMove
                 Receiver.Statistics.Update(ItemToUse.StatBonuses);
             return 0;
         }
+
+        public override string ToString() 
+        {
+            string temp = "";
+
+            temp += "\nUse Consumable move";
+            temp += "\nItem to be used: \n" + itemToUse.ToString(); 
+
+            return temp;
+        }
     }
 }

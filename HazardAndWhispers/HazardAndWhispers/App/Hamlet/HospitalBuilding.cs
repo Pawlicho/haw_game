@@ -37,7 +37,7 @@ namespace HazardAndWhispers.App.Hamlet
 
         public string Action(ConsoleKey key)
         {
-            /* TODO: IMPLEMENT */
+            
             return String.Empty;
         }
     }
