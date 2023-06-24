@@ -82,7 +82,7 @@ namespace HazardAndWhispers.App.Item
             temp += "\nName: " + name;
             temp += "\nConsumableItem: ";
             temp += "\nGold Value: " + goldValue;
-            temp += "\nBonuses\n" + statBonuses.ToString();
+            temp += statBonuses.ToString();
             temp += "\nUsage Left: " + numberOfUsageLeft;
 
             return temp;

@@ -92,19 +92,40 @@ namespace HazardAndWhispers.App.Alive
                 switch (item.EquipmentType)
                 {
                     case EquipmentType.Head:
+                    { 
+                        heroEquipment.Head.Reverse(statistics);
                         heroEquipment.Head = item; break;
+                    }
                     case EquipmentType.Chest:
+                    {
+                        heroEquipment.Chest.Reverse(statistics);
                         heroEquipment.Chest = item; break;
+                    }
                     case EquipmentType.Arms:
+                    { 
+                        heroEquipment.Arms.Reverse(statistics);
                         heroEquipment.Arms = item; break;
+                    }
                     case EquipmentType.Hands:
+                    {
+                        heroEquipment.Hands.Reverse(statistics);
                         heroEquipment.Hands = item; break;
+                    }
                     case EquipmentType.Legs:
+                    {
+                        heroEquipment.Legs.Reverse(statistics);
                         heroEquipment.Legs = item; break;
+                    }
                     case EquipmentType.Feet:
+                    {
+                        heroEquipment.Feet.Reverse(statistics);
                         heroEquipment.Feet = item; break;
+                    }
                     case EquipmentType.Weapon:
+                    {
+                        heroEquipment.Weapon.Reverse(statistics);
                         heroEquipment.Weapon = item; break;
+                    }
                 }
 
                 UpdateStatRegister();
@@ -125,7 +146,7 @@ namespace HazardAndWhispers.App.Alive
             int tempInt = 0;
             temp += "\nClass: "; temp += Enum.GetName(typeof(ClassType), type);
             temp += statistics.ToString();
-            temp += "\nMove set: ";
+            temp += "\n\nMove set: ";
             foreach(var move in moveSet)
             {
                 temp += "\n" + tempInt + ": " + move.ToString();

@@ -60,6 +60,10 @@ namespace HazardAndWhispers.App.Item
             equipmentType = equipmentType_;
         }
 
+        public void Reverse(StatRegister reg)
+        {
+            statBonuses.Reverse(reg);
+        }
         public override string ToString()
         {
             string temp = "";
@@ -68,7 +72,7 @@ namespace HazardAndWhispers.App.Item
             temp += "\nEquipable item: ";
             temp += "\nGold Value: " + goldValue;
             temp += "\nEquipment type: " + Enum.GetName(typeof(EquipmentType), equipmentType);
-            temp += "\nBonuses\n" + statBonuses.ToString();
+            temp += statBonuses.ToString();
 
             return temp;
         }

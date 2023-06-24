@@ -12,7 +12,16 @@ namespace HazardAndWhispers.App.Hamlet
     {
         private string name;
         private PreAdventureGameState state;
+        private string welcomeMessage;
 
+        public string WelcomeMessage
+        {
+            get 
+            {
+                welcomeMessage = "\nNothing to do here... For now at least";
+                return welcomeMessage; 
+            }
+        }
         public string Name
         {
             get { return name; }

@@ -14,6 +14,23 @@ namespace HazardAndWhispers.App.Hamlet
         private string name;
         private PreAdventureGameState state;
         private List<EquipmentItem> inventory;
+        private string welcomeMessage;
+
+        public string WelcomeMessage
+        {
+            get 
+            {
+                int tempInt = 0;
+                welcomeMessage = "\nWelcome to " + name + "What Can I get for you?";
+                welcomeMessage += "\nEnter a number to buy an item: ";
+                foreach (var item in inventory) 
+                {
+                    welcomeMessage += "\n\n" + tempInt + ": " + item.ToString();
+                    tempInt++;
+                }
+                return welcomeMessage; 
+            }
+        }
 
         public string Name
         {

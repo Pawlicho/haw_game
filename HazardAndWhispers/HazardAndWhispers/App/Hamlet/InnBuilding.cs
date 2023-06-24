@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HazardAndWhispers.App.Alive;
 using HazardAndWhispers.App.Creators;
 using HazardAndWhispers.App.Game;
 
@@ -13,7 +14,23 @@ namespace HazardAndWhispers.App.Hamlet
         private string name;
         private PreAdventureGameState state;
         private ExpeditionCreator expeditionGenerator;
+        private string welcomeMessage;
 
+        public string WelcomeMessage
+        {
+            get 
+            {
+                welcomeMessage = "\nWelcome to " + name;
+                welcomeMessage += "\nEnter a number to chose the place of next expedition: ";
+
+                welcomeMessage += "\n0: Swamp";
+                welcomeMessage += "\n1: Catacombs";
+                welcomeMessage += "\n2: Graveyard";
+                welcomeMessage += "\n2: Haunted Mansion";
+
+                return welcomeMessage;
+            }
+        }
         public string Name
         {
             get { return name; }

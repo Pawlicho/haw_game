@@ -150,7 +150,7 @@ namespace HazardAndWhispers.App.Game
         {
             if (ready)
             {
-                PreAdventureGameState newState = new PreAdventureGameState(gameContext, gameHero);
+                PreAdventureGameState newState = new(gameContext, gameHero);
                 gameContext.State = newState;
             }
         }

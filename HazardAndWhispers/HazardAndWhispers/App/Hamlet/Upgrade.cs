@@ -39,6 +39,17 @@ namespace HazardAndWhispers.App.Hamlet
             successChance = successChance_;
         }
 
+        public override string ToString()
+        {
+            string temp = "";
+
+            temp += "\nName: " + name;
+            temp += "\nPrice: " + price;
+            temp += bonus.ToString();
+            temp += "\nSuccess Chance: " + successChance;
+
+            return temp;
+        }
         public bool UpgradeHero(Hero customer)
         {
             /* TODO: IMPLEMENT */

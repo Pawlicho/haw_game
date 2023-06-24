@@ -27,16 +27,16 @@ namespace HazardAndWhispers.App.Creators
         public Hero CreateHero(ClassType type)
         {
             /* Common */
-            uint healthPoints;
-            uint maxHealthPoints;
+            int healthPoints;
+            int maxHealthPoints;
             int abilityPoints;
-            uint speedPoints;
-            uint defensePoints;
-            uint magicResistancePoints;
-            uint dodgeChance;
-            uint missChance;
+            int speedPoints;
+            int defensePoints;
+            int magicResistancePoints;
+            int dodgeChance;
+            int missChance;
             int attackDamage;
-            uint criticalStrikeChance;
+            int criticalStrikeChance;
             bool waterResistance;
             bool earthResistance;
             bool fireResistance;
@@ -45,8 +45,8 @@ namespace HazardAndWhispers.App.Creators
             bool shadowResistance;
 
             /* Inventory */
-            const uint maxInventorySize = 10;
-            Inventory inventory = new Inventory(maxInventorySize);
+            const int maxInventorySize = 10;
+            Inventory inventory = new(maxInventorySize);
 
             /* Initial gold value */
             const int initialGoldValue = 500;
@@ -72,25 +72,25 @@ namespace HazardAndWhispers.App.Creators
                     windResistance = false;
                     lightResistance = false;
                     shadowResistance = false;
-                    StatRegister reg = new StatRegister(healthPoints,
-                                                        maxHealthPoints,
-                                                        abilityPoints,
-                                                        speedPoints,
-                                                        defensePoints,
-                                                        magicResistancePoints,
-                                                        dodgeChance,
-                                                        missChance,
-                                                        attackDamage,
-                                                        criticalStrikeChance,
-                                                        waterResistance,
-                                                        earthResistance,
-                                                        fireResistance,
-                                                        windResistance,
-                                                        lightResistance,
-                                                        shadowResistance);
+                    StatRegister reg = new(healthPoints,
+                                           maxHealthPoints,
+                                           abilityPoints,
+                                           speedPoints,
+                                           defensePoints,
+                                           magicResistancePoints,
+                                           dodgeChance,
+                                           missChance,
+                                           attackDamage,
+                                           criticalStrikeChance,
+                                           waterResistance,
+                                           earthResistance,
+                                           fireResistance,
+                                           windResistance,
+                                           lightResistance,
+                                           shadowResistance);
 
                     /* MoveSet */
-                    List<ITourMove> moveSet = new List<ITourMove>()
+                    List<ITourMove> moveSet = new()
                     {
                         new BasicAttackMove(5),
                         new SkipTourMove(),
@@ -102,46 +102,60 @@ namespace HazardAndWhispers.App.Creators
                     /* Equipment */
 
                     /* Chest */
-                    StatRegister chestStats = new StatRegister();
-                    chestStats.DefensePoints = 5;
-                    chestStats.MagicResistancePoints = 15;
-                    EquipmentItem chest = new EquipmentItem("Acolyte Robe", 0, chestStats, EquipmentType.Chest);
+                    StatRegister chestStats = new()
+                    {
+                        DefensePoints = 5,
+                        MagicResistancePoints = 15
+                    };
+                    EquipmentItem chest = new("Acolyte Robe", 0, chestStats, EquipmentType.Chest);
                     /* Head */
-                    StatRegister headStats = new StatRegister();
-                    headStats.DefensePoints = 3;
-                    headStats.MagicResistancePoints = 3;
-                    EquipmentItem head = new EquipmentItem("Acolyte Hat", 0, headStats, EquipmentType.Head);
+                    StatRegister headStats = new()
+                    {
+                        DefensePoints = 3,
+                        MagicResistancePoints = 3
+                    };
+                    EquipmentItem head = new("Acolyte Hat", 0, headStats, EquipmentType.Head);
                     /* Legs */
-                    StatRegister legsStats = new StatRegister();
-                    legsStats.DodgeChance = 3;
-                    legsStats.SpeedPoints = 2;
-                    EquipmentItem legs = new EquipmentItem("Acolyte Trousers", 0, legsStats, EquipmentType.Legs);
+                    StatRegister legsStats = new()
+                    {
+                        DodgeChance = 3,
+                        SpeedPoints = 2
+                    };
+                    EquipmentItem legs = new("Acolyte Trousers", 0, legsStats, EquipmentType.Legs);
                     /* Feet */
-                    StatRegister feetStats = new StatRegister();
-                    feetStats.SpeedPoints = 1;
-                    feetStats.DodgeChance = 1;
-                    EquipmentItem feet = new EquipmentItem("Acolate Boots", 0, feetStats, EquipmentType.Feet);
+                    StatRegister feetStats = new()
+                    {
+                        SpeedPoints = 1,
+                        DodgeChance = 1
+                    };
+                    EquipmentItem feet = new("Acolate Boots", 0, feetStats, EquipmentType.Feet);
                     /* Arms */
-                    StatRegister armsStats = new StatRegister();
-                    armsStats.AbilityPoints = 4;
-                    armsStats.AttackDamage = 1;
-                    EquipmentItem arms = new EquipmentItem("Acolate Sleeves", 0, armsStats, EquipmentType.Arms);
+                    StatRegister armsStats = new()
+                    {
+                        AbilityPoints = 4,
+                        AttackDamage = 1
+                    };
+                    EquipmentItem arms = new("Acolate Sleeves", 0, armsStats, EquipmentType.Arms);
                     /* Hands */
-                    StatRegister handsStats = new StatRegister();
-                    handsStats.AttackDamage = 0;
-                    handsStats.AbilityPoints = 3;
-                    handsStats.CriticalStrikeChance = 3;
-                    EquipmentItem hands = new EquipmentItem("Acolate Gloves", 0, handsStats, EquipmentType.Hands);
+                    StatRegister handsStats = new StatRegister
+                    {
+                        AttackDamage = 0,
+                        AbilityPoints = 3,
+                        CriticalStrikeChance = 3
+                    };
+                    EquipmentItem hands = new("Acolate Gloves", 0, handsStats, EquipmentType.Hands);
                     /* Weapon */
-                    StatRegister weaponStats = new StatRegister();
-                    handsStats.AttackDamage = 4;
-                    handsStats.AbilityPoints = 8;
-                    handsStats.CriticalStrikeChance = 2;
-                    EquipmentItem weapon = new EquipmentItem("Acolyte Wand", 0, weaponStats, EquipmentType.Weapon);
+                    StatRegister weaponStats = new()
+                    {
+                        AttackDamage = 4,
+                        AbilityPoints = 8,
+                        CriticalStrikeChance = 2
+                    };
+                    EquipmentItem weapon = new("Acolyte Wand", 0, weaponStats, EquipmentType.Weapon);
 
-                    Equipment equipment = new Equipment(head, chest, legs, arms, hands, feet, weapon);
+                    Equipment equipment = new(head, chest, legs, arms, hands, feet, weapon);
 
-                    Hero hero = new Hero(reg, moveSet, type, equipment, inventory, initialGoldValue);
+                    Hero hero = new(reg, moveSet, type, equipment, inventory, initialGoldValue);
 
                     return hero;
                 }
@@ -164,25 +178,25 @@ namespace HazardAndWhispers.App.Creators
                     windResistance = false;
                     lightResistance = false;
                     shadowResistance = false;
-                    StatRegister reg = new StatRegister(healthPoints,
-                                                        maxHealthPoints,
-                                                        abilityPoints,
-                                                        speedPoints,
-                                                        defensePoints,
-                                                        magicResistancePoints,
-                                                        dodgeChance,
-                                                        missChance,
-                                                        attackDamage,
-                                                        criticalStrikeChance,
-                                                        waterResistance,
-                                                        earthResistance,
-                                                        fireResistance,
-                                                        windResistance,
-                                                        lightResistance,
-                                                        shadowResistance);
+                    StatRegister reg = new(healthPoints,
+                                           maxHealthPoints,
+                                           abilityPoints,
+                                           speedPoints,
+                                           defensePoints,
+                                           magicResistancePoints,
+                                           dodgeChance,
+                                           missChance,
+                                           attackDamage,
+                                           criticalStrikeChance,
+                                           waterResistance,
+                                           earthResistance,
+                                           fireResistance,
+                                           windResistance,
+                                           lightResistance,
+                                           shadowResistance);
 
                     /* MoveSet */
-                    List<ITourMove> moveSet = new List<ITourMove>()
+                    List<ITourMove> moveSet = new()
                     {
                         new BasicAttackMove(15),
                         new SkipTourMove(),
@@ -194,46 +208,60 @@ namespace HazardAndWhispers.App.Creators
                     /* Equipment */
 
                     /* Chest */
-                    StatRegister chestStats = new StatRegister();
-                    chestStats.DefensePoints = 15;
-                    chestStats.MagicResistancePoints = 10;
-                    EquipmentItem chest = new EquipmentItem("Recruit Chestplate", 0, chestStats, EquipmentType.Chest);
+                    StatRegister chestStats = new()
+                    {
+                        DefensePoints = 15,
+                        MagicResistancePoints = 10
+                    };
+                    EquipmentItem chest = new("Recruit Chestplate", 0, chestStats, EquipmentType.Chest);
                     /* Head */
-                    StatRegister headStats = new StatRegister();
-                    headStats.DefensePoints = 7;
-                    headStats.MagicResistancePoints = 7;
-                    EquipmentItem head = new EquipmentItem("Recruit Helmet", 0, headStats, EquipmentType.Head);
+                    StatRegister headStats = new()
+                    {
+                        DefensePoints = 7,
+                        MagicResistancePoints = 7
+                    };
+                    EquipmentItem head = new("Recruit Helmet", 0, headStats, EquipmentType.Head);
                     /* Legs */
-                    StatRegister legsStats = new StatRegister();
-                    legsStats.DodgeChance = 3;
-                    legsStats.SpeedPoints = 1;
-                    EquipmentItem legs = new EquipmentItem("Recruit Trousers", 0, legsStats, EquipmentType.Legs);
+                    StatRegister legsStats = new()
+                    {
+                        DodgeChance = 3,
+                        SpeedPoints = 1
+                    };
+                    EquipmentItem legs = new("Recruit Trousers", 0, legsStats, EquipmentType.Legs);
                     /* Feet */
-                    StatRegister feetStats = new StatRegister();
-                    feetStats.SpeedPoints = 0;
-                    feetStats.DodgeChance = 2;
+                    StatRegister feetStats = new()
+                    {
+                        SpeedPoints = 0,
+                        DodgeChance = 2
+                    };
                     EquipmentItem feet = new EquipmentItem("Recruit Boots", 0, feetStats, EquipmentType.Feet);
                     /* Arms */
-                    StatRegister armsStats = new StatRegister();
-                    armsStats.AbilityPoints = 1;
-                    armsStats.AttackDamage = 3;
-                    EquipmentItem arms = new EquipmentItem("Recruit Armplates", 0, armsStats, EquipmentType.Arms);
+                    StatRegister armsStats = new()
+                    {
+                        AbilityPoints = 1,
+                        AttackDamage = 3
+                    };
+                    EquipmentItem arms = new("Recruit Armplates", 0, armsStats, EquipmentType.Arms);
                     /* Hands */
-                    StatRegister handsStats = new StatRegister();
-                    handsStats.AttackDamage = 3;
-                    handsStats.AbilityPoints = 0;
-                    handsStats.CriticalStrikeChance = 2;
-                    EquipmentItem hands = new EquipmentItem("Recruit Gloves", 0, handsStats, EquipmentType.Hands);
+                    StatRegister handsStats = new()
+                    {
+                        AttackDamage = 3,
+                        AbilityPoints = 0,
+                        CriticalStrikeChance = 2
+                    };
+                    EquipmentItem hands = new("Recruit Gloves", 0, handsStats, EquipmentType.Hands);
                     /* Weapon */
-                    StatRegister weaponStats = new StatRegister();
-                    handsStats.AttackDamage = 9;
-                    handsStats.AbilityPoints = 4;
-                    handsStats.CriticalStrikeChance = 1;
-                    EquipmentItem weapon = new EquipmentItem("Recruit Sword", 0, weaponStats, EquipmentType.Weapon);
+                    StatRegister weaponStats = new()
+                    {
+                        AttackDamage = 9,
+                        AbilityPoints = 4,
+                        CriticalStrikeChance = 1
+                    };
+                    EquipmentItem weapon = new("Recruit Sword", 0, weaponStats, EquipmentType.Weapon);
 
-                    Equipment equipment = new Equipment(head, chest, legs, arms, hands, feet, weapon);
+                    Equipment equipment = new(head, chest, legs, arms, hands, feet, weapon);
 
-                    Hero hero = new Hero(reg, moveSet, type, equipment, inventory, initialGoldValue);
+                    Hero hero = new(reg, moveSet, type, equipment, inventory, initialGoldValue);
 
                     return hero;
                 }
@@ -256,25 +284,25 @@ namespace HazardAndWhispers.App.Creators
                     windResistance = false;
                     lightResistance = false;
                     shadowResistance = false;
-                    StatRegister reg = new StatRegister(healthPoints,
-                                                        maxHealthPoints,
-                                                        abilityPoints,
-                                                        speedPoints,
-                                                        defensePoints,
-                                                        magicResistancePoints,
-                                                        dodgeChance,
-                                                        missChance,
-                                                        attackDamage,
-                                                        criticalStrikeChance,
-                                                        waterResistance,
-                                                        earthResistance,
-                                                        fireResistance,
-                                                        windResistance,
-                                                        lightResistance,
-                                                        shadowResistance);
+                    StatRegister reg = new(healthPoints,
+                                           maxHealthPoints,
+                                           abilityPoints,
+                                           speedPoints,
+                                           defensePoints,
+                                           magicResistancePoints,
+                                           dodgeChance,
+                                           missChance,
+                                           attackDamage,
+                                           criticalStrikeChance,
+                                           waterResistance,
+                                           earthResistance,
+                                           fireResistance,
+                                           windResistance,
+                                           lightResistance,
+                                           shadowResistance);
 
                     /* MoveSet */
-                    List<ITourMove> moveSet = new List<ITourMove>()
+                    List<ITourMove> moveSet = new()
                     {
                         new BasicAttackMove(15),
                         new SkipTourMove(),
@@ -286,46 +314,60 @@ namespace HazardAndWhispers.App.Creators
                     /* Equipment */
 
                     /* Chest */
-                    StatRegister chestStats = new StatRegister();
-                    chestStats.DefensePoints = 5;
-                    chestStats.MagicResistancePoints = 5;
-                    EquipmentItem chest = new EquipmentItem("Neophyte Vest", 0, chestStats, EquipmentType.Chest);
+                    StatRegister chestStats = new()
+                    {
+                        DefensePoints = 5,
+                        MagicResistancePoints = 5
+                    };
+                    EquipmentItem chest = new("Neophyte Vest", 0, chestStats, EquipmentType.Chest);
                     /* Head */
-                    StatRegister headStats = new StatRegister();
-                    headStats.DefensePoints = 2;
-                    headStats.MagicResistancePoints = 2;
-                    EquipmentItem head = new EquipmentItem("Neophyte Mask", 0, headStats, EquipmentType.Head);
+                    StatRegister headStats = new()
+                    {
+                        DefensePoints = 2,
+                        MagicResistancePoints = 2
+                    };
+                    EquipmentItem head = new("Neophyte Mask", 0, headStats, EquipmentType.Head);
                     /* Legs */
-                    StatRegister legsStats = new StatRegister();
-                    legsStats.DodgeChance = 8;
-                    legsStats.SpeedPoints = 4;
-                    EquipmentItem legs = new EquipmentItem("Neophyte Trousers", 0, legsStats, EquipmentType.Legs);
+                    StatRegister legsStats = new()
+                    {
+                        DodgeChance = 8,
+                        SpeedPoints = 4
+                    };
+                    EquipmentItem legs = new("Neophyte Trousers", 0, legsStats, EquipmentType.Legs);
                     /* Feet */
-                    StatRegister feetStats = new StatRegister();
-                    feetStats.SpeedPoints = 3;
-                    feetStats.DodgeChance = 3;
-                    EquipmentItem feet = new EquipmentItem("Neophyte Boots", 0, feetStats, EquipmentType.Feet);
+                    StatRegister feetStats = new()
+                    {
+                        SpeedPoints = 3,
+                        DodgeChance = 3
+                    };
+                    EquipmentItem feet = new("Neophyte Boots", 0, feetStats, EquipmentType.Feet);
                     /* Arms */
-                    StatRegister armsStats = new StatRegister();
-                    armsStats.AbilityPoints = 2;
-                    armsStats.AttackDamage = 3;
-                    EquipmentItem arms = new EquipmentItem("Neophyte Sleeves", 0, armsStats, EquipmentType.Arms);
+                    StatRegister armsStats = new()
+                    {
+                        AbilityPoints = 2,
+                        AttackDamage = 3
+                    };
+                    EquipmentItem arms = new("Neophyte Sleeves", 0, armsStats, EquipmentType.Arms);
                     /* Hands */
-                    StatRegister handsStats = new StatRegister();
-                    handsStats.AttackDamage = 1;
-                    handsStats.AbilityPoints = 1;
-                    handsStats.CriticalStrikeChance = 6;
-                    EquipmentItem hands = new EquipmentItem("Neophyte Gloves", 0, handsStats, EquipmentType.Hands);
+                    StatRegister handsStats = new()
+                    {
+                        AttackDamage = 1,
+                        AbilityPoints = 1,
+                        CriticalStrikeChance = 6
+                    };
+                    EquipmentItem hands = new("Neophyte Gloves", 0, handsStats, EquipmentType.Hands);
                     /* Weapon */
-                    StatRegister weaponStats = new StatRegister();
-                    handsStats.AttackDamage = 6;
-                    handsStats.AbilityPoints = 2;
-                    handsStats.CriticalStrikeChance = 6;
-                    EquipmentItem weapon = new EquipmentItem("Neophyte Dagger", 0, weaponStats, EquipmentType.Weapon);
+                    StatRegister weaponStats = new()
+                    {
+                        AttackDamage = 6,
+                        AbilityPoints = 2,
+                        CriticalStrikeChance = 6
+                    };
+                    EquipmentItem weapon = new("Neophyte Dagger", 0, weaponStats, EquipmentType.Weapon);
 
-                    Equipment equipment = new Equipment(head, chest, legs, arms, hands, feet, weapon);
+                    Equipment equipment = new(head, chest, legs, arms, hands, feet, weapon);
 
-                    Hero hero = new Hero(reg, moveSet, type, equipment, inventory, initialGoldValue);
+                    Hero hero = new(reg, moveSet, type, equipment, inventory, initialGoldValue);
 
                     return hero;
                 }
@@ -348,25 +390,25 @@ namespace HazardAndWhispers.App.Creators
                     windResistance = false;
                     lightResistance = false;
                     shadowResistance = false;
-                    StatRegister reg = new StatRegister(healthPoints,
-                                                        maxHealthPoints,
-                                                        abilityPoints,
-                                                        speedPoints,
-                                                        defensePoints,
-                                                        magicResistancePoints,
-                                                        dodgeChance,
-                                                        missChance,
-                                                        attackDamage,
-                                                        criticalStrikeChance,
-                                                        waterResistance,
-                                                        earthResistance,
-                                                        fireResistance,
-                                                        windResistance,
-                                                        lightResistance,
-                                                        shadowResistance);
+                    StatRegister reg = new(healthPoints,
+                                           maxHealthPoints,
+                                           abilityPoints,
+                                           speedPoints,
+                                           defensePoints,
+                                           magicResistancePoints,
+                                           dodgeChance,
+                                           missChance,
+                                           attackDamage,
+                                           criticalStrikeChance,
+                                           waterResistance,
+                                           earthResistance,
+                                           fireResistance,
+                                           windResistance,
+                                           lightResistance,
+                                           shadowResistance);
 
                     /* MoveSet */
-                    List<ITourMove> moveSet = new List<ITourMove>()
+                    List<ITourMove> moveSet = new()
                     {
                         new BasicAttackMove(10),
                         new SkipTourMove(),
@@ -378,46 +420,60 @@ namespace HazardAndWhispers.App.Creators
                     /* Equipment */
 
                     /* Chest */
-                    StatRegister chestStats = new StatRegister();
-                    chestStats.DefensePoints = 10;
-                    chestStats.MagicResistancePoints = 10;
-                    EquipmentItem chest = new EquipmentItem("Aspirant Chestplate", 0, chestStats, EquipmentType.Chest);
+                    StatRegister chestStats = new()
+                    {
+                        DefensePoints = 10,
+                        MagicResistancePoints = 10
+                    };
+                    EquipmentItem chest = new("Aspirant Chestplate", 0, chestStats, EquipmentType.Chest);
                     /* Head */
-                    StatRegister headStats = new StatRegister();
-                    headStats.DefensePoints = 5;
-                    headStats.MagicResistancePoints = 5;
-                    EquipmentItem head = new EquipmentItem("Aspirant Helmet", 0, headStats, EquipmentType.Head);
+                    StatRegister headStats = new()
+                    {
+                        DefensePoints = 5,
+                        MagicResistancePoints = 5
+                    };
+                    EquipmentItem head = new("Aspirant Helmet", 0, headStats, EquipmentType.Head);
                     /* Legs */
-                    StatRegister legsStats = new StatRegister();
-                    legsStats.DodgeChance = 3;
-                    legsStats.SpeedPoints = 2;
-                    EquipmentItem legs = new EquipmentItem("Aspirant Trousers", 0, legsStats, EquipmentType.Legs);
+                    StatRegister legsStats = new()
+                    {
+                        DodgeChance = 3,
+                        SpeedPoints = 2
+                    };
+                    EquipmentItem legs = new("Aspirant Trousers", 0, legsStats, EquipmentType.Legs);
                     /* Feet */
-                    StatRegister feetStats = new StatRegister();
-                    feetStats.SpeedPoints = 1;
-                    feetStats.DodgeChance = 1;
-                    EquipmentItem feet = new EquipmentItem("Aspirant Boots", 0, feetStats, EquipmentType.Feet);
+                    StatRegister feetStats = new()
+                    {
+                        SpeedPoints = 1,
+                        DodgeChance = 1
+                    };
+                    EquipmentItem feet = new("Aspirant Boots", 0, feetStats, EquipmentType.Feet);
                     /* Arms */
-                    StatRegister armsStats = new StatRegister();
-                    armsStats.AbilityPoints = 3;
-                    armsStats.AttackDamage = 2;
-                    EquipmentItem arms = new EquipmentItem("Aspirant Armplates", 0, armsStats, EquipmentType.Arms);
+                    StatRegister armsStats = new()
+                    {
+                        AbilityPoints = 3,
+                        AttackDamage = 2
+                    };
+                    EquipmentItem arms = new("Aspirant Armplates", 0, armsStats, EquipmentType.Arms);
                     /* Hands */
-                    StatRegister handsStats = new StatRegister();
-                    handsStats.AttackDamage = 2;
-                    handsStats.AbilityPoints = 2;
-                    handsStats.CriticalStrikeChance = 1;
-                    EquipmentItem hands = new EquipmentItem("Aspirant Gloves", 0, handsStats, EquipmentType.Hands);
+                    StatRegister handsStats = new()
+                    {
+                        AttackDamage = 2,
+                        AbilityPoints = 2,
+                        CriticalStrikeChance = 1
+                    };
+                    EquipmentItem hands = new("Aspirant Gloves", 0, handsStats, EquipmentType.Hands);
                     /* Weapon */
-                    StatRegister weaponStats = new StatRegister();
-                    handsStats.AttackDamage = 7;
-                    handsStats.AbilityPoints = 7;
-                    handsStats.CriticalStrikeChance = 0;
-                    EquipmentItem weapon = new EquipmentItem("Aspirant Hammer", 0, weaponStats, EquipmentType.Weapon);
+                    StatRegister weaponStats = new()
+                    {
+                        AttackDamage = 7,
+                        AbilityPoints = 7,
+                        CriticalStrikeChance = 0
+                    };
+                    EquipmentItem weapon = new("Aspirant Hammer", 0, weaponStats, EquipmentType.Weapon);
 
-                    Equipment equipment = new Equipment(head, chest, legs, arms, hands, feet, weapon);
+                    Equipment equipment = new(head, chest, legs, arms, hands, feet, weapon);
 
-                    Hero hero = new Hero(reg, moveSet, type, equipment, inventory, initialGoldValue);
+                    Hero hero = new(reg, moveSet, type, equipment, inventory, initialGoldValue);
 
                     return hero;
                 }

@@ -10,16 +10,16 @@ namespace HazardAndWhispers.App.Alive
 {
     internal class StatRegister
     {
-        private uint healthPoints;
-        private uint maxHealthPoints;
+        private int healthPoints;
+        private int maxHealthPoints;
         private int abilityPoints;
-        private uint speedPoints;
-        private uint defensePoints;
-        private uint magicResistancePoints;
-        private uint dodgeChance;
-        private uint missChance;
+        private int speedPoints;
+        private int defensePoints;
+        private int magicResistancePoints;
+        private int dodgeChance;
+        private int missChance;
         private int attackDamage;
-        private uint criticalStrikeChance;
+        private int criticalStrikeChance;
         private bool waterResistance;
         private bool earthResistance;
         private bool fireResistance;
@@ -27,17 +27,19 @@ namespace HazardAndWhispers.App.Alive
         private bool lightResistance;
         private bool shadowResistance;
 
-        public uint HealthPoints
+        public int HealthPoints
         {
             get { return healthPoints; }
             set
             {
                 if (value < MaxHealthPoints)
                     healthPoints = value;
+                else
+                    healthPoints = MaxHealthPoints;
             }
         }
 
-        public uint MaxHealthPoints
+        public int MaxHealthPoints
         {
             get => maxHealthPoints;
             set => maxHealthPoints = value;
@@ -47,23 +49,23 @@ namespace HazardAndWhispers.App.Alive
             get => abilityPoints;
             set => abilityPoints = value;
         }
-        public uint SpeedPoints
+        public int SpeedPoints
         {
             get => speedPoints;
             set => speedPoints = value;
         }
-        public uint DefensePoints
+        public int DefensePoints
         {
             get => defensePoints;
             set => defensePoints = value;
         }
-        public uint MagicResistancePoints
+        public int MagicResistancePoints
         {
             get => magicResistancePoints;
             set => magicResistancePoints = value;
         }
 
-        public uint DodgeChance
+        public int DodgeChance
         {
             get { return dodgeChance; }
             set
@@ -72,7 +74,7 @@ namespace HazardAndWhispers.App.Alive
                     dodgeChance = value;
             }
         }
-        public uint MissChance
+        public int MissChance
         {
             get { return missChance; }
             set
@@ -90,7 +92,7 @@ namespace HazardAndWhispers.App.Alive
                     attackDamage = value;
             }
         }
-        public uint CriticalStrikeChance
+        public int CriticalStrikeChance
         {
             get { return criticalStrikeChance; }
             set
@@ -148,16 +150,16 @@ namespace HazardAndWhispers.App.Alive
             }
         }
 
-        public StatRegister(uint healthPoints_ = 0,
-                            uint maxHealthPoints_ = 0,
+        public StatRegister(int healthPoints_ = 0,
+                            int maxHealthPoints_ = 0,
                             int abilityPoints_ = 0,
-                            uint speedPoints_ = 0,
-                            uint defensePoints_ = 0,
-                            uint magicResistancePoints_ = 0,
-                            uint dodgeChance_ = 0,
-                            uint missChance_ = 0,
+                            int speedPoints_ = 0,
+                            int defensePoints_ = 0,
+                            int magicResistancePoints_ = 0,
+                            int dodgeChance_ = 0,
+                            int missChance_ = 0,
                             int attackDamage_ = 0,
-                            uint criticalStrikeChance_ = 0,
+                            int criticalStrikeChance_ = 0,
                             bool waterResistance_ = false,
                             bool earthResistance_ = false,
                             bool fireResistance_ = false,
@@ -203,32 +205,26 @@ namespace HazardAndWhispers.App.Alive
             shadowResistance |= reg.ShadowResistance;
         }
 
-        public override string ToString()
+        public void Reverse(StatRegister reg)
         {
-            string temp = "";
-
-            temp += "\nHealth: " + healthPoints;
-            temp += "\nMax Health: " + maxHealthPoints;
-            temp += "\nAbility: " + abilityPoints;
-            temp += "\nSpeed: " + speedPoints;
-            temp += "\nDefense: " + defensePoints;
-            temp += "\nMagic Resistance: " + magicResistancePoints;
-            temp += "\nDodge Chance: " + dodgeChance;
-            temp += "\nMiss Chance: " + missChance;
-            temp += "\nAttack Damage: " + attackDamage;
-            temp += "\nCritical Strike Chance: " + criticalStrikeChance;
-            temp += "\nWater Resistance: "; if (waterResistance) temp += "yes"; else temp += "no";
-            temp += "\nEarth Resistance: "; if (earthResistance) temp += "yes"; else temp += "no";
-            temp += "\nFire Resistance: "; if (fireResistance) temp += "yes"; else temp += "no";
-            temp += "\nWind Resistance: "; if (windResistance) temp += "yes"; else temp += "no";
-            temp += "\nLight Resistance: "; if (lightResistance) temp += "yes"; else temp += "no";
-            temp += "\nShadow Resistance: "; if (shadowResistance) temp += "yes"; else temp += "no";
-
-
-            return temp;
+            healthPoints -= reg.HealthPoints;
+            maxHealthPoints -= reg.MaxHealthPoints;
+            abilityPoints -= reg.AbilityPoints;
+            speedPoints -= reg.SpeedPoints;
+            defensePoints -= reg.DefensePoints;
+            magicResistancePoints -= reg.MagicResistancePoints;
+            dodgeChance -= reg.DodgeChance;
+            missChance -= reg.MissChance;
+            attackDamage -= reg.AttackDamage;
+            criticalStrikeChance -= reg.CriticalStrikeChance;
+            waterResistance = !reg.WaterResistance & waterResistance;
+            earthResistance = !reg.EarthResistance & earthResistance;
+            fireResistance = !reg.FireResistance & fireResistance;
+            windResistance = !reg.WindResistance & windResistance;
+            lightResistance = !reg.LightResistance & lightResistance;
+            shadowResistance = !reg.ShadowResistance & shadowResistance;
         }
-
-        public string ToStringItem()
+        public override string ToString()
         {
             string temp = "";
 

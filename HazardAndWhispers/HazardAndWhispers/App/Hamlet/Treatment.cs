@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -37,6 +38,18 @@ namespace HazardAndWhispers.App.Hamlet
             healRange = healRange_;
             name = name_;
             successChance = successChance_;
+        }
+
+        public override string ToString() 
+        {
+            string temp = "";
+
+            temp += "\nName: " + name;
+            temp += "\nPrice: " + price;
+            temp += "\nHeal: " + healRange.Item1 + "-" + healRange.Item1;
+            temp += "\nSuccess Chance: " + successChance;
+
+            return temp;
         }
 
         public bool TreatHero(Hero patient)

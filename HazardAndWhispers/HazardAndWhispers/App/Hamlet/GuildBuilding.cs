@@ -13,7 +13,23 @@ namespace HazardAndWhispers.App.Hamlet
         private string name;
         private PreAdventureGameState state;
         private List<Upgrade> upgradeSet;
+        private string welcomeMessage;
 
+        public string WelcomeMessage
+        {
+            get 
+            {
+                int tempInt = 0;
+                welcomeMessage = "\nWelcome to " + name + "What Can I get for you?";
+                welcomeMessage += "\nEnter a number to buy an upgrade: ";
+                foreach (var item in upgradeSet)
+                {
+                    welcomeMessage += "\n\n" + tempInt + ": " + item.ToString();
+                    tempInt++;
+                }
+                return welcomeMessage;
+            }
+        }
         public string Name
         {
             get { return name; }
