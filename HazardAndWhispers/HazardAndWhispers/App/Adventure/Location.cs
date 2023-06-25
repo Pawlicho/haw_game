@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HazardAndWhispers.App.Expedition
+namespace HazardAndWhispers.App.Adventure
 {
     internal class Location
     {
@@ -30,6 +30,12 @@ namespace HazardAndWhispers.App.Expedition
             type = type_;
             isCompleted = isCompleted_;
             map = map_;
+        }
+
+        public Location() 
+        {
+            //debug
+            type = LocationType.Swamp;
         }
     }
 }

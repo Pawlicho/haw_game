@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HazardAndWhispers.App.Expedition
+namespace HazardAndWhispers.App.Adventure
 {
     internal interface IAdventureState
     {

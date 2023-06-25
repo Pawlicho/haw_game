@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using HazardAndWhispers.App.Alive;
 using HazardAndWhispers.App.Item;
 
-namespace HazardAndWhispers.App.Expedition
+namespace HazardAndWhispers.App.Adventure
 {
     internal class Room : IHallwayPiece
     {

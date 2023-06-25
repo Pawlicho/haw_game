@@ -115,7 +115,7 @@ namespace HazardAndWhispers.App.Creators
             hamletMap.Add(BuildingType.Guild, guild);
 
             /* Inn */
-            InnBuilding inn = new("Cozy Corner Inn", state, new ExpeditionCreator());
+            InnBuilding inn = new("Cozy Corner Inn", state);
             hamletMap.Add(BuildingType.Inn, inn);
 
             /* Courtyard */

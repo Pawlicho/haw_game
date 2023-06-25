@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HazardAndWhispers.App.Expedition
+namespace HazardAndWhispers.App.Adventure
 {
-    internal class BattleAdventureState : IAdventureState
+    internal class ExploreAdventureState : IAdventureState
     {
         private Expedition expeditionContext;
 
@@ -16,7 +16,7 @@ namespace HazardAndWhispers.App.Expedition
             set { expeditionContext = value; }
         }
 
-        public BattleAdventureState(Expedition expeditionContext_)
+        public ExploreAdventureState(Expedition expeditionContext_)
         {
             ExpeditionContext = expeditionContext_;
         }
@@ -24,7 +24,8 @@ namespace HazardAndWhispers.App.Expedition
         public string Action(ConsoleKey key)
         {
             /* TODO: IMPLEMENT */
-            return String.Empty;
+            return string.Empty;
+
         }
     }
 }

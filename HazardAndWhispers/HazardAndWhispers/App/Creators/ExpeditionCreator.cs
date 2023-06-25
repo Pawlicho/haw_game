@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HazardAndWhispers.App.Adventure;
 using HazardAndWhispers.App.Alive;
-using HazardAndWhispers.App.Expedition;
 
 namespace HazardAndWhispers.App.Creators
 {
@@ -29,10 +29,10 @@ namespace HazardAndWhispers.App.Creators
             chosenLocation = locationGenerator.Type;
         }
 
-        public Expedition.Expedition CreateExpedition(Hero visitor)
+        public Adventure.Expedition CreateExpedition(Hero visitor)
         {
             /* TODO: IMPLEMENT */
-            return null;
+            return new Expedition();
         }
     }
 }

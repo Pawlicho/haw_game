@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using HazardAndWhispers.App.Alive;
 
-namespace HazardAndWhispers.App.Expedition
+namespace HazardAndWhispers.App.Adventure
 {
     internal class Expedition
     {
@@ -52,6 +52,11 @@ namespace HazardAndWhispers.App.Expedition
             State = state_;
             HeroPos = heroPos_;
             CurrPiece = currPiece_;
+        }
+
+        public Expedition() 
+        {
+            destination = new Location();
         }
 
         public string Action(ConsoleKey key)

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HazardAndWhispers.App.Adventure;
 using HazardAndWhispers.App.Alive;
 using HazardAndWhispers.App.Creators;
 using HazardAndWhispers.App.Game;
@@ -13,7 +15,6 @@ namespace HazardAndWhispers.App.Hamlet
     {
         private string name;
         private PreAdventureGameState state;
-        private ExpeditionCreator expeditionGenerator;
         private string welcomeMessage;
 
         public string WelcomeMessage
@@ -41,18 +42,48 @@ namespace HazardAndWhispers.App.Hamlet
             set { state = value; }
         }
 
-        public InnBuilding(string name_, PreAdventureGameState state_, ExpeditionCreator expeditionGenerator_)
+        public InnBuilding(string name_, PreAdventureGameState state_)
         {
             name = name_;
             state = state_;
-            expeditionGenerator = expeditionGenerator_;
         }
 
         public string Action(ConsoleKey key)
         {
-            /* TODO: IMPLEMENT */
+            LocationType destination = LocationType.Swamp;
 
-            return String.Empty;
+            switch (key)
+            {
+                case ConsoleKey.D0:
+                {
+                    destination = LocationType.Swamp;
+                    break;
+                }
+                case ConsoleKey.D1:
+                {
+                    destination = LocationType.Catacombs;
+                    break;
+                }
+                case ConsoleKey.D2:
+                {
+                    destination = LocationType.Graveyard;
+                    break;
+                }
+                case ConsoleKey.D3:
+                {
+                    destination = LocationType.HauntedMansion;
+                    break;
+                }
+                default:
+                {
+                    return "Wrong key!";
+                }
+            }
+
+            state.Ready = true;
+            state.ExpeditionGenerator.ChosenLocation = destination;
+            return "Chosen destination! Next Expedition will take place in: " +
+                    Enum.GetName(typeof(LocationType), destination);
         }
     }
 }

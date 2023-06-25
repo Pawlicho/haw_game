@@ -12,9 +12,9 @@ namespace HazardAndWhispers.App.Game
     {
         private Game gameContext;
         private Hero gameHero;
-        private readonly Expedition.Expedition currentExpedition_;
+        private readonly Adventure.Expedition currentExpedition_;
         private string helpInstructions;
-        private Expedition.Expedition currentExpedition;
+        private Adventure.Expedition currentExpedition;
         private bool ready;
 
         public bool Ready
@@ -22,7 +22,7 @@ namespace HazardAndWhispers.App.Game
             get { return ready; }
         }
 
-        public Expedition.Expedition CurrentExpedition
+        public Adventure.Expedition CurrentExpedition
         {
             get { return currentExpedition; }
         }
@@ -44,7 +44,7 @@ namespace HazardAndWhispers.App.Game
 
         public ExpeditionGameState(Game gameContext_,
                                    Hero gameHero_,
-                                   Expedition.Expedition currentExpedition_)
+                                   Adventure.Expedition currentExpedition_)
         {
             gameContext = gameContext_;
             gameHero = gameHero_;

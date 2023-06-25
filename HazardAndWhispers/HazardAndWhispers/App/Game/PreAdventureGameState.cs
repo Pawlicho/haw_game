@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using HazardAndWhispers.App.Alive;
 using HazardAndWhispers.App.Creators;
 using HazardAndWhispers.App.Hamlet;
+using HazardAndWhispers.App.Adventure;
 
 namespace HazardAndWhispers.App.Game
 {
@@ -18,10 +19,19 @@ namespace HazardAndWhispers.App.Game
         private Hamlet.Hamlet gameHamlet;
         private IBuilding currentBuilding;
         private bool ready;
+        private ExpeditionCreator expeditionGenerator;
+        private Expedition nextExpedition;
+
+        public ExpeditionCreator ExpeditionGenerator
+        {
+            get { return expeditionGenerator; }
+            set { expeditionGenerator = value; }
+        }
 
         public bool Ready
         {
             get { return ready; }
+            set { ready = value; }
         }
 
         public IBuilding CurrentBuilding
@@ -62,6 +72,7 @@ namespace HazardAndWhispers.App.Game
                 helpInstructions += "\nD: Check Hero's move set";
                 helpInstructions += "\nF: Check Hero's equipment";
                 helpInstructions += "\nSpacebar: Check Hero's statistics";
+                helpInstructions += "\nEnter: Start Expedition";
                 helpInstructions += "\nC: Enter Courtyard";
                 helpInstructions += "\nI: Enter Inn";
                 helpInstructions += "\nA: Enter Armorer";
@@ -81,6 +92,7 @@ namespace HazardAndWhispers.App.Game
             gameHamlet = hamletGenerator.CreateHamlet();
             ready = false;
             currentBuilding = gameHamlet.Map[BuildingType.Courtyard];
+            expeditionGenerator = new();
         }
 
         public string Action(ConsoleKey key)
@@ -131,6 +143,20 @@ namespace HazardAndWhispers.App.Game
                 {
                     /* Statistics */
                     return gameHero.Statistics.ToString();
+                }
+                case ConsoleKey.Enter:
+                {
+
+                    if (ready)
+                    {
+                        nextExpedition = ExpeditionGenerator.CreateExpedition(gameHero);
+                        ChangeState(this);
+                        return "Starting expedition to: " + Enum.GetName(typeof(LocationType), nextExpedition.Destination.Type);
+                    }
+                    else
+                    {
+                        return "Wrong key! Chose on of the mentioned. ";
+                    }
                 }
                 case ConsoleKey.I:
                 {
@@ -206,7 +232,7 @@ namespace HazardAndWhispers.App.Game
 
         public void ChangeState(IGameState prevState)
         {
-           
+            gameContext.State = new ExpeditionGameState(gameContext, gameHero, nextExpedition);
         }
     }
 }
