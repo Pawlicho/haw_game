@@ -76,74 +76,81 @@ namespace HazardAndWhispers.App.Game
             switch (key)
             {
                 case ConsoleKey.H:
-                    {
-                        return helpInstructions;
-                    }
+                {
+                    return helpInstructions;
+                }
                 case ConsoleKey.Q:
-                    {
-                        gameContext.Finish();
-                        return "\nGame finished! Closing...";
-                    }
+                {
+                    gameContext.Finish();
+                    return "\nGame finished! Closing...";
+                }
                 case ConsoleKey.C:
-                    {
-                        heroSelectionFlag = true;
-                        return "\nHero selection mode. Press key to create hero!";
-                    }
+                {
+                    heroSelectionFlag = true;
+                    return "\nHero selection mode. Press key to create hero!";
+                }
                 case ConsoleKey.N:
+                {
+                    if (ready)
                     {
                         ChangeState(gameContext.State);
                         return "\nGame begins.";
                     }
+                    return "Wrong key! Chose on of the mentioned. ";
+                }
                 case ConsoleKey.Spacebar:
-                    {
-                        return gameHero.ToString();
-                    }
+                {
+                    return gameHero.ToString();
+                }
                 case ConsoleKey.W:
+                {
+                    if (heroSelectionFlag)
                     {
-                        if (heroSelectionFlag)
-                        {
-                            gameHero = heroInitializer.CreateHero(ClassType.Warrior);
-                            heroSelectionFlag = false;
-                            ready = true;
-                            return "\nWarrior created!\n" + gameHero.ToString();
-                        }
-                        break;
+                        gameHero = heroInitializer.CreateHero(ClassType.Warrior);
+                        heroSelectionFlag = false;
+                        ready = true;
+                        return "\nWarrior created!\n" + gameHero.ToString();
                     }
+                    return "Wrong key! Chose on of the mentioned. ";
+                }
                 case ConsoleKey.M:
+                {
+                    if (heroSelectionFlag)
                     {
-                        if (heroSelectionFlag)
-                        {
-                            gameHero = heroInitializer.CreateHero(ClassType.Mage);
-                            heroSelectionFlag = false;
-                            ready = true;
-                            return "\nMage created!\n" + gameHero.ToString();
-                        }
-                        break; ;
+                        gameHero = heroInitializer.CreateHero(ClassType.Mage);
+                        heroSelectionFlag = false;
+                        ready = true;
+                        return "\nMage created!\n" + gameHero.ToString();
                     }
+                    return "Wrong key! Chose on of the mentioned. ";
+                }
                 case ConsoleKey.A:
+                {
+                    if (heroSelectionFlag)
                     {
-                        if (heroSelectionFlag)
-                        {
-                            gameHero = heroInitializer.CreateHero(ClassType.Assasin);
-                            heroSelectionFlag = false;
-                            ready = true;
-                            return "\nAssasin created!\n" + gameHero.ToString();
-                        }
-                        break;
+                        gameHero = heroInitializer.CreateHero(ClassType.Assasin);
+                        heroSelectionFlag = false;
+                        ready = true;
+                        return "\nAssasin created!\n" + gameHero.ToString();
                     }
+                    return "Wrong key! Chose on of the mentioned. ";
+                }
                 case ConsoleKey.P:
+                {
+                    if (heroSelectionFlag)
                     {
-                        if (heroSelectionFlag)
-                        {
-                            gameHero = heroInitializer.CreateHero(ClassType.Paladin);
-                            heroSelectionFlag = false;
-                            ready = true;
-                            return "\nPaladinCreated\n" + gameHero.ToString();
-                        }
-                        break;
+                        gameHero = heroInitializer.CreateHero(ClassType.Paladin);
+                        heroSelectionFlag = false;
+                        ready = true;
+                        return "\nPaladinCreated\n" + gameHero.ToString();
                     }
+                    return "Wrong key! Chose on of the mentioned. ";
+                }
+                default:
+                {
+                    return "Wrong key! Chose on of the mentioned. ";
+                }
             }
-            return String.Empty;
         }
 
         public void ChangeState(IGameState prevState)

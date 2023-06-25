@@ -57,6 +57,7 @@ namespace HazardAndWhispers.App.Game
                 helpInstructions += "\nPress key for: ";
                 helpInstructions += "\nH: Help instructions";
                 helpInstructions += "\nQ: Quit the game";
+                helpInstructions += "\nS: Check balance";
                 helpInstructions += "\nC: Enter Courtyard";
                 helpInstructions += "\nI: Enter Inn";
                 helpInstructions += "\nA: Enter Armorer";
@@ -83,87 +84,93 @@ namespace HazardAndWhispers.App.Game
             switch (key)
             {
                 case ConsoleKey.H:
-                    {
-                        return helpInstructions;
-                    }
+                {
+                    return helpInstructions;
+                }
                 case ConsoleKey.Q:
-                    {
-                        gameContext.Finish();
-                        return "\nGame finished! Closing...";
-                    }
+                {
+                    gameContext.Finish();
+                    return "\nGame finished! Closing...";
+                }
                 case ConsoleKey.C:
-                    {
-                        currentBuilding = gameHamlet.Map[BuildingType.Courtyard];
-                        return "\nEntering the " + currentBuilding.Name + currentBuilding.WelcomeMessage;
-                    }
+                {
+                    currentBuilding = gameHamlet.Map[BuildingType.Courtyard];
+                    return "\nEntering the " + currentBuilding.Name + currentBuilding.WelcomeMessage;
+                }
+                case ConsoleKey.S:
+                {
+                    return "Hero's balance is: " + gameHero.Gold;
+                }
                 case ConsoleKey.I:
-                    {
-                        currentBuilding = gameHamlet.Map[BuildingType.Inn];
-                        return "\nEntering the " + currentBuilding.Name + currentBuilding.WelcomeMessage;
-                    }
+                {
+                    currentBuilding = gameHamlet.Map[BuildingType.Inn];
+                    return "\nEntering the " + currentBuilding.Name + currentBuilding.WelcomeMessage;
+                }
                 case ConsoleKey.M:
-                    {
-                        currentBuilding = gameHamlet.Map[BuildingType.Hospital];
-                        return "\nEntering the " + currentBuilding.Name + currentBuilding.WelcomeMessage;
-                    }
+                {
+                    currentBuilding = gameHamlet.Map[BuildingType.Hospital];
+                    return "\nEntering the " + currentBuilding.Name + currentBuilding.WelcomeMessage;
+                }
                 case ConsoleKey.B:
-                    {
-                        currentBuilding = gameHamlet.Map[BuildingType.Blacksmith];
-                        return "\nEntering the " + currentBuilding.Name + currentBuilding.WelcomeMessage;
-                    }
+                {
+                    currentBuilding = gameHamlet.Map[BuildingType.Blacksmith];
+                    return "\nEntering the " + currentBuilding.Name + currentBuilding.WelcomeMessage;
+                }
                 case ConsoleKey.G:
-                    {
-                        currentBuilding = gameHamlet.Map[BuildingType.Guild];
-                        return "\nEntering the " + currentBuilding.Name + currentBuilding.WelcomeMessage;
-                    }
+                {
+                    currentBuilding = gameHamlet.Map[BuildingType.Guild];
+                    return "\nEntering the " + currentBuilding.Name + currentBuilding.WelcomeMessage;
+                }
                 case ConsoleKey.A:
-                    {
-                        currentBuilding = gameHamlet.Map[BuildingType.Armorer];
-                        return "\nEntering the " + currentBuilding.Name + currentBuilding.WelcomeMessage;
-                    }
+                {
+                    currentBuilding = gameHamlet.Map[BuildingType.Armorer];
+                    return "\nEntering the " + currentBuilding.Name + currentBuilding.WelcomeMessage;
+                }
                 case ConsoleKey.D0: 
-                    {
-                        return currentBuilding.Action(key);
-                    }
+                {
+                    return currentBuilding.Action(key);
+                }
                 case ConsoleKey.D1:
-                    {
-                        return currentBuilding.Action(key);
-                    }
+                {
+                    return currentBuilding.Action(key);
+                }
                 case ConsoleKey.D2:
-                    {
-                        return currentBuilding.Action(key);
-                    }
+                {
+                    return currentBuilding.Action(key);
+                }
                 case ConsoleKey.D3:
-                    {
-                        return currentBuilding.Action(key);
-                    }
+                {
+                    return currentBuilding.Action(key);
+                }
                 case ConsoleKey.D4:
-                    {
-                        return currentBuilding.Action(key);
-                    }
+                {
+                    return currentBuilding.Action(key);
+                }
                 case ConsoleKey.D5:
-                    {
-                        return currentBuilding.Action(key);
-                    }
+                {
+                    return currentBuilding.Action(key);
+                }
                 case ConsoleKey.D6:
-                    {
-                        return currentBuilding.Action(key);
-                    }
+                {
+                    return currentBuilding.Action(key);
+                }
                 case ConsoleKey.D7:
-                    {
-                        return currentBuilding.Action(key);
-                    }
+                {
+                    return currentBuilding.Action(key);
+                }
                 case ConsoleKey.D8:
-                    {
-                        return currentBuilding.Action(key);
-                    }
+                {
+                    return currentBuilding.Action(key);
+                }
                 case ConsoleKey.D9:
-                    {
-                        return currentBuilding.Action(key);
-                    }
-
+                {
+                    return currentBuilding.Action(key);
+                }
+                default:
+                {
+                    return "Wrong key! Chose on of the mentioned. ";
+                }
             }
-            return String.Empty;
         }
 
         public void ChangeState(IGameState prevState)

@@ -24,6 +24,7 @@ namespace HazardAndWhispers.App.Alive
         public int Gold
         {
             get { return gold; }
+            set { gold = value; }
         }
 
         public Equipment HeroEquipment

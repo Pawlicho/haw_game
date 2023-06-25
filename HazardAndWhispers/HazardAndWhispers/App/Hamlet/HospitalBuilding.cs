@@ -53,8 +53,100 @@ namespace HazardAndWhispers.App.Hamlet
 
         public string Action(ConsoleKey key)
         {
-            
-            return String.Empty;
+            Treatment chosenTreatment;
+            switch (key)
+            {
+                case ConsoleKey.D0:
+                {
+                    if (treatmentSet.Count < 1)
+                        return "No such treatment";
+                    chosenTreatment = treatmentSet[0];
+                    break;
+                }
+                case ConsoleKey.D1:
+                {
+                    if (treatmentSet.Count < 2)
+                        return "No such treatment";
+                    chosenTreatment = treatmentSet[1];
+                    break;
+                }
+                case ConsoleKey.D2:
+                {
+                    if (treatmentSet.Count < 3)
+                        return "No such treatment";
+                    chosenTreatment = treatmentSet[2];
+                    break;
+                }
+                case ConsoleKey.D3:
+                {
+                    if (treatmentSet.Count < 4)
+                        return "No such treatment";
+                    chosenTreatment = treatmentSet[3];
+                    break;
+                }
+                case ConsoleKey.D4:
+                {
+                    if (treatmentSet.Count < 5)
+                        return "No such treatment";
+                    chosenTreatment = treatmentSet[4];
+                    break;
+                }
+                case ConsoleKey.D5:
+                {
+                    if (treatmentSet.Count < 6)
+                        return "No such treatment";
+                    chosenTreatment = treatmentSet[5];
+                    break;
+                }
+                case ConsoleKey.D6:
+                {
+                    if (treatmentSet.Count < 7)
+                        return "No such treatment";
+                    chosenTreatment = treatmentSet[6];
+                    break;
+                }
+                case ConsoleKey.D7:
+                {
+                    if (treatmentSet.Count < 8)
+                        return "No such treatment";
+                    chosenTreatment = treatmentSet[7];
+                    break;
+                }
+                case ConsoleKey.D8:
+                {
+                    if (treatmentSet.Count < 9)
+                        return "No such treatment";
+                    chosenTreatment = treatmentSet[8];
+                    break;
+                }
+                case ConsoleKey.D9:
+                {
+                    if (treatmentSet.Count < 10)
+                        return "No such treatment";
+                    chosenTreatment = treatmentSet[9];
+                    break;
+                }
+                default:
+                {
+                    return "Wrong key! Chose on of the mentioned. ";
+                }
+            }
+            if (chosenTreatment.Price > state.GameHero.Gold)
+            {
+                return "You cannot afford such treatment";
+            }
+
+            state.GameHero.Gold -= chosenTreatment.Price;
+            bool success = chosenTreatment.TreatHero(state.GameHero);
+
+            if (success)
+                return "\nSuccess! Hero has been treated with " + chosenTreatment.Name +
+                       ".\nCurrent Health state: " + state.GameHero.Statistics.HealthPoints + 
+                       ".\nHero's balance is: " + state.GameHero.Gold;
+            else
+                return "Unfortunately, Hero has not been treated successfully.\nCurrent Health state: " +
+                       state.GameHero.Statistics.HealthPoints + ".";
+
         }
     }
 }

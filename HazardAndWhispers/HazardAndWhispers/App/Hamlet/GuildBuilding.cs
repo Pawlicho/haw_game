@@ -53,9 +53,104 @@ namespace HazardAndWhispers.App.Hamlet
 
         public string Action(ConsoleKey key)
         {
-            /* TODO: IMPLEMENT */
+            Upgrade chosenUpgrade;
+            switch (key)
+            {
+                case ConsoleKey.D0:
+                {
+                    if (upgradeSet.Count < 1)
+                        return "No such upgrade.";
+                    chosenUpgrade = upgradeSet[0];
+                    break;
+                }
+                case ConsoleKey.D1:
+                {
+                    if (upgradeSet.Count < 2)
+                        return "No such upgrade.";
+                    chosenUpgrade = upgradeSet[1];
+                    break;
+                }
+                case ConsoleKey.D2:
+                {
+                    if (upgradeSet.Count < 3)
+                        return "No such upgrade.";
+                    chosenUpgrade = upgradeSet[2];
+                    break;
+                }
+                case ConsoleKey.D3:
+                {
+                    if (upgradeSet.Count < 4)
+                        return "No such upgrade.";
+                    chosenUpgrade = upgradeSet[3];
+                    break;
+                }
+                case ConsoleKey.D4:
+                {
+                    if (upgradeSet.Count < 5)
+                        return "No such upgrade.";
+                    chosenUpgrade = upgradeSet[4];
+                    break;
+                }
+                case ConsoleKey.D5:
+                {
+                    if (upgradeSet.Count < 6)
+                        return "No such upgrade.";
+                    chosenUpgrade = upgradeSet[5];
+                    break;
+                }
+                case ConsoleKey.D6:
+                {
+                    if (upgradeSet.Count < 7)
+                        return "No such upgrade.";
+                    chosenUpgrade = upgradeSet[6];
+                    break;
+                }
+                case ConsoleKey.D7:
+                {
+                    if (upgradeSet.Count < 8)
+                        return "No such upgrade.";
+                    chosenUpgrade = upgradeSet[7];
+                    break;
+                }
+                case ConsoleKey.D8:
+                {
+                    if (upgradeSet.Count < 9)
+                        return "No such upgrade.";
+                    chosenUpgrade = upgradeSet[8];
+                    break;
+                }
+                case ConsoleKey.D9:
+                {
+                    if (upgradeSet.Count < 10)
+                        return "No such upgrade.";
+                    chosenUpgrade = upgradeSet[9];
+                    break;
+                }
+                default:
+                {
+                    return "Wrong key! Chose on of the mentioned. ";
+                }
+            }
+            if (chosenUpgrade == null)
+            {
+                return "No such upgrade.";
+            }
 
-            return String.Empty;
+            if (chosenUpgrade.Price > state.GameHero.Gold)
+            {
+                return "You cannot afford such upgrade.";
+            }
+
+            state.GameHero.Gold -= chosenUpgrade.Price;
+            bool success = chosenUpgrade.UpgradeHero(state.GameHero);
+
+            if (success)
+                return "\nSuccess! Hero has been upgraded with " + chosenUpgrade.Name +
+                       ".\nHero's balance is: " + state.GameHero.Gold;
+            else
+                return "Unfortunately, Hero has not been upgraded successfully.\nCurrent Health state: " +
+                       state.GameHero.Statistics.HealthPoints + ".";
+
         }
     }
 }

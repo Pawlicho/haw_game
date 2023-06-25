@@ -32,7 +32,10 @@ namespace HazardAndWhispers.App.Hamlet
             get { return successChance; } 
         }
 
-        public Treatment(int price_, (int, int) healRange_, string name_, int successChance_)
+        public Treatment(int price_,
+                         (int, int) healRange_,
+                         string name_,
+                         int successChance_)
         {
             price = price_;
             healRange = healRange_;
@@ -40,13 +43,15 @@ namespace HazardAndWhispers.App.Hamlet
             successChance = successChance_;
         }
 
+        public Treatment() { }
+
         public override string ToString() 
         {
             string temp = "";
 
             temp += "\nName: " + name;
             temp += "\nPrice: " + price;
-            temp += "\nHeal: " + healRange.Item1 + "-" + healRange.Item1;
+            temp += "\nHeal: " + healRange.Item1 + "-" + healRange.Item2;
             temp += "\nSuccess Chance: " + successChance;
 
             return temp;
@@ -54,8 +59,20 @@ namespace HazardAndWhispers.App.Hamlet
 
         public bool TreatHero(Hero patient)
         {
-            /* TODO: IMPLEMENT */
-            return true;
+            Random random = new();
+
+            if (random.Next(0, 101) <= successChance)
+            {
+                int healValue = random.Next(healRange.Item1, healRange.Item2);
+                StatRegister heal = new()
+                {
+                    HealthPoints = healValue,
+                };
+                patient.Statistics.Update(heal);
+                return true;
+            }
+
+            return false;
         }
     }
 }

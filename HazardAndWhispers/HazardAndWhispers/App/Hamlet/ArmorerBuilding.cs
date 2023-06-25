@@ -55,9 +55,99 @@ namespace HazardAndWhispers.App.Hamlet
 
         public string Action(ConsoleKey key)
         {
-            /* TODO: IMPLEMENT */
+            EquipmentItem chosenItem;
+            switch (key)
+            {
+                case ConsoleKey.D0:
+                {
+                    if (inventory.Count < 1)
+                        return "No such item";
+                    chosenItem = inventory[0];
+                    break;
+                }
+                case ConsoleKey.D1:
+                {
+                    if (inventory.Count < 2)
+                        return "No such item";
+                    chosenItem = inventory[1];
+                    break;
+                }
+                case ConsoleKey.D2:
+                {
+                    if (inventory.Count < 3)
+                        return "No such item";
+                    chosenItem = inventory[2];
+                    break;
+                }
+                case ConsoleKey.D3:
+                {
+                    if (inventory.Count < 4)
+                        return "No such item";
+                    chosenItem = inventory[3];
+                    break;
+                }
+                case ConsoleKey.D4:
+                {
+                    if (inventory.Count < 5)
+                        return "No such item";
+                    chosenItem = inventory[4];
+                    break;
+                }
+                case ConsoleKey.D5:
+                {
+                    if (inventory.Count < 6)
+                        return "No such item";
+                    chosenItem = inventory[5];
+                    break;
+                }
+                case ConsoleKey.D6:
+                {
+                    if (inventory.Count < 7)
+                        return "No such item";
+                    chosenItem = inventory[6];
+                    break;
+                }
+                case ConsoleKey.D7:
+                {
+                    if (inventory.Count < 8)
+                        return "No such item";
+                    chosenItem = inventory[7];
+                    break;
+                }
+                case ConsoleKey.D8:
+                {
+                    if (inventory.Count < 9)
+                        return "No such item";
+                    chosenItem = inventory[8];
+                    break;
+                }
+                case ConsoleKey.D9:
+                {
+                    if (inventory.Count < 10)
+                        return "No such item";
+                    chosenItem = inventory[9];
+                    break;
+                }
+                default:
+                {
+                    return "Wrong key! Chose on of the mentioned. ";
+                }
+            }
+            if (chosenItem.GoldValue > state.GameHero.Gold)
+            {
+                return "You cannot afford such item";
+            }
 
-            return String.Empty;
+            bool success = state.GameHero.PickItem(chosenItem);
+            if (success) 
+            {
+                state.GameHero.Gold -= chosenItem.GoldValue;
+                return "\n" + chosenItem.Name + " has been bought and added into Hero's inventory.";
+            }
+            else
+            {
+                return "\nCould not add item to inventory, no more space!";
+            }
         }
     }
 }

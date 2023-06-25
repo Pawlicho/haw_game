@@ -52,8 +52,15 @@ namespace HazardAndWhispers.App.Hamlet
         }
         public bool UpgradeHero(Hero customer)
         {
-            /* TODO: IMPLEMENT */
-            return true;
+            Random random = new();
+
+            if (random.Next(0, 101) <= successChance)
+            {
+                customer.Statistics.Update(bonus);
+                return true;
+            }
+
+            return false;
         }
     }
 }
