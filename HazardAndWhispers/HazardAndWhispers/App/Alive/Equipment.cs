@@ -113,13 +113,13 @@ namespace HazardAndWhispers.App.Alive
         {
             string temp = "";
 
-            temp += "\nHead: \n"; temp += head.ToString();
-            temp += "\nChest: \n"; temp += chest.ToString();
-            temp += "\nLegs: \n"; temp += legs.ToString();
-            temp += "\nArms: \n"; temp += arms.ToString();
-            temp += "\nHands: \n"; temp += hands.ToString();
-            temp += "\nFeet: \n"; temp += feet.ToString();
-            temp += "\nWeapon: \n"; temp += weapon.ToString();
+            temp += "\n\nHead: \n"; temp += head.ToString();
+            temp += "\n\nChest: \n"; temp += chest.ToString();
+            temp += "\n\nLegs: \n"; temp += legs.ToString();
+            temp += "\n\nArms: \n"; temp += arms.ToString();
+            temp += "\n\nHands: \n"; temp += hands.ToString();
+            temp += "\n\nFeet: \n"; temp += feet.ToString();
+            temp += "\n\nWeapon: \n"; temp += weapon.ToString();
 
             return temp;
         }

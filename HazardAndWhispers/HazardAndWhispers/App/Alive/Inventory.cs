@@ -27,6 +27,16 @@ namespace HazardAndWhispers.App.Alive
             maxSize = maxSize_;
         }
 
+        public IItem GetItem(int idx)
+        {
+            return itemSet[idx];
+        }
+
+        public int GetInventoryCount()
+        {
+            return itemSet.Count;
+        }
+
         public bool AddItem(IItem item)
         {
             if (itemSet.Count == maxSize)
@@ -36,6 +46,11 @@ namespace HazardAndWhispers.App.Alive
 
             itemSet.Add(item);
             return true;
+        }
+
+        public void AddItem(IItem item, int idx)
+        {
+            itemSet[idx] = item;
         }
 
         public bool DropItem(int idx)

@@ -77,6 +77,25 @@ namespace HazardAndWhispers.App.Alive
             return heroInventory.DropItem(idx);
         }
 
+        public bool EquipConsumableMove(int idx)
+        {
+            IItem usedItem = heroInventory.ItemSet[idx];
+            if (usedItem == null)
+                return false;
+
+            if (usedItem.IsConsumable)
+            {
+                ConsumableItem? item = usedItem as ConsumableItem;
+                if (item == null)
+                    return false;
+
+                moveSet.Add(new UseConsumableMove(item));
+
+                return true;
+            }
+
+            return false;
+        }
         public bool Equip(int idx)
         {
             IItem usedItem = heroInventory.ItemSet[idx];
@@ -90,46 +109,61 @@ namespace HazardAndWhispers.App.Alive
                 if (item == null)
                     return false;
 
+                EquipmentItem temp = new();
+
                 switch (item.EquipmentType)
                 {
                     case EquipmentType.Head:
                     { 
-                        heroEquipment.Head.Reverse(statistics);
-                        heroEquipment.Head = item; break;
+                        statistics.Reverse(heroEquipment.Head.StatBonuses);
+                        temp = heroEquipment.Head;
+                        statistics.Update(heroEquipment.Head.StatBonuses); break;
                     }
                     case EquipmentType.Chest:
                     {
-                        heroEquipment.Chest.Reverse(statistics);
-                        heroEquipment.Chest = item; break;
+                        statistics.Reverse(heroEquipment.Chest.StatBonuses);
+                        temp = heroEquipment.Chest;
+                        statistics.Update(heroEquipment.Chest.StatBonuses); break;
                     }
                     case EquipmentType.Arms:
                     { 
-                        heroEquipment.Arms.Reverse(statistics);
-                        heroEquipment.Arms = item; break;
+                        statistics.Reverse(heroEquipment.Arms.StatBonuses);
+                        temp = heroEquipment.Arms;
+                        statistics.Update(heroEquipment.Arms.StatBonuses); break;
                     }
                     case EquipmentType.Hands:
                     {
-                        heroEquipment.Hands.Reverse(statistics);
-                        heroEquipment.Hands = item; break;
+                        statistics.Reverse(heroEquipment.Hands.StatBonuses);
+                        temp = heroEquipment.Hands;
+                        statistics.Update(heroEquipment.Hands.StatBonuses); break;
                     }
                     case EquipmentType.Legs:
                     {
-                        heroEquipment.Legs.Reverse(statistics);
-                        heroEquipment.Legs = item; break;
+                        statistics.Reverse(heroEquipment.Legs.StatBonuses);
+                        temp = heroEquipment.Legs;
+                        statistics.Update(heroEquipment.Legs.StatBonuses); break;
                     }
                     case EquipmentType.Feet:
                     {
-                        heroEquipment.Feet.Reverse(statistics);
-                        heroEquipment.Feet = item; break;
+                        statistics.Reverse(heroEquipment.Feet.StatBonuses);
+                        temp = heroEquipment.Feet;
+                        statistics.Update(heroEquipment.Feet.StatBonuses); break;
                     }
                     case EquipmentType.Weapon:
                     {
-                        heroEquipment.Weapon.Reverse(statistics);
-                        heroEquipment.Weapon = item; break;
+                        temp = heroEquipment.Weapon;
+                        heroEquipment.Weapon = item;
+                        statistics.Update(heroEquipment.Weapon.StatBonuses);break;
                     }
                 }
 
-                UpdateStatRegister();
+                if (temp != null)
+                {
+                    heroInventory.AddItem(temp, idx);
+                }
+
+                Console.WriteLine("Final: {0}", statistics.AbilityPoints);
+
                 return true;
             }
 

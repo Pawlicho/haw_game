@@ -63,8 +63,8 @@ namespace HazardAndWhispers.App.Game
 
                 if (ready)
                 {
-                    helpInstructions += "\nSpacebar: Show hero stats";
-                    helpInstructions += "\nN: Start Geame";
+                    helpInstructions += "\nSpacebar: Show hero info";
+                    helpInstructions += "\nN: Start Game";
                 }
 
                 return helpInstructions; 

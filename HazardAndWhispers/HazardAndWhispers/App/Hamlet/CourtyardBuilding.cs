@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using HazardAndWhispers.App.Alive;
 using HazardAndWhispers.App.Game;
+using HazardAndWhispers.App.Item;
 
 namespace HazardAndWhispers.App.Hamlet
 {
@@ -18,7 +19,9 @@ namespace HazardAndWhispers.App.Hamlet
         {
             get 
             {
-                welcomeMessage = "\nNothing to do here... For now at least";
+                welcomeMessage = "\nWelcome to " + name +
+                                 ".\n\nChose a number from 0-9 to use an item from inventory" +
+                                 state.GameHero.Inventory.ToString();
                 return welcomeMessage; 
             }
         }
@@ -40,9 +43,131 @@ namespace HazardAndWhispers.App.Hamlet
 
         public string Action(ConsoleKey key)
         {
-            /* TODO: IMPLEMENT */
+            IItem chosenItem = null;
+            int idx = 0;
+            switch (key)
+            {
+                case ConsoleKey.D0:
+                {
+                    idx = 0;
+                    if (idx <= state.GameHero.Inventory.GetInventoryCount() - 1)
+                        chosenItem = state.GameHero.Inventory.GetItem(idx);
+                    else
+                        return "No such item.";
+                    break;
+                }
+                case ConsoleKey.D1:
+                {
+                    idx = 1;
+                    if (idx <= state.GameHero.Inventory.GetInventoryCount() - 1)
+                        chosenItem = state.GameHero.Inventory.GetItem(idx);
+                    else
+                        return "No such item.";
+                    break;
+                }
+                case ConsoleKey.D2:
+                {
+                    idx = 2;
+                    if (idx <= state.GameHero.Inventory.GetInventoryCount() - 1)
+                        chosenItem = state.GameHero.Inventory.GetItem(idx);
+                    else
+                        return "No such item.";
+                    break;
+                }
+                case ConsoleKey.D3:
+                {
+                    idx = 3;
+                    if (idx <= state.GameHero.Inventory.GetInventoryCount() - 1)
+                        chosenItem = state.GameHero.Inventory.GetItem(idx);
+                    else
+                        return "No such item.";
+                    break;
+                }
+                case ConsoleKey.D4:
+                {
+                    idx = 4;
+                    if (idx <= state.GameHero.Inventory.GetInventoryCount() - 1)
+                        chosenItem = state.GameHero.Inventory.GetItem(idx);
+                    else
+                        return "No such item.";
+                    break;
+                }
+                case ConsoleKey.D5:
+                {
+                    idx = 5;
+                    if (idx <= state.GameHero.Inventory.GetInventoryCount() - 1)
+                        chosenItem = state.GameHero.Inventory.GetItem(idx);
+                    else
+                        return "No such item.";
+                    break;
+                }
+                case ConsoleKey.D6:
+                {
+                    idx = 6;
+                    if (idx <= state.GameHero.Inventory.GetInventoryCount() - 1)
+                        chosenItem = state.GameHero.Inventory.GetItem(idx);
+                    else
+                        return "No such item.";
+                    break;
+                }
+                case ConsoleKey.D7:
+                {
+                    idx = 7;
+                    if (idx <= state.GameHero.Inventory.GetInventoryCount() - 1)
+                        chosenItem = state.GameHero.Inventory.GetItem(idx);
+                    else
+                        return "No such item.";
+                    break;
+                }
+                case ConsoleKey.D8:
+                {
+                    idx = 8;
+                    if (idx <= state.GameHero.Inventory.GetInventoryCount() - 1)
+                        chosenItem = state.GameHero.Inventory.GetItem(idx);
+                    else
+                        return "No such item.";
+                    break;
+                }
+                case ConsoleKey.D9:
+                {
+                    idx = 0;
+                    if (idx <= state.GameHero.Inventory.GetInventoryCount() - 1)
+                        chosenItem = state.GameHero.Inventory.GetItem(idx);
+                    else
+                        return "No such item.";
+                    break;
+                }
+                default:
+                {
+                    return "Wrong key";
+                }
+            }
+            if (chosenItem == null)
+                return "No such item.";
 
-            return String.Empty;
+            if (chosenItem.IsEquipable)
+            {
+                if (state.GameHero.Equip(idx))
+                    return "Equipped " + chosenItem.Name + ".";
+                else
+                    return "Could not equip an item.";
+            }
+            else if (chosenItem.IsConsumable)
+            {
+                if (state.GameHero.EquipConsumableMove(idx))
+                    return "Added " + chosenItem.Name + "To the movement set.";
+                else
+                    return "Could not add an item to the movement set";
+            }
+            else
+            {
+                state.GameHero.Gold += chosenItem.GoldValue;
+                state.GameHero.DropItem(idx);
+                return "Item " + chosenItem.Name +
+                       " has been sold for: " +
+                       chosenItem.GoldValue +
+                       ".\nCurrent Hero's balance is: " + state.GameHero.Gold + ".";
+            }
         }
     }    
 }

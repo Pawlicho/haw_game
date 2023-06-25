@@ -49,6 +49,12 @@ namespace HazardAndWhispers.App.Creators
             /* Inventory */
             const int maxInventorySize = 10;
             Inventory inventory = new(maxInventorySize);
+            StatRegister minorHealPotionRegister = new StatRegister()
+            {
+                HealthPoints = 20
+            };
+            inventory.AddItem(new ConsumableItem("Minor Healing Potion", 50, minorHealPotionRegister));
+            inventory.AddItem(new ValuableItem("Scarlet Rubin", 1000));
 
             /* Initial gold value */
             const int initialGoldValue = 500;

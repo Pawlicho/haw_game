@@ -60,6 +60,8 @@ namespace HazardAndWhispers.App.Item
             equipmentType = equipmentType_;
         }
 
+        public EquipmentItem() { }
+
         public void Reverse(StatRegister reg)
         {
             statBonuses.Reverse(reg);

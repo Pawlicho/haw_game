@@ -58,6 +58,10 @@ namespace HazardAndWhispers.App.Game
                 helpInstructions += "\nH: Help instructions";
                 helpInstructions += "\nQ: Quit the game";
                 helpInstructions += "\nS: Check balance";
+                helpInstructions += "\nE: Check Inventory";
+                helpInstructions += "\nD: Check Hero's move set";
+                helpInstructions += "\nF: Check Hero's equipment";
+                helpInstructions += "\nSpacebar: Check Hero's statistics";
                 helpInstructions += "\nC: Enter Courtyard";
                 helpInstructions += "\nI: Enter Inn";
                 helpInstructions += "\nA: Enter Armorer";
@@ -100,6 +104,33 @@ namespace HazardAndWhispers.App.Game
                 case ConsoleKey.S:
                 {
                     return "Hero's balance is: " + gameHero.Gold;
+                }
+                case ConsoleKey.E:
+                {
+                    return "Hero's inventory: " + gameHero.Inventory.ToString();
+                }
+                case ConsoleKey.D:
+                {
+                    /* Move set*/
+                    string temp = "";
+                    int tempInt = 0;
+                    temp += "\n\nMove set: ";
+                    foreach (var move in gameHero.MoveSet)
+                    {
+                        temp += "\n\n" + tempInt + ": " + move.ToString();
+                        tempInt++;
+                    }
+                        return temp;
+                }
+                case ConsoleKey.F:
+                {
+                    /* Equipment */
+                    return gameHero.HeroEquipment.ToString();
+                }
+                case ConsoleKey.Spacebar:
+                {
+                    /* Statistics */
+                    return gameHero.Statistics.ToString();
                 }
                 case ConsoleKey.I:
                 {
