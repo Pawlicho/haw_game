@@ -13,7 +13,7 @@ namespace HazardAndWhispers.App.Item
         private string name;
         private bool isConsumable;
         private bool isEquipable;
-        private uint goldValue;
+        private int goldValue;
         public string Name
         {
             get { return name; }
@@ -26,12 +26,12 @@ namespace HazardAndWhispers.App.Item
         {
             get { return isEquipable; }
         }
-        public uint GoldValue
+        public int GoldValue
         {
             get { return goldValue; }
         }
 
-        public ValuableItem(string name_, uint goldValue_)
+        public ValuableItem(string name_, int goldValue_)
         {
             name = name_;
             goldValue = goldValue_;

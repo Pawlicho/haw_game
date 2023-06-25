@@ -9,12 +9,12 @@ namespace HazardAndWhispers.App.Item
 {
     internal class ConsumableItem : IItem
     {
-        private const uint maxNumberOfUsage = 3;
+        private const int maxNumberOfUsage = 3;
         private string name;
         private bool isConsumable;
         private bool isEquipable;
-        private uint goldValue;
-        private uint numberOfUsageLeft;
+        private int goldValue;
+        private int numberOfUsageLeft;
         private StatRegister statBonuses;
 
         public string Name
@@ -29,11 +29,11 @@ namespace HazardAndWhispers.App.Item
         {
             get { return isEquipable; }
         }
-        public uint GoldValue
+        public int GoldValue
         {
             get { return goldValue; }
         }
-        public uint NumberOfUsageLeft
+        public int NumberOfUsageLeft
         {
             get { return numberOfUsageLeft; }
         }
@@ -41,7 +41,7 @@ namespace HazardAndWhispers.App.Item
         {
             get { return statBonuses; }
         }
-        public uint MaxNumberOfUsage
+        public int MaxNumberOfUsage
         {
             get { return maxNumberOfUsage; }
         }
@@ -52,7 +52,7 @@ namespace HazardAndWhispers.App.Item
             /* Do some random operations here */
             return new StatRegister();
         }
-        public ConsumableItem(string name_, uint goldValue_, StatRegister statBonuses_)
+        public ConsumableItem(string name_, int goldValue_, StatRegister statBonuses_)
         {
             numberOfUsageLeft = MaxNumberOfUsage;
             isConsumable = true;

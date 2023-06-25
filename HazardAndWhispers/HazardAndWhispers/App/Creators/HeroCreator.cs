@@ -12,6 +12,7 @@ namespace HazardAndWhispers.App.Creators
     internal class HeroCreator
     {
         private ClassType heroClass;
+        private EquipmentCreator equipmentCreator;
 
         public ClassType HeroClass
         {
@@ -22,6 +23,7 @@ namespace HazardAndWhispers.App.Creators
         public HeroCreator()
         {
             heroClass = ClassType.Mage;
+            equipmentCreator = new EquipmentCreator();
         }
 
         public Hero CreateHero(ClassType type)
@@ -101,59 +103,7 @@ namespace HazardAndWhispers.App.Creators
 
                     /* Equipment */
 
-                    /* Chest */
-                    StatRegister chestStats = new()
-                    {
-                        DefensePoints = 5,
-                        MagicResistancePoints = 15
-                    };
-                    EquipmentItem chest = new("Acolyte Robe", 0, chestStats, EquipmentType.Chest);
-                    /* Head */
-                    StatRegister headStats = new()
-                    {
-                        DefensePoints = 3,
-                        MagicResistancePoints = 3
-                    };
-                    EquipmentItem head = new("Acolyte Hat", 0, headStats, EquipmentType.Head);
-                    /* Legs */
-                    StatRegister legsStats = new()
-                    {
-                        DodgeChance = 3,
-                        SpeedPoints = 2
-                    };
-                    EquipmentItem legs = new("Acolyte Trousers", 0, legsStats, EquipmentType.Legs);
-                    /* Feet */
-                    StatRegister feetStats = new()
-                    {
-                        SpeedPoints = 1,
-                        DodgeChance = 1
-                    };
-                    EquipmentItem feet = new("Acolate Boots", 0, feetStats, EquipmentType.Feet);
-                    /* Arms */
-                    StatRegister armsStats = new()
-                    {
-                        AbilityPoints = 4,
-                        AttackDamage = 1
-                    };
-                    EquipmentItem arms = new("Acolate Sleeves", 0, armsStats, EquipmentType.Arms);
-                    /* Hands */
-                    StatRegister handsStats = new StatRegister
-                    {
-                        AttackDamage = 0,
-                        AbilityPoints = 3,
-                        CriticalStrikeChance = 3
-                    };
-                    EquipmentItem hands = new("Acolate Gloves", 0, handsStats, EquipmentType.Hands);
-                    /* Weapon */
-                    StatRegister weaponStats = new()
-                    {
-                        AttackDamage = 4,
-                        AbilityPoints = 8,
-                        CriticalStrikeChance = 2
-                    };
-                    EquipmentItem weapon = new("Acolyte Wand", 0, weaponStats, EquipmentType.Weapon);
-
-                    Equipment equipment = new(head, chest, legs, arms, hands, feet, weapon);
+                    Equipment equipment = equipmentCreator.CreateEquipment(EquipmentLevel.Basic, type);
 
                     Hero hero = new(reg, moveSet, type, equipment, inventory, initialGoldValue);
 
@@ -207,59 +157,7 @@ namespace HazardAndWhispers.App.Creators
 
                     /* Equipment */
 
-                    /* Chest */
-                    StatRegister chestStats = new()
-                    {
-                        DefensePoints = 15,
-                        MagicResistancePoints = 10
-                    };
-                    EquipmentItem chest = new("Recruit Chestplate", 0, chestStats, EquipmentType.Chest);
-                    /* Head */
-                    StatRegister headStats = new()
-                    {
-                        DefensePoints = 7,
-                        MagicResistancePoints = 7
-                    };
-                    EquipmentItem head = new("Recruit Helmet", 0, headStats, EquipmentType.Head);
-                    /* Legs */
-                    StatRegister legsStats = new()
-                    {
-                        DodgeChance = 3,
-                        SpeedPoints = 1
-                    };
-                    EquipmentItem legs = new("Recruit Trousers", 0, legsStats, EquipmentType.Legs);
-                    /* Feet */
-                    StatRegister feetStats = new()
-                    {
-                        SpeedPoints = 0,
-                        DodgeChance = 2
-                    };
-                    EquipmentItem feet = new EquipmentItem("Recruit Boots", 0, feetStats, EquipmentType.Feet);
-                    /* Arms */
-                    StatRegister armsStats = new()
-                    {
-                        AbilityPoints = 1,
-                        AttackDamage = 3
-                    };
-                    EquipmentItem arms = new("Recruit Armplates", 0, armsStats, EquipmentType.Arms);
-                    /* Hands */
-                    StatRegister handsStats = new()
-                    {
-                        AttackDamage = 3,
-                        AbilityPoints = 0,
-                        CriticalStrikeChance = 2
-                    };
-                    EquipmentItem hands = new("Recruit Gloves", 0, handsStats, EquipmentType.Hands);
-                    /* Weapon */
-                    StatRegister weaponStats = new()
-                    {
-                        AttackDamage = 9,
-                        AbilityPoints = 4,
-                        CriticalStrikeChance = 1
-                    };
-                    EquipmentItem weapon = new("Recruit Sword", 0, weaponStats, EquipmentType.Weapon);
-
-                    Equipment equipment = new(head, chest, legs, arms, hands, feet, weapon);
+                    Equipment equipment = equipmentCreator.CreateEquipment(EquipmentLevel.Basic, type);
 
                     Hero hero = new(reg, moveSet, type, equipment, inventory, initialGoldValue);
 
@@ -313,59 +211,7 @@ namespace HazardAndWhispers.App.Creators
 
                     /* Equipment */
 
-                    /* Chest */
-                    StatRegister chestStats = new()
-                    {
-                        DefensePoints = 5,
-                        MagicResistancePoints = 5
-                    };
-                    EquipmentItem chest = new("Neophyte Vest", 0, chestStats, EquipmentType.Chest);
-                    /* Head */
-                    StatRegister headStats = new()
-                    {
-                        DefensePoints = 2,
-                        MagicResistancePoints = 2
-                    };
-                    EquipmentItem head = new("Neophyte Mask", 0, headStats, EquipmentType.Head);
-                    /* Legs */
-                    StatRegister legsStats = new()
-                    {
-                        DodgeChance = 8,
-                        SpeedPoints = 4
-                    };
-                    EquipmentItem legs = new("Neophyte Trousers", 0, legsStats, EquipmentType.Legs);
-                    /* Feet */
-                    StatRegister feetStats = new()
-                    {
-                        SpeedPoints = 3,
-                        DodgeChance = 3
-                    };
-                    EquipmentItem feet = new("Neophyte Boots", 0, feetStats, EquipmentType.Feet);
-                    /* Arms */
-                    StatRegister armsStats = new()
-                    {
-                        AbilityPoints = 2,
-                        AttackDamage = 3
-                    };
-                    EquipmentItem arms = new("Neophyte Sleeves", 0, armsStats, EquipmentType.Arms);
-                    /* Hands */
-                    StatRegister handsStats = new()
-                    {
-                        AttackDamage = 1,
-                        AbilityPoints = 1,
-                        CriticalStrikeChance = 6
-                    };
-                    EquipmentItem hands = new("Neophyte Gloves", 0, handsStats, EquipmentType.Hands);
-                    /* Weapon */
-                    StatRegister weaponStats = new()
-                    {
-                        AttackDamage = 6,
-                        AbilityPoints = 2,
-                        CriticalStrikeChance = 6
-                    };
-                    EquipmentItem weapon = new("Neophyte Dagger", 0, weaponStats, EquipmentType.Weapon);
-
-                    Equipment equipment = new(head, chest, legs, arms, hands, feet, weapon);
+                    Equipment equipment = equipmentCreator.CreateEquipment(EquipmentLevel.Basic, type);
 
                     Hero hero = new(reg, moveSet, type, equipment, inventory, initialGoldValue);
 
@@ -418,61 +264,9 @@ namespace HazardAndWhispers.App.Creators
                     };
 
                     /* Equipment */
-
-                    /* Chest */
-                    StatRegister chestStats = new()
-                    {
-                        DefensePoints = 10,
-                        MagicResistancePoints = 10
-                    };
-                    EquipmentItem chest = new("Aspirant Chestplate", 0, chestStats, EquipmentType.Chest);
-                    /* Head */
-                    StatRegister headStats = new()
-                    {
-                        DefensePoints = 5,
-                        MagicResistancePoints = 5
-                    };
-                    EquipmentItem head = new("Aspirant Helmet", 0, headStats, EquipmentType.Head);
-                    /* Legs */
-                    StatRegister legsStats = new()
-                    {
-                        DodgeChance = 3,
-                        SpeedPoints = 2
-                    };
-                    EquipmentItem legs = new("Aspirant Trousers", 0, legsStats, EquipmentType.Legs);
-                    /* Feet */
-                    StatRegister feetStats = new()
-                    {
-                        SpeedPoints = 1,
-                        DodgeChance = 1
-                    };
-                    EquipmentItem feet = new("Aspirant Boots", 0, feetStats, EquipmentType.Feet);
-                    /* Arms */
-                    StatRegister armsStats = new()
-                    {
-                        AbilityPoints = 3,
-                        AttackDamage = 2
-                    };
-                    EquipmentItem arms = new("Aspirant Armplates", 0, armsStats, EquipmentType.Arms);
-                    /* Hands */
-                    StatRegister handsStats = new()
-                    {
-                        AttackDamage = 2,
-                        AbilityPoints = 2,
-                        CriticalStrikeChance = 1
-                    };
-                    EquipmentItem hands = new("Aspirant Gloves", 0, handsStats, EquipmentType.Hands);
-                    /* Weapon */
-                    StatRegister weaponStats = new()
-                    {
-                        AttackDamage = 7,
-                        AbilityPoints = 7,
-                        CriticalStrikeChance = 0
-                    };
-                    EquipmentItem weapon = new("Aspirant Hammer", 0, weaponStats, EquipmentType.Weapon);
-
-                    Equipment equipment = new(head, chest, legs, arms, hands, feet, weapon);
-
+                    
+                    Equipment equipment = equipmentCreator.CreateEquipment(EquipmentLevel.Basic, type);
+                    
                     Hero hero = new(reg, moveSet, type, equipment, inventory, initialGoldValue);
 
                     return hero;

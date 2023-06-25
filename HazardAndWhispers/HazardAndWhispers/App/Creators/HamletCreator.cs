@@ -13,6 +13,7 @@ namespace HazardAndWhispers.App.Creators
     internal class HamletCreator
     {
         private PreAdventureGameState state;
+        private EquipmentCreator equipmentCreator;
         public PreAdventureGameState State
         {
             get { return state; }
@@ -22,6 +23,7 @@ namespace HazardAndWhispers.App.Creators
         public HamletCreator(PreAdventureGameState state_) 
         {
             state = state_;
+            equipmentCreator = new EquipmentCreator();
         }
 
         public Hamlet.Hamlet CreateHamlet()
@@ -32,26 +34,26 @@ namespace HazardAndWhispers.App.Creators
             /* Create all the buildings and initialize them */
 
             /* Armorer */
+            Equipment intermediateEquipment = equipmentCreator.CreateEquipment(EquipmentLevel.Intermediate, state.GameHero.ClassType);
             List<EquipmentItem> armorerInventory = new List<EquipmentItem>()
             {
-                new EquipmentItem("", 0, new StatRegister(), EquipmentType.Chest),
-                new EquipmentItem("", 0, new StatRegister(), EquipmentType.Head),
-                new EquipmentItem("", 0, new StatRegister(), EquipmentType.Feet),
-                new EquipmentItem("", 0, new StatRegister(), EquipmentType.Legs),
-                new EquipmentItem("", 0, new StatRegister(), EquipmentType.Hands),
-                new EquipmentItem("", 0, new StatRegister(), EquipmentType.Arms)
+                intermediateEquipment.Chest,
+                intermediateEquipment.Head,
+                intermediateEquipment.Legs,
+                intermediateEquipment.Feet,
+                intermediateEquipment.Arms,
+                intermediateEquipment.Hands,
             };
-            ArmorerBuilding armorer = new("Steelhaven Armory", state, armorerInventory);
-            hamletMap.Add(BuildingType.Armorer, armorer);
 
             /* Blacksmith */
             List<EquipmentItem> blacksmithInventory = new List<EquipmentItem>()
             {
-                new EquipmentItem("", 0, new StatRegister(), EquipmentType.Weapon),
-                new EquipmentItem("", 0, new StatRegister(), EquipmentType.Weapon),
-                new EquipmentItem("", 0, new StatRegister(), EquipmentType.Weapon),
-                new EquipmentItem("", 0, new StatRegister(), EquipmentType.Weapon),
+                intermediateEquipment.Weapon
             };
+
+            ArmorerBuilding armorer = new("Steelhaven Armory", state, armorerInventory);
+            hamletMap.Add(BuildingType.Armorer, armorer);
+
             BlackSmithBuilding blacksmith = new("Inferno's Blacksmith", state, blacksmithInventory);
             hamletMap.Add(BuildingType.Blacksmith,blacksmith);
 

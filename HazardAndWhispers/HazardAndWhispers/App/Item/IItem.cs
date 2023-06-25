@@ -9,7 +9,7 @@ namespace HazardAndWhispers.App.Item
     internal interface IItem
     {
         public string? Name { get; }
-        public uint GoldValue { get; }
+        public int GoldValue { get; }
         public bool IsConsumable { get; }
         public bool IsEquipable { get; }
 

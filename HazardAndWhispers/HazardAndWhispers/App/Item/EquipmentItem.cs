@@ -12,7 +12,7 @@ namespace HazardAndWhispers.App.Item
         private string name;
         private bool isConsumable;
         private bool isEquipable;
-        private uint goldValue;
+        private int goldValue;
         private StatRegister statBonuses;
         private EquipmentType equipmentType;
         public string Name
@@ -27,7 +27,7 @@ namespace HazardAndWhispers.App.Item
         {
             get { return isEquipable; }
         }
-        public uint GoldValue
+        public int GoldValue
         {
             get { return goldValue; }
 
@@ -48,7 +48,7 @@ namespace HazardAndWhispers.App.Item
             return new StatRegister();
         }
         public EquipmentItem(string name_,
-                             uint goldValue_,
+                             int goldValue_,
                              StatRegister statBonuses_,
                              EquipmentType equipmentType_)
         {
