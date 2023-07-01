@@ -18,7 +18,7 @@
                 Console.Clear();
 
                 /* Execute Action */
-                string output = newGame.Action(keyInfo.Key);
+                string output = newGame.Action(keyInfo);
 
                 /* And Print the output */
                 Console.ForegroundColor = ConsoleColor.Yellow;

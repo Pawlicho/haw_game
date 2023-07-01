@@ -34,6 +34,15 @@ namespace HazardAndWhispers.App.Alive
             isBoss = isBoss_;
         }
 
+        public void SetEnemy(IAlive enemy)
+        {
+            foreach (var move in moveSet)
+            {
+                move.Executor = this;
+                move.Receiver = enemy;
+            }
+        }
+
         public int RunMove(int moveId)
         {
             return MoveSet[moveId].MakeMove();

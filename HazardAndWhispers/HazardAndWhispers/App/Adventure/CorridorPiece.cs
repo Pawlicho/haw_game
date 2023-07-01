@@ -16,6 +16,7 @@ namespace HazardAndWhispers.App.Adventure
         public bool IsCompleted
         {
             get { return isCompleted; }
+            set { isCompleted = value; }
         }
 
 

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using HazardAndWhispers.App.Adventure;
 using HazardAndWhispers.App.Alive;
+using HazardAndWhispers.App.Game;
 
 namespace HazardAndWhispers.App.Creators
 {
@@ -29,9 +30,9 @@ namespace HazardAndWhispers.App.Creators
             chosenLocation = locationGenerator.Type;
         }
 
-        public Adventure.Expedition CreateExpedition(Hero visitor)
+        public Adventure.Expedition CreateExpedition(Hero visitor, Game.Game gameContext)
         {
-            Expedition nextExpedition = new Expedition(locationGenerator.CreateLocation(), visitor);
+            Expedition nextExpedition = new Expedition(locationGenerator.CreateLocation(), visitor, gameContext);
             return nextExpedition;
         }
     }

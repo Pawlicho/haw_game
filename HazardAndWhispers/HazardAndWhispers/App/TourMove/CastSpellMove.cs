@@ -13,7 +13,7 @@ namespace HazardAndWhispers.App.TourMove
         /* Twig those in order to balance the fight */
         /* Hardcoded, but there is an option to make it in-game modificable */
         private double elementSpecificResistanceFactor = 0.9;
-        private const int magicResistanceReductionFactor = 1;
+        private const float magicResistanceReductionFactor = 0.5f;
 
         private IAlive executor;
         private IAlive receiver;
@@ -95,14 +95,16 @@ namespace HazardAndWhispers.App.TourMove
 
             if (isResistant)
             {
-                tempDmg = damage * elementSpecificResistanceFactor;
+                tempDmg = damage * (1 - elementSpecificResistanceFactor);
             }
             else
             {
-                tempDmg = damage * Receiver.Statistics.MagicResistancePoints * magicResistanceReductionFactor;
+                tempDmg = damage - (Receiver.Statistics.MagicResistancePoints * magicResistanceReductionFactor);
             }
 
             damage = (int)Math.Round(tempDmg);
+
+            receiver.Statistics.HealthPoints -= damage;
 
             return damage;
         }

@@ -12,8 +12,8 @@ namespace HazardAndWhispers.App.Game
         public Game GameContext { get; set; }
         public Hero GameHero { get; set; }
         public string HelpInstructions { get;}
-        public bool Ready { get; }
-        public string Action(ConsoleKey key);
+        public bool Ready { get; set; }
+        public string Action(ConsoleKeyInfo keyInfo);
         public void ChangeState(IGameState prevState);
     }
 }

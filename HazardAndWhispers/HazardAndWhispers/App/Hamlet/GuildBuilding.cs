@@ -51,8 +51,9 @@ namespace HazardAndWhispers.App.Hamlet
             upgradeSet = upgradeSet_;
         }
 
-        public string Action(ConsoleKey key)
+        public string Action(ConsoleKeyInfo keyInfo)
         {
+            ConsoleKey key = keyInfo.Key;
             Upgrade chosenUpgrade;
             switch (key)
             {

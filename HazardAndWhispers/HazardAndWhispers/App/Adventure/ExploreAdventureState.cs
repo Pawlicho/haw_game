@@ -21,8 +21,9 @@ namespace HazardAndWhispers.App.Adventure
             ExpeditionContext = expeditionContext_;
         }
 
-        public string Action(ConsoleKey key)
+        public string Action(ConsoleKeyInfo keyInfo)
         {
+            ConsoleKey key = keyInfo.Key;
             Direction currDirection;
             Coords newCoords = new Coords(0, 0);
 

@@ -13,7 +13,6 @@ namespace HazardAndWhispers.App.Game
     {
         private Game gameContext;
         private Hero gameHero;
-        private readonly Adventure.Expedition currentExpedition_;
         private string helpInstructions;
         private Adventure.Expedition currentExpedition;
         private bool ready;
@@ -21,6 +20,7 @@ namespace HazardAndWhispers.App.Game
         public bool Ready
         {
             get { return ready; }
+            set { ready = value; }
         }
 
         public Adventure.Expedition CurrentExpedition
@@ -49,6 +49,16 @@ namespace HazardAndWhispers.App.Game
                     helpInstructions += "\nUse arrows to move around the map";
                     helpInstructions += "\nM: Show Map";
                     helpInstructions += "\nP: Show Hero's current position";
+                    if (ready)
+                    {
+                        helpInstructions += "\nL: Leave location";
+                    }
+                }
+                if (currentExpedition.State is BattleAdventureState)
+                {
+                    helpInstructions += "\nS: Show skill set";
+                    helpInstructions += "\nE: Show HP levels";
+                    helpInstructions += "\n0-9: Make a move";
                 }
 
                 return helpInstructions;
@@ -62,11 +72,13 @@ namespace HazardAndWhispers.App.Game
             gameContext = gameContext_;
             gameHero = gameHero_;
             currentExpedition = currentExpedition_;
+            currentExpedition.State = new ExploreAdventureState(currentExpedition);
             ready = false;
         }
 
-        public string Action(ConsoleKey key)
+        public string Action(ConsoleKeyInfo keyInfo)
         {
+            ConsoleKey key = keyInfo.Key;
             switch (key)
             {
                 case ConsoleKey.H:
@@ -87,21 +99,96 @@ namespace HazardAndWhispers.App.Game
                     else
                         break;
                 }
+                case ConsoleKey.S:
+                {
+                    if (currentExpedition.State is BattleAdventureState)
+                    {
+                        /* Move set*/
+                        string temp = "";
+                        int tempInt = 0;
+                        temp += "\n\nMove set: ";
+                        foreach (var move in gameHero.MoveSet)
+                        {
+                            temp += "\n\n" + tempInt + ": " + move.ToString();
+                            tempInt++;
+                        }
+                        return temp;
+                    }
+                    else
+                        break;
+                }
+                case ConsoleKey.E:
+                {
+                    if (currentExpedition.State is BattleAdventureState)
+                    {
+                        Room currRoom = currentExpedition.CurrPiece as Room;
+                        return "Hero's HP: " + gameHero.Statistics.HealthPoints + " / " + gameHero.Statistics.MaxHealthPoints +
+                               "\nEnemy HP: " + currRoom.Enemy.Statistics.HealthPoints + " / " + currRoom.Enemy.Statistics.MaxHealthPoints;
+                    }
+                    else
+                        break;
+                }
+                case ConsoleKey.L:
+                {
+                    ChangeState(this);
+                    gameContext.ProgressState[currentExpedition.Destination.Type] = true;
+                    return "Leaving location\n";
+                }
                 case ConsoleKey.UpArrow:
                 {
-                    return currentExpedition.Action(key);
+                    return currentExpedition.Action(keyInfo);
                 }
                 case ConsoleKey.DownArrow:
                 {
-                    return currentExpedition.Action(key);
+                    return currentExpedition.Action(keyInfo);
                 }
                 case ConsoleKey.LeftArrow:
                 {
-                    return currentExpedition.Action(key);
+                    return currentExpedition.Action(keyInfo);
                 }
                 case ConsoleKey.RightArrow:
                 {
-                    return currentExpedition.Action(key);
+                    return currentExpedition.Action(keyInfo);
+                }
+                case ConsoleKey.D0:
+                {
+                    return currentExpedition.Action(keyInfo);
+                }
+                case ConsoleKey.D1:
+                {
+                    return currentExpedition.Action(keyInfo);
+                }
+                case ConsoleKey.D2:
+                {
+                    return currentExpedition.Action(keyInfo);
+                }
+                case ConsoleKey.D3:
+                {
+                    return currentExpedition.Action(keyInfo);
+                }
+                case ConsoleKey.D4:
+                {
+                    return currentExpedition.Action(keyInfo);
+                }
+                case ConsoleKey.D5:
+                {
+                    return currentExpedition.Action(keyInfo);
+                }
+                case ConsoleKey.D6:
+                {
+                    return currentExpedition.Action(keyInfo);
+                }
+                case ConsoleKey.D7:
+                {
+                    return currentExpedition.Action(keyInfo);
+                }
+                case ConsoleKey.D8:
+                {
+                    return currentExpedition.Action(keyInfo);
+                }
+                case ConsoleKey.D9:
+                {
+                    return currentExpedition.Action(keyInfo);
                 }
                 default:
                 {
@@ -113,7 +200,7 @@ namespace HazardAndWhispers.App.Game
 
         public void ChangeState(IGameState prevState)
         {
-       
+            gameContext.State = new PreAdventureGameState(gameContext, gameHero);
         }
     }
 }

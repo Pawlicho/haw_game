@@ -12,6 +12,6 @@ namespace HazardAndWhispers.App.Hamlet
         public string Name { get; }
         public PreAdventureGameState State { get; }
         public string WelcomeMessage { get; }
-        public string Action(ConsoleKey key);
+        public string Action(ConsoleKeyInfo keyInfo);
     }
 }

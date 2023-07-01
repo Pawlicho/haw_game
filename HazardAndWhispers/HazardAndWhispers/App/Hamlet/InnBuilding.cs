@@ -27,7 +27,7 @@ namespace HazardAndWhispers.App.Hamlet
                 welcomeMessage += "\n0: Swamp";
                 welcomeMessage += "\n1: Catacombs";
                 welcomeMessage += "\n2: Graveyard";
-                welcomeMessage += "\n2: Haunted Mansion";
+                welcomeMessage += "\n3: Haunted Mansion";
 
                 return welcomeMessage;
             }
@@ -48,8 +48,9 @@ namespace HazardAndWhispers.App.Hamlet
             state = state_;
         }
 
-        public string Action(ConsoleKey key)
+        public string Action(ConsoleKeyInfo keyInfo)
         {
+            ConsoleKey key = keyInfo.Key;
             LocationType destination = LocationType.Swamp;
 
             switch (key)

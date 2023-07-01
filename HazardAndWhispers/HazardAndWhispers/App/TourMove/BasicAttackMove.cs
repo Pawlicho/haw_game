@@ -12,7 +12,7 @@ namespace HazardAndWhispers.App.TourMove
         /* Twig those in order to balance the fight */
         /* Hardcoded, but there is an option to make it in-game modificable */
         private const double baseDamageRangeFactor = 0.3;
-        private const int defenseReductionFactor = 1;
+        private const float defenseReductionFactor = 0.2f;
         private const int criticalStrikeFactor = 2;
 
         private IAlive executor;
@@ -56,10 +56,11 @@ namespace HazardAndWhispers.App.TourMove
 
             double randomValue = damageMin + seed * (damageMax - damageMin);
 
-            damage = (int)Math.Round(randomValue);
 
             /* Decreas damage by the opponent's defense factor */
-            damage -= (int)Receiver.Statistics.DefensePoints * defenseReductionFactor;
+            randomValue -= (int)Receiver.Statistics.DefensePoints * defenseReductionFactor;
+
+            damage = (int)Math.Round(randomValue);
 
             /* Draw for critical strike */
             if (random.Next(0, 101) <= Executor.Statistics.CriticalStrikeChance)
@@ -68,13 +69,14 @@ namespace HazardAndWhispers.App.TourMove
             }
 
             /* Draw for hitChance */
-            if (random.Next(0, 101) >= Executor.Statistics.MissChance)
+            if (random.Next(0, 101) <= Executor.Statistics.MissChance)
             {
                 damage = 0;
             }
 
             /* Draw for opponent's dodge */
-            if (random.Next(0, 101) >= Receiver.Statistics.MissChance)
+            int missValue = random.Next(0, 101);
+            if (missValue <= Receiver.Statistics.MissChance)
             {
                 damage = 0;
                 /* Just now the idea of logging events hit me*/
@@ -85,6 +87,8 @@ namespace HazardAndWhispers.App.TourMove
 
             /* If damage is negative, do nothing - retorn 0 */
             if (damage < 0) { damage = 0; }
+
+            receiver.Statistics.HealthPoints -= damage;
 
             return damage;
         }

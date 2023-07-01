@@ -21,6 +21,7 @@ namespace HazardAndWhispers.App.Hamlet
             {
                 welcomeMessage = "\nWelcome to " + name +
                                  ".\n\nChose a number from 0-9 to use an item from inventory" +
+                                 "\nChoose Ctrl + 0-9 to drop an item from inventory" +
                                  state.GameHero.Inventory.ToString();
                 return welcomeMessage; 
             }
@@ -41,8 +42,10 @@ namespace HazardAndWhispers.App.Hamlet
             state = state_;
         }
 
-        public string Action(ConsoleKey key)
+        public string Action(ConsoleKeyInfo keyInfo)
         {
+            ConsoleKey key = keyInfo.Key;
+            ConsoleModifiers modifier = keyInfo.Modifiers;
             IItem chosenItem = null;
             int idx = 0;
             switch (key)
@@ -144,6 +147,12 @@ namespace HazardAndWhispers.App.Hamlet
             }
             if (chosenItem == null)
                 return "No such item.";
+
+            if (modifier == ConsoleModifiers.Control)
+            {
+                state.GameHero.DropItem(idx);
+                return "\nDropped item" + chosenItem.Name + " from inventory";
+            }
 
             if (chosenItem.IsEquipable)
             {

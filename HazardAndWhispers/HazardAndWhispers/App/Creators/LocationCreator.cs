@@ -71,42 +71,119 @@ namespace HazardAndWhispers.App.Creators
                 }
             }
 
-            locationSchema[0][0] = new CorridorPiece(null, false);
-            locationSchema[0][1] = new CorridorPiece(null, true);
-            locationSchema[1][1] = new Room(new List<IItem> { new ValuableItem("Saphire", 150) },
-                                           null);
-            locationSchema[2][1] = new CorridorPiece(null, false);
-            locationSchema[3][1] = new Room(new List<IItem> { new ValuableItem("Amethyst", 200) },
-                                            monsterSpawner.CreateMonster(false));
-            locationSchema[1][2] = new CorridorPiece(null, false);
-            locationSchema[1][3] = new Room(new List<IItem> { new ValuableItem("Amber", 100) },
-                                            monsterSpawner.CreateMonster(false));
-            locationSchema[1][4] = new CorridorPiece(null, false);
-            locationSchema[2][3] = new CorridorPiece(null, false);
-            locationSchema[4][3] = new CorridorPiece(null, false);
-            locationSchema[3][3] = new CorridorPiece(null, false);
-            locationSchema[4][4] = new Room(new List<IItem> { new ValuableItem("Boss gems", 1000) },
-                                            monsterSpawner.CreateMonster(true));
-
-            /* 1. Specify Number of non boss rooms 
-             * 2. Choose randomly one of map corners and set it as boss room
-             * 3. Put each room on the map, with restriction that there need to be at least 1 non room pieces between each room
-             * 4. Fill gaps between rooms, randomize traps on route
-             */
-            /*
-                excludeBusyIdx(new Coords(0,0));
-                Coords bossRoomCoords = chooseBossRoom();
-                excludeBusyIdx(bossRoomCoords);
-                List<Coords> roomCoords = new();
-
-                for (int i = 0; i < nonBossRoomNumber; i++)
+            switch (type)
+            {
+                case LocationType.Graveyard:
                 {
-                    Coords roomIdx = chooseRoomIdx();
-                    roomCoords.Add(roomIdx);
-                    excludeBusyIdx(roomIdx);
+                    locationSchema[0][0] = new CorridorPiece(null, false);
+                    locationSchema[1][0] = new CorridorPiece(null, false);
+                    locationSchema[2][0] = new CorridorPiece(null, false);
+                    locationSchema[3][0] = new CorridorPiece(null, false);
+                    locationSchema[4][0] = new Room(new List<IItem> { new ValuableItem("Ruby", 250) },
+                                                    monsterSpawner.CreateMonster(false));
+                    locationSchema[4][1] = new CorridorPiece(null, false);
+                    locationSchema[4][2] = new CorridorPiece(null, false);
+                    locationSchema[3][2] = new CorridorPiece(null, false);
+                    locationSchema[2][2] = new Room(new List<IItem> { new ValuableItem("Ruby", 250) },
+                                                    monsterSpawner.CreateMonster(false));
+
+                    locationSchema[1][2] = new CorridorPiece(null, false);
+
+                    locationSchema[2][3] = new CorridorPiece(null, false);
+
+                    locationSchema[0][1] = new CorridorPiece(null, false);
+                    locationSchema[0][2] = new CorridorPiece(null, false);
+                    locationSchema[0][3] = new CorridorPiece(null, false);
+                    locationSchema[0][4] = new Room(new List<IItem> { new ValuableItem("Ruby", 250) },
+                                                    monsterSpawner.CreateMonster(false));
+                    locationSchema[1][4] = new CorridorPiece(null, false);
+                    locationSchema[2][4] = new Room(new List<IItem> { new ValuableItem("Ruby", 250) },
+                                                    monsterSpawner.CreateMonster(false));
+                    locationSchema[3][4] = new CorridorPiece(null, false);
+                    locationSchema[4][4] = new Room(new List<IItem> { new ValuableItem("Graveyard Trophy", 250) },
+                                                    monsterSpawner.CreateMonster(true));
+
+                    break;
                 }
-            */
-            /* For now, create map staticly */
+                case LocationType.Catacombs:
+                {
+                    locationSchema[0][0] = new CorridorPiece(null, false);
+                    locationSchema[1][0] = new CorridorPiece(null, false);
+                    locationSchema[2][0] = new Room(new List<IItem> { new ValuableItem("Ruby", 250) },
+                                                    monsterSpawner.CreateMonster(false));
+                    locationSchema[2][1] = new CorridorPiece(null, false);
+                    locationSchema[2][2] = new CorridorPiece(null, false);
+                    locationSchema[0][1] = new CorridorPiece(null, true);
+                    locationSchema[0][2] = new CorridorPiece(null, true);
+                    locationSchema[0][3] = new Room(new List<IItem> { new ValuableItem("Amethyst", 200) },
+                                                    null);
+                    locationSchema[1][3] = new CorridorPiece(null, false);
+                    locationSchema[2][3] = new Room(new List<IItem> { new ValuableItem("Ruby", 250), new ValuableItem("Amethyst", 200)},
+                                                    monsterSpawner.CreateMonster(false));
+                    locationSchema[3][3] = new CorridorPiece(null, false);
+                    locationSchema[4][3] = new CorridorPiece(null, true);
+                    locationSchema[4][4] = new Room(new List<IItem> { new ValuableItem("Amber", 100) },
+                                                    null);
+                    locationSchema[4][2] = new CorridorPiece(null, false);
+                    locationSchema[4][1] = new CorridorPiece(null, false);
+                    locationSchema[4][0] = new Room(new List<IItem> { new ValuableItem("Catacombs trophy", 1300) },
+                                                    monsterSpawner.CreateMonster(true));
+
+                    break;
+                }
+                case LocationType.Swamp:
+                {
+                    locationSchema[0][0] = new CorridorPiece(null, false);
+                    locationSchema[0][1] = new CorridorPiece(null, true);
+                    locationSchema[1][1] = new Room(new List<IItem> { new ValuableItem("Saphire", 150) },
+                                                   null);
+                    locationSchema[2][1] = new CorridorPiece(null, false);
+                    locationSchema[3][1] = new Room(new List<IItem> { new ValuableItem("Amethyst", 200) },
+                                                    monsterSpawner.CreateMonster(false));
+                    locationSchema[1][2] = new CorridorPiece(null, false);
+                    locationSchema[1][3] = new Room(new List<IItem> { new ValuableItem("Amber", 100) },
+                                                    monsterSpawner.CreateMonster(false));
+                    locationSchema[1][4] = new CorridorPiece(null, false);
+                    locationSchema[2][3] = new CorridorPiece(null, false);
+                    locationSchema[4][3] = new CorridorPiece(null, false);
+                    locationSchema[3][3] = new CorridorPiece(null, false);
+                    locationSchema[4][4] = new Room(new List<IItem> { new ValuableItem("Swamp trophy", 1000) },
+                                                    monsterSpawner.CreateMonster(true));
+                    break;
+                }
+                case LocationType.HauntedMansion:
+                {
+                    locationSchema[0][0] = new CorridorPiece(null, false);
+                    locationSchema[1][0] = new CorridorPiece(null, false);
+                    locationSchema[2][0] = new Room(new List<IItem> { new ValuableItem("Ruby", 250), new ValuableItem("Amethyst", 200) },
+                                                    monsterSpawner.CreateMonster(false));
+                    locationSchema[3][0] = new CorridorPiece(null, false);
+                    locationSchema[4][0] = new CorridorPiece(null, false);
+                    locationSchema[4][1] = new CorridorPiece(null, false);
+                    locationSchema[4][2] = new Room(new List<IItem> { new ValuableItem("Ruby", 250), new ValuableItem("Amethyst", 200) },
+                                                    monsterSpawner.CreateMonster(false));
+                    locationSchema[3][2] = new CorridorPiece(null, false);
+                    locationSchema[2][3] = new CorridorPiece(null, false);
+                    locationSchema[2][2] = new CorridorPiece(null, false);
+                    locationSchema[1][2] = new Room(new List<IItem> { new ValuableItem("Ruby", 250), new ValuableItem("Amethyst", 200) },
+                                                    monsterSpawner.CreateMonster(false));
+                    locationSchema[0][2] = new CorridorPiece(null, false);
+                    locationSchema[0][3] = new CorridorPiece(null, false);
+                    locationSchema[0][4] = new CorridorPiece(null, false);
+                    locationSchema[1][4] = new Room(new List<IItem> { new ValuableItem("Ruby", 250), new ValuableItem("Amethyst", 200) },
+                                                    monsterSpawner.CreateMonster(false));
+                    locationSchema[2][4] = new CorridorPiece(null, false);
+                    locationSchema[3][4] = new CorridorPiece(null, false);
+                    locationSchema[4][4] = new Room(new List<IItem> { new ValuableItem("Haunted Mansion trophy", 1000) },
+                                                    monsterSpawner.CreateMonster(true));
+
+                    break;
+                }
+                default:
+                {
+                    break;
+                }
+            }
 
             LocationMap locationMap = new(locationSchema, xSize, ySize);
 

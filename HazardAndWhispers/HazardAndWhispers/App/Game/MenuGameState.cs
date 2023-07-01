@@ -20,6 +20,7 @@ namespace HazardAndWhispers.App.Game
         public bool Ready
         {
             get { return ready; }
+            set { ready = value; }
         }
 
         public Game GameContext
@@ -71,8 +72,9 @@ namespace HazardAndWhispers.App.Game
             }
         }
 
-        public string Action(ConsoleKey key)
+        public string Action(ConsoleKeyInfo keyInfo)
         {
+            ConsoleKey key = keyInfo.Key;
             switch (key)
             {
                 case ConsoleKey.H:

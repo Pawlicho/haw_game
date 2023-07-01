@@ -17,6 +17,7 @@ namespace HazardAndWhispers.App.Adventure
         public Monster Enemy
         {
             get { return enemy; }
+            set { enemy = value; }
         }
         public bool IsCompleted
         {

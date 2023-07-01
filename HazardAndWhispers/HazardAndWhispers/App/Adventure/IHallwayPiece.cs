@@ -13,7 +13,7 @@ namespace HazardAndWhispers.App.Adventure
 
         public string Enter(IAdventureState state);
 
-        public bool IsCompleted { get; }
+        public bool IsCompleted { get; set; }
 
         public bool HasReward();
     }

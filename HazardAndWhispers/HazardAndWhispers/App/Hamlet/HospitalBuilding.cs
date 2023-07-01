@@ -51,8 +51,9 @@ namespace HazardAndWhispers.App.Hamlet
             treatmentSet = treatmentSet_;
         }
 
-        public string Action(ConsoleKey key)
+        public string Action(ConsoleKeyInfo keyInfo)
         {
+            ConsoleKey key = keyInfo.Key;
             Treatment chosenTreatment;
             switch (key)
             {

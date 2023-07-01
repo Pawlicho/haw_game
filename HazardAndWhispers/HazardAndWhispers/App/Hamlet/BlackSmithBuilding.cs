@@ -52,8 +52,9 @@ namespace HazardAndWhispers.App.Hamlet
             inventory = inventory_;
         }
 
-        public string Action(ConsoleKey key)
+        public string Action(ConsoleKeyInfo keyInfo)
         {
+            ConsoleKey key = keyInfo.Key;
             EquipmentItem chosenItem;
             switch (key)
             {

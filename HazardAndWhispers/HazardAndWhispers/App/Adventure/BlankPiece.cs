@@ -19,6 +19,7 @@ namespace HazardAndWhispers.App.Adventure
             {
                 return false;
             }
+            set { }
         }
 
         public List<IItem> Reward

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using HazardAndWhispers.App.Alive;
+using HazardAndWhispers.App.Game;
 
 namespace HazardAndWhispers.App.Adventure
 {
@@ -15,6 +16,13 @@ namespace HazardAndWhispers.App.Adventure
         private IAdventureState state;
         private Coords heroPos;
         private IHallwayPiece currPiece;
+        private Game.Game gameContext;
+
+        public Game.Game GameContext
+        {
+            get { return gameContext; }
+            set { gameContext = value; }
+        }
 
         public Location Destination
         {
@@ -42,17 +50,19 @@ namespace HazardAndWhispers.App.Adventure
         }
 
         public Expedition(Location destination_,
-                          Hero visitor_)
+                          Hero visitor_,
+                          Game.Game gameContext_)
         {
             destination = destination_;
             Visitor = visitor_;
             HeroPos = new Coords(0, 0);
             state = new ExploreAdventureState(this);
             CurrPiece = destination_.Map.LocationSchema[0][0];
+            gameContext = gameContext_;
         }
-        public string Action(ConsoleKey key)
+        public string Action(ConsoleKeyInfo keyInfo)
         {
-            return state.Action(key);
+            return state.Action(keyInfo);
         }
     }
 }

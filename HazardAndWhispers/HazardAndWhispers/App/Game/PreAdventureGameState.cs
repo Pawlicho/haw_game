@@ -96,8 +96,9 @@ namespace HazardAndWhispers.App.Game
             expeditionGenerator = new();
         }
 
-        public string Action(ConsoleKey key)
+        public string Action(ConsoleKeyInfo keyInfo)
         {
+            ConsoleKey key = keyInfo.Key;
             switch (key)
             {
                 case ConsoleKey.H:
@@ -150,7 +151,7 @@ namespace HazardAndWhispers.App.Game
 
                     if (ready)
                     {
-                        nextExpedition = ExpeditionGenerator.CreateExpedition(gameHero);
+                        nextExpedition = ExpeditionGenerator.CreateExpedition(gameHero, gameContext);
                         ChangeState(this);
                         return "Starting expedition to: " + Enum.GetName(typeof(LocationType), nextExpedition.Destination.Type);
                     }
@@ -186,43 +187,43 @@ namespace HazardAndWhispers.App.Game
                 }
                 case ConsoleKey.D0: 
                 {
-                    return currentBuilding.Action(key);
+                    return currentBuilding.Action(keyInfo);
                 }
                 case ConsoleKey.D1:
                 {
-                    return currentBuilding.Action(key);
+                    return currentBuilding.Action(keyInfo);
                 }
                 case ConsoleKey.D2:
                 {
-                    return currentBuilding.Action(key);
+                    return currentBuilding.Action(keyInfo);
                 }
                 case ConsoleKey.D3:
                 {
-                    return currentBuilding.Action(key);
+                    return currentBuilding.Action(keyInfo);
                 }
                 case ConsoleKey.D4:
                 {
-                    return currentBuilding.Action(key);
+                    return currentBuilding.Action(keyInfo);
                 }
                 case ConsoleKey.D5:
                 {
-                    return currentBuilding.Action(key);
+                    return currentBuilding.Action(keyInfo);
                 }
                 case ConsoleKey.D6:
                 {
-                    return currentBuilding.Action(key);
+                    return currentBuilding.Action(keyInfo);
                 }
                 case ConsoleKey.D7:
                 {
-                    return currentBuilding.Action(key);
+                    return currentBuilding.Action(keyInfo);
                 }
                 case ConsoleKey.D8:
                 {
-                    return currentBuilding.Action(key);
+                    return currentBuilding.Action(keyInfo);
                 }
                 case ConsoleKey.D9:
                 {
-                    return currentBuilding.Action(key);
+                    return currentBuilding.Action(keyInfo);
                 }
                 default:
                 {

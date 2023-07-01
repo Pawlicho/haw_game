@@ -9,6 +9,6 @@ namespace HazardAndWhispers.App.Adventure
     internal interface IAdventureState
     {
         public Expedition ExpeditionContext { get; set; }
-        public string Action(ConsoleKey key);
+        public string Action(ConsoleKeyInfo keyInfo);
     }
 }

@@ -90,6 +90,7 @@ namespace HazardAndWhispers.App.Alive
                     return false;
 
                 moveSet.Add(new UseConsumableMove(item));
+                DropItem(idx);
 
                 return true;
             }
@@ -162,8 +163,6 @@ namespace HazardAndWhispers.App.Alive
                     heroInventory.AddItem(temp, idx);
                 }
 
-                Console.WriteLine("Final: {0}", statistics.AbilityPoints);
-
                 return true;
             }
 
@@ -176,6 +175,15 @@ namespace HazardAndWhispers.App.Alive
                 return true;
             else 
                 return false;
+        }
+
+        public void SetEnemy(IAlive enemy)
+        {
+            foreach (var move in moveSet)
+            {
+                move.Executor = this;
+                move.Receiver = enemy;
+            }
         }
         public void UpdateStatRegister()
         {
