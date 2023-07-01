@@ -11,6 +11,13 @@ namespace HazardAndWhispers.App.Adventure
     {
         private bool isTrap;
         private List<IItem> reward;
+        private bool isCompleted;
+        private const int trapDamage = 5;
+        public bool IsCompleted
+        {
+            get { return isCompleted; }
+        }
+
 
         public List<IItem> Reward
         {
@@ -29,6 +36,7 @@ namespace HazardAndWhispers.App.Adventure
         public CorridorPiece(List<IItem> reward_, bool isTrap_)
         {
             isTrap = isTrap_;
+            isCompleted = false;
 
             if (reward_ == null)
             {
@@ -41,9 +49,19 @@ namespace HazardAndWhispers.App.Adventure
 
         }
 
-        public void Enter(IAdventureState state)
+        public string Enter(IAdventureState state)
         {
             /* Do not change state */
+            if (!(IsCompleted)) 
+            {
+                if (isTrap)
+                {
+                    state.ExpeditionContext.Visitor.Statistics.HealthPoints -= 5;
+                    isCompleted = true;
+                    return "\nIt is an ambush! Hero lost. " + trapDamage + "HP.\n";
+                }
+            }
+            return "\nJust another dark corridor. Let's continue...\n";
         }
     }
 }

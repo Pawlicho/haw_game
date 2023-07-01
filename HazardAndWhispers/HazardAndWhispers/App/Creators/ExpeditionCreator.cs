@@ -31,8 +31,8 @@ namespace HazardAndWhispers.App.Creators
 
         public Adventure.Expedition CreateExpedition(Hero visitor)
         {
-            /* TODO: IMPLEMENT */
-            return new Expedition();
+            Expedition nextExpedition = new Expedition(locationGenerator.CreateLocation(), visitor);
+            return nextExpedition;
         }
     }
 }

@@ -25,10 +25,10 @@ namespace HazardAndWhispers.App.Adventure
             get { return map; }
         }
 
-        public Location(LocationType type_, bool isCompleted_, LocationMap map_)
+        public Location(LocationType type_, LocationMap map_)
         {
             type = type_;
-            isCompleted = isCompleted_;
+            isCompleted = false;
             map = map_;
         }
 

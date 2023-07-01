@@ -72,7 +72,8 @@ namespace HazardAndWhispers.App.Game
                 helpInstructions += "\nD: Check Hero's move set";
                 helpInstructions += "\nF: Check Hero's equipment";
                 helpInstructions += "\nSpacebar: Check Hero's statistics";
-                helpInstructions += "\nEnter: Start Expedition";
+                if (ready)
+                    helpInstructions += "\nEnter: Start Expedition";
                 helpInstructions += "\nC: Enter Courtyard";
                 helpInstructions += "\nI: Enter Inn";
                 helpInstructions += "\nA: Enter Armorer";

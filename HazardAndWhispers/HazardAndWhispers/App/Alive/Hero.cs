@@ -170,6 +170,13 @@ namespace HazardAndWhispers.App.Alive
             return false;
         }
 
+        public bool IsAlive()
+        {
+            if (statistics.HealthPoints > 0)
+                return true;
+            else 
+                return false;
+        }
         public void UpdateStatRegister()
         {
             heroEquipment.UpdateStatRegister(statistics);

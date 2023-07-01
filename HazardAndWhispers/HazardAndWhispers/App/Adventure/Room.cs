@@ -39,16 +39,45 @@ namespace HazardAndWhispers.App.Adventure
             isCompleted = false;
         }
 
-        public void Enter(IAdventureState state)
+        public string Enter(IAdventureState state)
         {
-            if (IsCompleted)
+            string temp = "\nEntering the room...\n";
+            bool hasEnemy = enemy != null;
+            if (!(isCompleted))
             {
-                state.ExpeditionContext.State = new ExploreAdventureState(state.ExpeditionContext);
+                if (hasEnemy)
+                {
+                    state.ExpeditionContext.State = new BattleAdventureState(state.ExpeditionContext);
+                    temp += "Vicious " + Enum.GetName(typeof(LocationType), state.ExpeditionContext.Destination.Type) +
+                            " monster has appeard.";
+                    if (enemy.IsBoss)
+                    {
+                        temp += "\nIt is a boss fight!\n";
+                    }
+                }
+                else
+                {
+                    if (HasReward())
+                    {
+                        temp += "Found an item chest inside.\n";
+                        foreach (var item in Reward)
+                        {
+                            if (state.ExpeditionContext.Visitor.PickItem(item))
+                            {
+                                temp += item.ToString() + "\nAdded to your equipment";
+                            }
+                        }
+                    }
+                    temp += "\nLet's move on...";
+                }
+                isCompleted = true;
             }
             else
             {
-                state.ExpeditionContext.State = new BattleAdventureState(state.ExpeditionContext);
+                temp += "\nYou have already been here! Let's move on...";
             }
+
+            return temp;
         }
     }
 }

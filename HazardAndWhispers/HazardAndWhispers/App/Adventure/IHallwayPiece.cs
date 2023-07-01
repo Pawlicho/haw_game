@@ -11,7 +11,9 @@ namespace HazardAndWhispers.App.Adventure
     {
         public List<IItem> Reward { get; }
 
-        public void Enter(IAdventureState state);
+        public string Enter(IAdventureState state);
+
+        public bool IsCompleted { get; }
 
         public bool HasReward();
     }

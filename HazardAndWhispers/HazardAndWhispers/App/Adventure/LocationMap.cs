@@ -29,62 +29,115 @@ namespace HazardAndWhispers.App.Adventure
         {
             xSize = xSize_;
             ySize = ySize_;
-            if (locationSchema == null)
-            {
-                locationSchema = new List<List<IHallwayPiece>>();
-            }
-            else
-            {
-                locationSchema = locationSchema_;
-            }
+            locationSchema = locationSchema_;
         }
 
-        public IHallwayPiece GetNextPiece(Coords pos, Direction direction)
+        public IHallwayPiece GetNextPiece(Coords pos)
         {
-            /*
-             * 1. Check if next move is in map border
-             * 2. Check if that particular element in list is not null
-             * 3. If null return null (higher layer would handle it), 
-             *    otherwise return proper IHallwayPiece
-             */
+            return locationSchema[pos.X][pos.Y];
+        }
 
-            switch (direction)
+        public string GetMap() 
+        {
+            string temp = "\n   ";
+            for (int i = 0; i < xSize; i++)
             {
-                case Direction.Left:
-                    {
-                        if (pos.X - 1 < 0)
-                        {
-                            break;
-                        }
-                        return locationSchema[xSize - 1][YSize];
-                    }
-                case Direction.Right:
-                    {
-                        if (pos.X + 1 >= xSize)
-                        {
-                            break;
-                        }
-                        return locationSchema[xSize + 1][YSize];
-                    }
-                case Direction.Up:
-                    {
-                        if (pos.Y + 1 >= ySize)
-                        {
-                            break;
-                        }
-                        return locationSchema[xSize][YSize + 1];
-                    }
-                case Direction.Down:
-                    {
-                        if (pos.Y - 1 < 0)
-                        {
-                            break;
-                        }
-                        return locationSchema[xSize][YSize - 1];
-                    }
+                temp += " " + i;
+            }
+            temp += "\n   ";
+            for (int i = 0; i < xSize; i++)
+            {
+                temp += "__";
             }
 
-            return null;
+            for (int x = 0; x < xSize; x++)
+            {
+                temp += " \n" + x + "| ";
+                for (int y = 0; y < ySize; y++)
+                {
+                    if (locationSchema[x][y] is BlankPiece)
+                    {
+                        temp += "  ";
+                    }
+                    else if (locationSchema[x][y] is CorridorPiece)
+                    {
+                        temp += " -";
+                    }
+                    else if (locationSchema[x][y] is Room)
+                    {
+                        temp += " O";
+                    }
+                }
+                temp += " | " + x;
+            }
+            temp += "\n   ";
+            for (int i = 0; i < xSize; i++)
+            {
+                temp += "__";
+            }
+            temp += "\n   ";
+            for (int i = 0; i < xSize; i++)
+            {
+                temp += " " + i;
+            }
+
+            temp += "\n\nLegend:\n'O': Room\n'-': Corridor\n";
+
+            return temp;
+        }
+
+        public string GetMap(Coords heroPos)
+        {
+            string temp = "\n   ";
+            for (int i = 0; i < xSize; i++)
+            {
+                temp += " " + i;
+            }
+            temp += "\n   ";
+            for (int i = 0; i < xSize; i++)
+            {
+                temp += "__";
+            }
+
+            for (int x = 0; x < xSize; x++)
+            {
+                temp += " \n" + x + "| ";
+                for (int y = 0; y < ySize; y++)
+                {
+                    if (x == heroPos.X && y == heroPos.Y)
+                    {
+                        temp += " x";
+                        continue;
+                    }
+                    if (locationSchema[x][y] is BlankPiece)
+                    {
+                        temp += "  ";
+                    }
+                    else if (locationSchema[x][y] is CorridorPiece)
+                    {
+                        temp += " -";
+                    }
+                    else if (locationSchema[x][y] is Room)
+                    {
+                        temp += " O";
+                    }
+                }
+                temp += " | " + x;
+            }
+            temp += "\n   ";
+            for (int i = 0; i < xSize; i++)
+            {
+                temp += "__";
+            }
+            temp += "\n   ";
+            for (int i = 0; i < xSize; i++)
+            {
+                temp += " " + i;
+            }
+
+            temp += "\n\nLegend:\n'O': Room\n'-': Corridor\n'x': Hero\n";
+
+            return temp;
         }
     }
 }

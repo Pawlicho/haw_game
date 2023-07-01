@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HazardAndWhispers.App.Adventure;
 using HazardAndWhispers.App.Alive;
 using HazardAndWhispers.App.Creators;
 
@@ -39,7 +40,19 @@ namespace HazardAndWhispers.App.Game
 
         public string HelpInstructions
         {
-            get { return helpInstructions;}
+            get 
+            {
+                helpInstructions = "\nPress key for: ";
+                helpInstructions += "\nH: Help instructions";
+                if (currentExpedition.State is ExploreAdventureState)
+                {
+                    helpInstructions += "\nUse arrows to move around the map";
+                    helpInstructions += "\nM: Show Map";
+                    helpInstructions += "\nP: Show Hero's current position";
+                }
+
+                return helpInstructions;
+            }
         }
 
         public ExpeditionGameState(Game gameContext_,
@@ -50,7 +63,6 @@ namespace HazardAndWhispers.App.Game
             gameHero = gameHero_;
             currentExpedition = currentExpedition_;
             ready = false;
-            helpInstructions = "\nPress one of the below key for action:\n";
         }
 
         public string Action(ConsoleKey key)
@@ -58,11 +70,45 @@ namespace HazardAndWhispers.App.Game
             switch (key)
             {
                 case ConsoleKey.H:
-                    {
-                        return helpInstructions;
-                    }
+                {
+                    return helpInstructions;
+                }
+                case ConsoleKey.M:
+                {
+                    if (currentExpedition.State is ExploreAdventureState)
+                        return currentExpedition.Destination.Map.GetMap(currentExpedition.HeroPos) + "\nHero Position: " + currentExpedition.HeroPos.ToString();
+                    else
+                        break;
+                }
+                case ConsoleKey.P:
+                {
+                    if (currentExpedition.State is ExploreAdventureState)
+                        return "\nHero Position: " + currentExpedition.HeroPos.ToString();
+                    else
+                        break;
+                }
+                case ConsoleKey.UpArrow:
+                {
+                    return currentExpedition.Action(key);
+                }
+                case ConsoleKey.DownArrow:
+                {
+                    return currentExpedition.Action(key);
+                }
+                case ConsoleKey.LeftArrow:
+                {
+                    return currentExpedition.Action(key);
+                }
+                case ConsoleKey.RightArrow:
+                {
+                    return currentExpedition.Action(key);
+                }
+                default:
+                {
+                    return "\nWrong key";
+                }
             }
-            return String.Empty;
+            return "\nWrong key";
         }
 
         public void ChangeState(IGameState prevState)

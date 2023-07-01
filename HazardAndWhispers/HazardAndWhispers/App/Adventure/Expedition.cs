@@ -42,23 +42,14 @@ namespace HazardAndWhispers.App.Adventure
         }
 
         public Expedition(Location destination_,
-                          Hero visitor_,
-                          IAdventureState state_,
-                          Coords heroPos_,
-                          IHallwayPiece currPiece_)
+                          Hero visitor_)
         {
             destination = destination_;
             Visitor = visitor_;
-            State = state_;
-            HeroPos = heroPos_;
-            CurrPiece = currPiece_;
+            HeroPos = new Coords(0, 0);
+            state = new ExploreAdventureState(this);
+            CurrPiece = destination_.Map.LocationSchema[0][0];
         }
-
-        public Expedition() 
-        {
-            destination = new Location();
-        }
-
         public string Action(ConsoleKey key)
         {
             return state.Action(key);
