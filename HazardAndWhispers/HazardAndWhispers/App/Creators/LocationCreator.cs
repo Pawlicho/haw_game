@@ -81,7 +81,7 @@ namespace HazardAndWhispers.App.Creators
                     locationSchema[3][0] = new CorridorPiece(null, false);
                     locationSchema[4][0] = new Room(new List<IItem> { new ValuableItem("Ruby", 250) },
                                                     monsterSpawner.CreateMonster(false));
-                    locationSchema[4][1] = new CorridorPiece(null, false);
+                    locationSchema[4][1] = new CorridorPiece(null, true);
                     locationSchema[4][2] = new CorridorPiece(null, false);
                     locationSchema[3][2] = new CorridorPiece(null, false);
                     locationSchema[2][2] = new Room(new List<IItem> { new ValuableItem("Ruby", 250) },
@@ -92,7 +92,7 @@ namespace HazardAndWhispers.App.Creators
                     locationSchema[2][3] = new CorridorPiece(null, false);
 
                     locationSchema[0][1] = new CorridorPiece(null, false);
-                    locationSchema[0][2] = new CorridorPiece(null, false);
+                    locationSchema[0][2] = new CorridorPiece(null, true);
                     locationSchema[0][3] = new CorridorPiece(null, false);
                     locationSchema[0][4] = new Room(new List<IItem> { new ValuableItem("Ruby", 250) },
                                                     monsterSpawner.CreateMonster(false));
@@ -108,7 +108,7 @@ namespace HazardAndWhispers.App.Creators
                 case LocationType.Catacombs:
                 {
                     locationSchema[0][0] = new CorridorPiece(null, false);
-                    locationSchema[1][0] = new CorridorPiece(null, false);
+                    locationSchema[1][0] = new CorridorPiece(null, true);
                     locationSchema[2][0] = new Room(new List<IItem> { new ValuableItem("Ruby", 250) },
                                                     monsterSpawner.CreateMonster(false));
                     locationSchema[2][1] = new CorridorPiece(null, false);
@@ -124,7 +124,7 @@ namespace HazardAndWhispers.App.Creators
                     locationSchema[4][3] = new CorridorPiece(null, true);
                     locationSchema[4][4] = new Room(new List<IItem> { new ValuableItem("Amber", 100) },
                                                     null);
-                    locationSchema[4][2] = new CorridorPiece(null, false);
+                    locationSchema[4][2] = new CorridorPiece(null, true);
                     locationSchema[4][1] = new CorridorPiece(null, false);
                     locationSchema[4][0] = new Room(new List<IItem> { new ValuableItem("Catacombs trophy", 1300) },
                                                     monsterSpawner.CreateMonster(true));
@@ -140,12 +140,12 @@ namespace HazardAndWhispers.App.Creators
                     locationSchema[2][1] = new CorridorPiece(null, false);
                     locationSchema[3][1] = new Room(new List<IItem> { new ValuableItem("Amethyst", 200) },
                                                     monsterSpawner.CreateMonster(false));
-                    locationSchema[1][2] = new CorridorPiece(null, false);
+                    locationSchema[1][2] = new CorridorPiece(null, true);
                     locationSchema[1][3] = new Room(new List<IItem> { new ValuableItem("Amber", 100) },
                                                     monsterSpawner.CreateMonster(false));
                     locationSchema[1][4] = new CorridorPiece(null, false);
                     locationSchema[2][3] = new CorridorPiece(null, false);
-                    locationSchema[4][3] = new CorridorPiece(null, false);
+                    locationSchema[4][3] = new CorridorPiece(null, true);
                     locationSchema[3][3] = new CorridorPiece(null, false);
                     locationSchema[4][4] = new Room(new List<IItem> { new ValuableItem("Swamp trophy", 1000) },
                                                     monsterSpawner.CreateMonster(true));
@@ -158,17 +158,17 @@ namespace HazardAndWhispers.App.Creators
                     locationSchema[2][0] = new Room(new List<IItem> { new ValuableItem("Ruby", 250), new ValuableItem("Amethyst", 200) },
                                                     monsterSpawner.CreateMonster(false));
                     locationSchema[3][0] = new CorridorPiece(null, false);
-                    locationSchema[4][0] = new CorridorPiece(null, false);
+                    locationSchema[4][0] = new CorridorPiece(null, true);
                     locationSchema[4][1] = new CorridorPiece(null, false);
                     locationSchema[4][2] = new Room(new List<IItem> { new ValuableItem("Ruby", 250), new ValuableItem("Amethyst", 200) },
                                                     monsterSpawner.CreateMonster(false));
                     locationSchema[3][2] = new CorridorPiece(null, false);
-                    locationSchema[2][3] = new CorridorPiece(null, false);
+                    locationSchema[2][3] = new CorridorPiece(null, true);
                     locationSchema[2][2] = new CorridorPiece(null, false);
                     locationSchema[1][2] = new Room(new List<IItem> { new ValuableItem("Ruby", 250), new ValuableItem("Amethyst", 200) },
                                                     monsterSpawner.CreateMonster(false));
                     locationSchema[0][2] = new CorridorPiece(null, false);
-                    locationSchema[0][3] = new CorridorPiece(null, false);
+                    locationSchema[0][3] = new CorridorPiece(null, true);
                     locationSchema[0][4] = new CorridorPiece(null, false);
                     locationSchema[1][4] = new Room(new List<IItem> { new ValuableItem("Ruby", 250), new ValuableItem("Amethyst", 200) },
                                                     monsterSpawner.CreateMonster(false));

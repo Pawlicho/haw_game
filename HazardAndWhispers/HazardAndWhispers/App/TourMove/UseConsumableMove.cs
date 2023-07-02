@@ -37,11 +37,10 @@ namespace HazardAndWhispers.App.TourMove
             itemToUse = itemToUse_;
         }
 
-        /* Simply do nothing */
         public int MakeMove()
         {
             if (ItemToUse.Consume())
-                Receiver.Statistics.Update(ItemToUse.StatBonuses);
+                Executor.Statistics.Update(ItemToUse.StatBonuses);
             return 0;
         }
 

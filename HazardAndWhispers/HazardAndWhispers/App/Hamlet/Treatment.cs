@@ -64,11 +64,8 @@ namespace HazardAndWhispers.App.Hamlet
             if (random.Next(0, 101) <= successChance)
             {
                 int healValue = random.Next(healRange.Item1, healRange.Item2);
-                StatRegister heal = new()
-                {
-                    HealthPoints = healValue,
-                };
-                patient.Statistics.Update(heal);
+                
+                patient.Statistics.HealthPoints += healValue;
                 return true;
             }
 

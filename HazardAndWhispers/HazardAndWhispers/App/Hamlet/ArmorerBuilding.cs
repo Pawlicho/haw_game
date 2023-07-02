@@ -57,6 +57,7 @@ namespace HazardAndWhispers.App.Hamlet
         {
             ConsoleKey key = keyInfo.Key;
             EquipmentItem chosenItem;
+            int idx = (int)key - (int)ConsoleKey.D0;
             switch (key)
             {
                 case ConsoleKey.D0:
@@ -143,6 +144,7 @@ namespace HazardAndWhispers.App.Hamlet
             if (success) 
             {
                 state.GameHero.Gold -= chosenItem.GoldValue;
+                inventory.RemoveAt(idx);
                 return "\n" + chosenItem.Name + " has been bought and added into Hero's inventory.";
             }
             else

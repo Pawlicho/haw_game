@@ -51,7 +51,7 @@ namespace HazardAndWhispers.App.Creators
             Inventory inventory = new(maxInventorySize);
             StatRegister minorHealPotionRegister = new StatRegister()
             {
-                HealthPoints = 20
+                HealthPoints = 80
             };
             inventory.AddItem(new ConsumableItem("Minor Healing Potion", 50, minorHealPotionRegister));
             inventory.AddItem(new ValuableItem("Scarlet Rubin", 1000));

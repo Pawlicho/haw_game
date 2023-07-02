@@ -56,76 +56,78 @@ namespace HazardAndWhispers.App.Hamlet
         {
             ConsoleKey key = keyInfo.Key;
             EquipmentItem chosenItem;
+
+            int idx = (int)key - (int)ConsoleKey.D0;
             switch (key)
             {
                 case ConsoleKey.D0:
                 {
-                    if (inventory.Count < 1)
+                    if (inventory.Count < idx + 1)
                         return "No such item";
-                    chosenItem = inventory[0];
+                    chosenItem = inventory[idx];
                     break;
                 }
                 case ConsoleKey.D1:
                 {
-                    if (inventory.Count < 2)
+                    if (inventory.Count < idx + 1)
                         return "No such item";
-                    chosenItem = inventory[1];
+                    chosenItem = inventory[idx];
                     break;
                 }
                 case ConsoleKey.D2:
                 {
-                    if (inventory.Count < 3)
+                    if (inventory.Count < idx + 1)
                         return "No such item";
-                    chosenItem = inventory[2];
+                    chosenItem = inventory[idx];
                     break;
                 }
                 case ConsoleKey.D3:
                 {
-                    if (inventory.Count < 4)
+                    if (inventory.Count < idx + 1)
                         return "No such item";
-                    chosenItem = inventory[3];
+                    chosenItem = inventory[idx];
                     break;
                 }
                 case ConsoleKey.D4:
                 {
-                    if (inventory.Count < 5)
+                    if (inventory.Count < idx + 1)
                         return "No such item";
-                    chosenItem = inventory[4];
+                    chosenItem = inventory[idx];
                     break;
                 }
                 case ConsoleKey.D5:
                 {
-                    if (inventory.Count < 6)
+                    if (inventory.Count < idx + 1)
                         return "No such item";
-                    chosenItem = inventory[5];
+                    chosenItem = inventory[idx];
                     break;
                 }
                 case ConsoleKey.D6:
                 {
-                    if (inventory.Count < 7)
+                    if (inventory.Count < idx + 1)
                         return "No such item";
-                    chosenItem = inventory[6];
+                    chosenItem = inventory[idx];
                     break;
                 }
                 case ConsoleKey.D7:
                 {
-                    if (inventory.Count < 8)
+                    if (inventory.Count < idx + 1)
                         return "No such item";
-                    chosenItem = inventory[7];
+                    chosenItem = inventory[idx];
                     break;
                 }
                 case ConsoleKey.D8:
                 {
-                    if (inventory.Count < 9)
+                    if (inventory.Count < idx + 1)
                         return "No such item";
-                    chosenItem = inventory[8];
+                    chosenItem = inventory[idx];
                     break;
                 }
                 case ConsoleKey.D9:
                 {
-                    if (inventory.Count < 10)
+                    if (inventory.Count < idx + 1)
                         return "No such item";
-                    chosenItem = inventory[9];
+                    chosenItem = inventory[idx];
                     break;
                 }
                 default:
@@ -142,6 +144,7 @@ namespace HazardAndWhispers.App.Hamlet
             if (success)
             {
                 state.GameHero.Gold -= chosenItem.GoldValue;
+                inventory.RemoveAt(idx);
                 return "\n" + chosenItem.Name + " has been bought and added into Hero's inventory.";
             }
             else

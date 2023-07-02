@@ -79,6 +79,10 @@ namespace HazardAndWhispers.App.Adventure
                 {
                     heroMoveId = 9; break;
                 }
+                case ConsoleKey.C:
+                {
+                    return enemy.ToString();
+                }
                 default:
                 {
                     return "\nWrong key!";
@@ -87,8 +91,9 @@ namespace HazardAndWhispers.App.Adventure
             if (hero.MoveSet.Count < heroMoveId + 1)
                 return "No such move!";
 
-            hero.RunMove(heroMoveId);
+            int dmg = hero.RunMove(heroMoveId);
             temp += "\nHero used: " + hero.MoveSet[heroMoveId].ToString();
+            temp += "\nEnemy took " + dmg + " damage.";
             if (enemy.Statistics.HealthPoints < 0)
             {
                 temp += "\nEnemy's killed! Congratulations!\nYour price:";
@@ -107,10 +112,12 @@ namespace HazardAndWhispers.App.Adventure
                 expeditionContext.State = new ExploreAdventureState(expeditionContext);
                 return temp;
             }
-            enemy.RunMove(enemyMoveIdx);
+            dmg = enemy.RunMove(enemyMoveIdx);
+            temp += "\nHero took " + dmg + " damage.";
             if (hero.Statistics.HealthPoints < 0)
             {
-                temp += "Your dead! Game Over...";
+                temp += "\nYour dead! Game Over...";
+
                 expeditionContext.GameContext.Finish();
                 return temp;
             }

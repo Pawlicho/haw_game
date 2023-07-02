@@ -13,6 +13,19 @@ namespace HazardAndWhispers.App.Game
 
         private bool isRunning;
 
+        private string welcomeMsg;
+        private string farewellMsg;
+
+        public string FarewellMsg
+        {
+            get { return farewellMsg; }
+        }
+
+        public string WelcomeMsg
+        {
+            get { return welcomeMsg; }
+        }
+
         private Dictionary<LocationType, bool> progressState;
 
         public Dictionary<LocationType, bool> ProgressState
@@ -42,6 +55,20 @@ namespace HazardAndWhispers.App.Game
                 {LocationType.Graveyard, false },
                 {LocationType.HauntedMansion, false }
             };
+
+            welcomeMsg = "Welcome to Hazard & Whispers! Wish you great time playing.\nLet's begin!\n\n" +
+                                        "      .-\"\"\"-.\n" +
+                          "     /      o\\\n" +
+                          "    |    o   0).-.\n" +
+                          "    |       .-;(_/     .-.\n" +
+                          "     \\     /  /)).---._|  |_\n" +
+                          "      '.  '  /((       `'-._`'-.\n" +
+                          "        \\  .'  )\\            `-`\n" +
+                          "         '.  .'  .';\n" +
+                          "           `\"\"\"\"\"\"`\n";
+
+            farewellMsg = "\nCongatulations! You have successfully completed the game\n" +
+                          "Thank you for playing!\n";
         }
 
         /* Just a wrapper, not to bother user with unnessesery dependencies  */
@@ -57,6 +84,15 @@ namespace HazardAndWhispers.App.Game
         }
 
         /* Could do a little more then just switching variable */
+        public bool EvalGame()
+        {
+            foreach(var state in progressState) 
+            {
+                if (!(state.Value))
+                    return true;
+            }
+            return false;
+        }
         public void Finish()
         {
             isRunning = false;

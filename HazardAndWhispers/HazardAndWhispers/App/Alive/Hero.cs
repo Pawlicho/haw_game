@@ -118,36 +118,42 @@ namespace HazardAndWhispers.App.Alive
                     { 
                         statistics.Reverse(heroEquipment.Head.StatBonuses);
                         temp = heroEquipment.Head;
+                        heroEquipment.Head = item;
                         statistics.Update(heroEquipment.Head.StatBonuses); break;
                     }
                     case EquipmentType.Chest:
                     {
                         statistics.Reverse(heroEquipment.Chest.StatBonuses);
                         temp = heroEquipment.Chest;
+                        heroEquipment.Chest = item;
                         statistics.Update(heroEquipment.Chest.StatBonuses); break;
                     }
                     case EquipmentType.Arms:
                     { 
                         statistics.Reverse(heroEquipment.Arms.StatBonuses);
                         temp = heroEquipment.Arms;
+                        heroEquipment.Arms = item;
                         statistics.Update(heroEquipment.Arms.StatBonuses); break;
                     }
                     case EquipmentType.Hands:
                     {
                         statistics.Reverse(heroEquipment.Hands.StatBonuses);
                         temp = heroEquipment.Hands;
+                        heroEquipment.Hands = item;
                         statistics.Update(heroEquipment.Hands.StatBonuses); break;
                     }
                     case EquipmentType.Legs:
                     {
                         statistics.Reverse(heroEquipment.Legs.StatBonuses);
                         temp = heroEquipment.Legs;
+                        heroEquipment.Legs = item;
                         statistics.Update(heroEquipment.Legs.StatBonuses); break;
                     }
                     case EquipmentType.Feet:
                     {
                         statistics.Reverse(heroEquipment.Feet.StatBonuses);
                         temp = heroEquipment.Feet;
+                        heroEquipment.Feet = item;
                         statistics.Update(heroEquipment.Feet.StatBonuses); break;
                     }
                     case EquipmentType.Weapon:

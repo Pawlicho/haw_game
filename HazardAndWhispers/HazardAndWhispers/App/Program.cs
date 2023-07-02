@@ -4,9 +4,16 @@
     {
         static void Main(string[] args)
         {
+
             Game.Game newGame = new();
 
-            while(newGame.IsRunning) 
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.WriteLine(newGame.WelcomeMsg);
+            Console.ResetColor();
+
+            Thread.Sleep(3000);
+
+            while (newGame.IsRunning) 
             {
                 /* Print help for the user */
                 Console.ForegroundColor = ConsoleColor.Blue;
@@ -24,8 +31,18 @@
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine(output);
                 Console.ResetColor();
+
+                if (!(newGame.EvalGame()))
+                {
+                    Console.ForegroundColor = ConsoleColor.Magenta;
+                    Console.WriteLine(newGame.FarewellMsg);
+                    Console.ResetColor();
+                    newGame.Finish();
+                }
             }
-            
+
+            Thread.Sleep(3000);
+
         }
     }
 }

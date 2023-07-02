@@ -21,7 +21,7 @@ namespace HazardAndWhispers.App.Hamlet
             {
                 welcomeMessage = "\nWelcome to " + name +
                                  ".\n\nChose a number from 0-9 to use an item from inventory" +
-                                 "\nChoose Ctrl + 0-9 to drop an item from inventory" +
+                                 "\nChoose Shift + 0-9 to drop an item from inventory" +
                                  state.GameHero.Inventory.ToString();
                 return welcomeMessage; 
             }
@@ -46,13 +46,13 @@ namespace HazardAndWhispers.App.Hamlet
         {
             ConsoleKey key = keyInfo.Key;
             ConsoleModifiers modifier = keyInfo.Modifiers;
-            IItem chosenItem = null;
-            int idx = 0;
+            IItem chosenItem = null; 
+            int idx = (int)key - (int)ConsoleKey.D0;
+
             switch (key)
             {
                 case ConsoleKey.D0:
                 {
-                    idx = 0;
                     if (idx <= state.GameHero.Inventory.GetInventoryCount() - 1)
                         chosenItem = state.GameHero.Inventory.GetItem(idx);
                     else
@@ -61,7 +61,6 @@ namespace HazardAndWhispers.App.Hamlet
                 }
                 case ConsoleKey.D1:
                 {
-                    idx = 1;
                     if (idx <= state.GameHero.Inventory.GetInventoryCount() - 1)
                         chosenItem = state.GameHero.Inventory.GetItem(idx);
                     else
@@ -70,7 +69,6 @@ namespace HazardAndWhispers.App.Hamlet
                 }
                 case ConsoleKey.D2:
                 {
-                    idx = 2;
                     if (idx <= state.GameHero.Inventory.GetInventoryCount() - 1)
                         chosenItem = state.GameHero.Inventory.GetItem(idx);
                     else
@@ -79,7 +77,6 @@ namespace HazardAndWhispers.App.Hamlet
                 }
                 case ConsoleKey.D3:
                 {
-                    idx = 3;
                     if (idx <= state.GameHero.Inventory.GetInventoryCount() - 1)
                         chosenItem = state.GameHero.Inventory.GetItem(idx);
                     else
@@ -88,7 +85,6 @@ namespace HazardAndWhispers.App.Hamlet
                 }
                 case ConsoleKey.D4:
                 {
-                    idx = 4;
                     if (idx <= state.GameHero.Inventory.GetInventoryCount() - 1)
                         chosenItem = state.GameHero.Inventory.GetItem(idx);
                     else
@@ -97,7 +93,6 @@ namespace HazardAndWhispers.App.Hamlet
                 }
                 case ConsoleKey.D5:
                 {
-                    idx = 5;
                     if (idx <= state.GameHero.Inventory.GetInventoryCount() - 1)
                         chosenItem = state.GameHero.Inventory.GetItem(idx);
                     else
@@ -106,7 +101,6 @@ namespace HazardAndWhispers.App.Hamlet
                 }
                 case ConsoleKey.D6:
                 {
-                    idx = 6;
                     if (idx <= state.GameHero.Inventory.GetInventoryCount() - 1)
                         chosenItem = state.GameHero.Inventory.GetItem(idx);
                     else
@@ -115,7 +109,6 @@ namespace HazardAndWhispers.App.Hamlet
                 }
                 case ConsoleKey.D7:
                 {
-                    idx = 7;
                     if (idx <= state.GameHero.Inventory.GetInventoryCount() - 1)
                         chosenItem = state.GameHero.Inventory.GetItem(idx);
                     else
@@ -124,7 +117,6 @@ namespace HazardAndWhispers.App.Hamlet
                 }
                 case ConsoleKey.D8:
                 {
-                    idx = 8;
                     if (idx <= state.GameHero.Inventory.GetInventoryCount() - 1)
                         chosenItem = state.GameHero.Inventory.GetItem(idx);
                     else
@@ -133,7 +125,6 @@ namespace HazardAndWhispers.App.Hamlet
                 }
                 case ConsoleKey.D9:
                 {
-                    idx = 0;
                     if (idx <= state.GameHero.Inventory.GetInventoryCount() - 1)
                         chosenItem = state.GameHero.Inventory.GetItem(idx);
                     else
@@ -148,10 +139,10 @@ namespace HazardAndWhispers.App.Hamlet
             if (chosenItem == null)
                 return "No such item.";
 
-            if (modifier == ConsoleModifiers.Control)
+            if (modifier == ConsoleModifiers.Shift)
             {
                 state.GameHero.DropItem(idx);
-                return "\nDropped item" + chosenItem.Name + " from inventory";
+                return "\nDropped " + chosenItem.Name + " from inventory";
             }
 
             if (chosenItem.IsEquipable)

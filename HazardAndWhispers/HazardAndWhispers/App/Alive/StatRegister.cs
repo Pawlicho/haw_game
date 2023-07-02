@@ -36,6 +36,11 @@ namespace HazardAndWhispers.App.Alive
                     healthPoints = value;
                 else
                     healthPoints = MaxHealthPoints;
+
+                /* Setter for potions */
+                if (MaxHealthPoints == 0)
+                    healthPoints = value;
+
             }
         }
 

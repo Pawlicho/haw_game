@@ -35,6 +35,7 @@ namespace HazardAndWhispers.App.Creators
 
             /* Armorer */
             Equipment intermediateEquipment = equipmentCreator.CreateEquipment(EquipmentLevel.Intermediate, state.GameHero.ClassType);
+            Equipment advancedEquipment = equipmentCreator.CreateEquipment(EquipmentLevel.Advanced, state.GameHero.ClassType);
             List<EquipmentItem> armorerInventory = new List<EquipmentItem>()
             {
                 intermediateEquipment.Chest,
@@ -42,13 +43,21 @@ namespace HazardAndWhispers.App.Creators
                 intermediateEquipment.Legs,
                 intermediateEquipment.Feet,
                 intermediateEquipment.Arms,
-                intermediateEquipment.Hands,
+                advancedEquipment.Chest,
+                advancedEquipment.Head,
+                advancedEquipment.Legs,
+                advancedEquipment.Feet,
+                advancedEquipment.Arms
             };
 
             /* Blacksmith */
             List<EquipmentItem> blacksmithInventory = new List<EquipmentItem>()
             {
-                intermediateEquipment.Weapon
+                intermediateEquipment.Weapon,
+                intermediateEquipment.Hands,
+                advancedEquipment.Weapon,
+                advancedEquipment.Hands
+
             };
 
             ArmorerBuilding armorer = new("Steelhaven Armory", state, armorerInventory);

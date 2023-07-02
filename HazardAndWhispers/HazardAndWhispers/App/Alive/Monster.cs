@@ -47,5 +47,21 @@ namespace HazardAndWhispers.App.Alive
         {
             return MoveSet[moveId].MakeMove();
         }
+
+        public override string ToString()
+        {
+            string temp = "\n";
+            if (isBoss)
+                temp += "Boss\n";
+            int tempInt = 0;
+            temp += statistics.ToString();
+            temp += "\n\nMove set: ";
+            foreach (var move in moveSet)
+            {
+                temp += "\n" + tempInt + ": " + move.ToString();
+                tempInt++;
+            }
+            return temp;
+        }
     }
 }

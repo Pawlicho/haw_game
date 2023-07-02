@@ -56,7 +56,8 @@ namespace HazardAndWhispers.App.Game
                 }
                 if (currentExpedition.State is BattleAdventureState)
                 {
-                    helpInstructions += "\nS: Show skill set";
+                    helpInstructions += "\nS: Show Hero's skill set";
+                    helpInstructions += "\nC: Show enemy's details";
                     helpInstructions += "\nE: Show HP levels";
                     helpInstructions += "\n0-9: Make a move";
                 }
@@ -125,6 +126,13 @@ namespace HazardAndWhispers.App.Game
                         return "Hero's HP: " + gameHero.Statistics.HealthPoints + " / " + gameHero.Statistics.MaxHealthPoints +
                                "\nEnemy HP: " + currRoom.Enemy.Statistics.HealthPoints + " / " + currRoom.Enemy.Statistics.MaxHealthPoints;
                     }
+                    else
+                        break;
+                }
+                case ConsoleKey.C:
+                {
+                    if (currentExpedition.State is BattleAdventureState)
+                        return currentExpedition.Action(keyInfo);
                     else
                         break;
                 }
